@@ -1,0 +1,12 @@
+*~
+inst/doc
+.RData
+.Rhistory
+.Rproj.user
+*.o
+*.so
+*.dll
+vignettes/*html
+vignettes/*.md
+vignettes/*cache*
+docs/articles/*cache*

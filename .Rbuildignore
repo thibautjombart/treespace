@@ -1,0 +1,8 @@
+^\.travis\.yml$
+^.*\.Rproj$
+^\.Rproj\.user$
+^appveyor\.yml$
+vignettes/cache
+docs/
+README.Rmd
+CONDUCT.md
