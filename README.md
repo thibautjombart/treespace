@@ -1,4 +1,5 @@
 [![Travis-CI Build Status](https://travis-ci.org/thibautjombart/treespace.png?branch=master)](https://travis-ci.org/thibautjombart/treespace)
+[![Build status](https://ci.appveyor.com/api/projects/status/klr8khh1ieb26rh4/branch/master?svg=true)](https://ci.appveyor.com/project/thibautjombart/treespace/branch/master)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/treespace)](https://cran.r-project.org/package=treespace)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/treespace)](https://cran.r-project.org/package=treespace)
 
@@ -402,7 +403,7 @@ treeVec(tree)
 ```
 
 ```
-##  [1] 0 0 2 2 1 1 0 0 0 0 0 0 3 1 1 1 1 1 1 1 1
+##  [1] 2 3 2 0 1 2 3 0 1 2 0 1 0 1 0 1 1 1 1 1 1
 ```
 
 ```r
@@ -411,9 +412,9 @@ treeVec(tree,0.5)
 ```
 
 ```
-##  [1] 0.0000 0.0000 1.2882 1.2882 0.5961 0.7394 0.0000 0.0000 0.0000 0.0000
-## [11] 0.0000 0.0000 2.0524 0.5961 0.5961 0.6537 0.9528 0.5093 0.9768 0.8641
-## [21] 0.7480
+##  [1] 1.2482 1.7574 1.2482 0.0000 0.5367 1.2482 2.2422 0.0000 0.5367 1.2482
+## [11] 0.0000 0.5367 0.0000 0.5367 0.0000 0.5961 0.7394 0.6922 0.9528 0.6537
+## [21] 0.9249
 ```
 
 ```r
@@ -424,9 +425,9 @@ vecAsFunction(0.5)
 ```
 
 ```
-##  [1] 0.0000 0.0000 1.2882 1.2882 0.5961 0.7394 0.0000 0.0000 0.0000 0.0000
-## [11] 0.0000 0.0000 2.0524 0.5961 0.5961 0.6537 0.9528 0.5093 0.9768 0.8641
-## [21] 0.7480
+##  [1] 1.2482 1.7574 1.2482 0.0000 0.5367 1.2482 2.2422 0.0000 0.5367 1.2482
+## [11] 0.0000 0.5367 0.0000 0.5367 0.0000 0.5961 0.7394 0.6922 0.9528 0.6537
+## [21] 0.9249
 ```
 
 The metric -- the distance between two trees -- is the Euclidean distance between these vectors:
@@ -446,7 +447,7 @@ treeDist(tree_a,tree_b)
 ```
 
 ```
-## [1] 6
+## [1] 4.243
 ```
 
 ```r
@@ -455,7 +456,7 @@ treeDist(tree_a,tree_b,1)
 ```
 
 ```
-## [1] 3.008
+## [1] 2.864
 ```
 
 
