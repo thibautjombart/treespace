@@ -32,7 +32,7 @@ A \code{scatterD3} plot
 }
 \description{
 This function displays the scatterplot of the Multidimensional
-Scaling (MDS) output by treescape, superimposing group information
+Scaling (MDS) output by treespace, superimposing group information
 (derived by \code{\link{findGroves}}) using colors.
 \code{scatterD3} enables interactive plotting based on d3.js, including zooming, panning and fading effects in the legend.
 }
@@ -43,7 +43,7 @@ if(require("adegenet") && require("scatterD3")){
 ## load data
 data(woodmiceTrees)
 
-## run findGroves: treescape+clustering
+## run findGroves: treespace+clustering
 res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 
 ## basic plot
@@ -56,7 +56,7 @@ plotGrovesD3(res, treeNames=1:201)
 plotGrovesD3(res, symbol_var=res$groups)
 
 ## example with no group information
-plotGrovesD3(res$treescape$pco)
+plotGrovesD3(res$treespace$pco)
 }
 }
 

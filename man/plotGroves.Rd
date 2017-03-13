@@ -47,7 +47,7 @@ An \code{adegraphics} object (class: \code{ADEgS})
 }
 \description{
 This function displays the scatterplot of the Multidimensional
-Scaling (MDS) output by treescape, superimposing group information
+Scaling (MDS) output by treespace, superimposing group information
 (derived by \code{\link{findGroves}}) using colors.
 }
 \details{
@@ -61,7 +61,7 @@ if(require("adegenet") && require("adegraphics")){
 ## load data
 data(woodmiceTrees)
 
-## run findGroves: treescape+clustering
+## run findGroves: treespace+clustering
 res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 
 ## basic plot
@@ -79,10 +79,10 @@ plotGroves(res, type="ellipse", lab.show=TRUE,
 lab.optim=FALSE, scree.size=.35)
 
 ## example with no group information
-plotGroves(res$treescape$pco)
+plotGroves(res$treespace$pco)
 
 ## adding labels
-plotGroves(res$treescape$pco, lab.show=TRUE, lab.cex=2)
+plotGroves(res$treespace$pco, lab.show=TRUE, lab.cex=2)
 
 }
 }

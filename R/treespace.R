@@ -41,13 +41,13 @@
 #' x <- rmtree(10, 20)
 #' names(x) <- paste("tree", 1:10, sep = "")
 #'
-#' ## use treescape
-#' res <- treescape(x, nf=3)
+#' ## use treespace
+#' res <- treespace(x, nf=3)
 #' table.paint(as.matrix(res$D))
 #' scatter(res$pco)
 #'
 #' data(woodmiceTrees)
-#' woodmiceDists <- treescape(woodmiceTrees,nf=3)
+#' woodmiceDists <- treespace(woodmiceTrees,nf=3)
 #' plot(woodmiceDists$pco$li[,1],woodmiceDists$pco$li[,2])
 #' woodmicedf <- woodmiceDists$pco$li
 #' if(require(ggplot2)){
@@ -67,19 +67,19 @@
 #'
 #'
 #' @export
-treescape <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, ...){
+treespace <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, ...){
     ## CHECKS ##
     if(!inherits(x, "multiPhylo")) stop("x should be a multiphylo object")
     num_trees <- length(x) # number of trees
     ## fix potential bug with input of two trees
     if(num_trees<3) {
-      stop("treescape expects at least three trees. The function treeDist is suitable for comparing two trees.")
+      stop("treespace expects at least three trees. The function treeDist is suitable for comparing two trees.")
     }
 
     # check for user supplying invalid options (these gave unhelpful error messages before)
     dots <- list(...)
-    if(!is.null(dots$return.lambda.function)) stop("return.lambda.function is not compatible with treescape. Consider using multiDist instead.")
-    if(!is.null(dots$save.memory)) stop("save.memory is not compatible with treescape. Consider using multiDist instead.")
+    if(!is.null(dots$return.lambda.function)) stop("return.lambda.function is not compatible with treespace. Consider using multiDist instead.")
+    if(!is.null(dots$save.memory)) stop("save.memory is not compatible with treespace. Consider using multiDist instead.")
 
     # make name labels well defined
     if(is.null(names(x))) names(x) <- 1:num_trees
@@ -147,4 +147,4 @@ treescape <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, .
     out <- list(D=D, pco=pco)
     }
     return(out)
-} # end treescape
+} # end treespace

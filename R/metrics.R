@@ -78,7 +78,7 @@ linearMrca <- compiler::cmpfun(linearMrca) # compile
 #' @import ape
 #' @importFrom Rcpp evalCpp
 #' @importFrom combinat combn2
-#' @useDynLib treescape
+#' @useDynLib treespace
 #'
 #' @examples
 #'
@@ -309,7 +309,7 @@ treeDist <- function(tree.a, tree.b, lambda=0, return.lambda.function=FALSE, emp
 
 #' Metric function for \code{multiPhylo} input
 #'
-#' Comparison of a list of trees using the Kendall Colijn metric. Output is given as a pairwise distance matrix. This is equivalent to the \code{$D} output from \code{treescape} but may be preferable for large datasets, and when principal co-ordinate analysis is not required. It includes an option to save memory at the expense of computation time.
+#' Comparison of a list of trees using the Kendall Colijn metric. Output is given as a pairwise distance matrix. This is equivalent to the \code{$D} output from \code{treespace} but may be preferable for large datasets, and when principal co-ordinate analysis is not required. It includes an option to save memory at the expense of computation time.
 #'
 #' @author Jacob Almagro-Garcia \email{nativecoder@@gmail.com}
 #' @author Michelle Kendall \email{michelle.louise.kendall@@gmail.com}

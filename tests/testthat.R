@@ -1,4 +1,4 @@
 library(testthat)
-library(treescape)
+library(treespace)
 
-test_check("treescape")
+test_check("treespace")

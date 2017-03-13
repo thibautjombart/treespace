@@ -97,7 +97,7 @@ shinyUI(
                                            
                                            ## find clusters?
                                            checkboxInput("findClusters", label=strong("Identify clusters?"), value=FALSE),
-                                           bsTooltip("findClusters","Statistical tools for choosing an appropriate clustering method and number of clusters will be added to treescape soon.", placement="right"),
+                                           bsTooltip("findClusters","Statistical tools for choosing an appropriate clustering method and number of clusters will be added to treespace soon.", placement="right"),
                                            
                                            conditionalPanel(condition ="input.findClusters", 
                                                             radioButtons("clusterType", label="Method:", 
@@ -309,11 +309,11 @@ shinyUI(
                                   
                                   conditionalPanel(
                                     condition="input.plot3D==2",
-                                    uiOutput("treescapePlot")
+                                    uiOutput("treespacePlot")
                                   ),
                                   conditionalPanel(
                                     condition="input.plot3D==3",
-                                    rglwidgetOutput("treescapePlot3D", width="800px")
+                                    rglwidgetOutput("treespacePlot3D", width="800px")
                                   ),
                                   
                                   conditionalPanel(
@@ -341,18 +341,18 @@ shinyUI(
                                   conditionalPanel(
                                     condition="(input.plotType==1)&&(input.plot3D==2)&&(input.graphics==1)",
                                         tags$p(tags$a(id = "scatterD3-svg-export", href = "#",
-                                              class = "btn btn-default", HTML("<span class='glyphicon glyphicon-save' aria-hidden='true'></span> Save treescape plot as svg"))),
-                                        downloadButton("downloadMDS2Dhtml", "Save treescape plot as interactive html")
+                                              class = "btn btn-default", HTML("<span class='glyphicon glyphicon-save' aria-hidden='true'></span> Save treespace plot as svg"))),
+                                        downloadButton("downloadMDS2Dhtml", "Save treespace plot as interactive html")
                                     ),
                                   
                                   conditionalPanel(
                                     condition="(input.plotType==1)&&(input.plot3D==2)&&(input.graphics==2)",
-                                    downloadButton("downloadMDS", "Save treescape image as png file")
+                                    downloadButton("downloadMDS", "Save treespace image as png file")
                                   ),
                                   
                                   conditionalPanel(
                                     condition="input.plot3D==3",
-                                    downloadButton("downloadMDS3Dhtml", "Save treescape 3D plot as interactive html")
+                                    downloadButton("downloadMDS3Dhtml", "Save treespace 3D plot as interactive html")
                                   ),
                                   
                                   conditionalPanel(
@@ -583,13 +583,13 @@ shinyUI(
                                                    br(), br()
                                   ), # end tree comparison conditional panel
                                   
-                                  ## Repeat of treescape plot, for reference
+                                  ## Repeat of treespace plot, for reference
                                   img(src="img/line.png", width="400px"),
                                   h2(HTML('<font color="#6C6CC4" size="6"> > Copy of scatter plot </font>')),
                                   
                                   br(), br(), 
                                   
-                                  uiOutput("treescapePlotTreeTab")
+                                  uiOutput("treespacePlotTreeTab")
                                   
                         ) # end mainPanel
                       ) # end page with sidebar

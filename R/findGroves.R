@@ -1,14 +1,14 @@
 ##'
 #' Identify clusters of similar trees
 #'
-#' This function uses hierarchical clustering on principal components output by \code{\link{treescape}} to identify groups of similar trees. Clustering relies on \code{\link{hclust}}, using Ward's method by default.
+#' This function uses hierarchical clustering on principal components output by \code{\link{treespace}} to identify groups of similar trees. Clustering relies on \code{\link{hclust}}, using Ward's method by default.
 #'
-#' @param x an object of the class multiPhylo or the output of the function \code{treescape}
-#' @param method (ignored if x is from \code{treescape}) this specifies a function which outputs the summary of a tree in the form of a vector. Defaults to \code{treeVec}.
-#' @param nf (ignored if x is from \code{treescape}) the number of principal components to retain
+#' @param x an object of the class multiPhylo or the output of the function \code{treespace}
+#' @param method (ignored if x is from \code{treespace}) this specifies a function which outputs the summary of a tree in the form of a vector. Defaults to \code{treeVec}.
+#' @param nf (ignored if x is from \code{treespace}) the number of principal components to retain
 #' @param clustering a character string indicating the clustering method to be used; defaults to Ward's method; see argument \code{method} in \code{?hclust} for more details.
 #' @param nclust an integer indicating the number of clusters to find; if not provided, an interactive process based on cutoff threshold selection is used.
-#' @param ... further arguments to be passed to \code{treescape}
+#' @param ... further arguments to be passed to \code{treespace}
 #'
 #' @author Thibaut Jombart \email{thibautjombart@@gmail.com}
 #' @author  Michelle Kendall \email{michelle.louise.kendall@@gmail.com}
@@ -27,7 +27,7 @@
 #' A list containing:
 #' \itemize{
 #'  \item groups: a factor defining groups of trees
-#'  \item treescape: the output of treescape
+#'  \item treespace: the output of treespace
 #' }
 #'
 #' @examples
@@ -36,11 +36,11 @@
 #' ## load data
 #' data(woodmiceTrees)
 #'
-#' ## run findGroves: treescape+clustering
+#' ## run findGroves: treespace+clustering
 #' res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 #'
 #' ## plot results on first 2 axes
-#' PCs <- res$treescape$pco$li
+#' PCs <- res$treespace$pco$li
 #' s.class(PCs, fac=res$groups, col=funky(6))
 #'
 #' ## using plotGroves
@@ -53,18 +53,18 @@ findGroves <- function(x, method="treeVec", nf=NULL, clustering="ward.D2",
                         nclust=NULL, ...){
     ## CHECK input type ##
     if (inherits(x, "multiPhylo")) {
-       ## GET OUTPUT OF TREESCAPE ##
+       ## GET OUTPUT OF TREESPACE ##
        type <- "multiPhylo_object"
-       res <- treescape(x, method=method, nf=nf, ...)
+       res <- treespace(x, method=method, nf=nf, ...)
        }
     else if (inherits(x, "list")) { 
-      # test if it is an output from treescape
+      # test if it is an output from treespace
       inherits(x$D,"dist")
       inherits(x$pco,c("pco","dudi"))
-      type <- "treescape_output"
+      type <- "treespace_output"
       res <- x 
       } 
-    else stop("x should be a multiphylo object or output of function treescape")
+    else stop("x should be a multiphylo object or output of function treespace")
       
     ## GET CLUSTERS ##
     ## hierharchical clustering
@@ -91,9 +91,9 @@ findGroves <- function(x, method="treeVec", nf=NULL, clustering="ward.D2",
     ## BUILD RESULT AND RETURN ##
     # retrieve tree names:
     if (type=="multiPhylo_object") names(grp) <- names(x)
-    if (type=="treescape_output") names(grp) <- colnames(as.matrix(x$D)) 
+    if (type=="treespace_output") names(grp) <- colnames(as.matrix(x$D)) 
     
-    out <- list(groups=factor(grp), treescape=res)
+    out <- list(groups=factor(grp), treespace=res)
 
     return(out)
 } # end findGroves

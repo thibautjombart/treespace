@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // updateDistancesWithCombinations
 void updateDistancesWithCombinations(NumericVector& length_root_distances, NumericVector& topological_root_distances, IntegerVector& left_partition, IntegerVector& right_partition, IntegerVector& index_offsets, double distance_to_root, int edges_to_root);
-RcppExport SEXP treescape_updateDistancesWithCombinations(SEXP length_root_distancesSEXP, SEXP topological_root_distancesSEXP, SEXP left_partitionSEXP, SEXP right_partitionSEXP, SEXP index_offsetsSEXP, SEXP distance_to_rootSEXP, SEXP edges_to_rootSEXP) {
+RcppExport SEXP treespace_updateDistancesWithCombinations(SEXP length_root_distancesSEXP, SEXP topological_root_distancesSEXP, SEXP left_partitionSEXP, SEXP right_partitionSEXP, SEXP index_offsetsSEXP, SEXP distance_to_rootSEXP, SEXP edges_to_rootSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type length_root_distances(length_root_distancesSEXP);

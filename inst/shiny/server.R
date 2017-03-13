@@ -10,7 +10,7 @@ shinyServer(function(input, output, session) {
   require("htmlwidgets")
   require("MASS")
   require("phangorn")
-  require("treescape")
+  require("treespace")
  
   # suppress warning messages from creating temporary directories when 3d plotting
   suppressWarnings(warning("dir.create(dir)"))
@@ -65,12 +65,12 @@ shinyServer(function(input, output, session) {
     ## data is a distributed dataset
     if(dataType=="exDengue"){
       if (!exists("DengueTrees")) { 
-        data("DengueTrees", package="treescape", envir=environment()) }
+        data("DengueTrees", package="treespace", envir=environment()) }
       out <- get("DengueTrees")
     }
     if(dataType=="exWoodmice"){
       if (!exists("woodmiceTrees")) {
-        data("woodmiceTrees", package="treescape", envir=environment()) }
+        data("woodmiceTrees", package="treespace", envir=environment()) }
       out <- get("woodmiceTrees")
     }
     
@@ -97,7 +97,7 @@ shinyServer(function(input, output, session) {
       
       ## fix potential bug with input of two trees
       validate(
-        need(l>2, "treescape expects at least three trees. The function treeDist is suitable for comparing two trees.")
+        need(l>2, "treespace expects at least three trees. The function treeDist is suitable for comparing two trees.")
       )
       
       # get a manageable number of trees by sampling if necessary
@@ -121,7 +121,7 @@ shinyServer(function(input, output, session) {
         if (!setequal(out[[i]]$tip.label,out[[1]]$tip.label)) {
           tipLabelProblem <- TRUE
           validate(
-            need(!tipLabelProblem, "Trees must have identical tip labels for the current version of treescape")
+            need(!tipLabelProblem, "Trees must have identical tip labels for the current version of treespace")
           )
         } 
       }
@@ -334,11 +334,11 @@ shinyServer(function(input, output, session) {
     ## select method used to summarise tree
     if(!is.null(TM)){
       if(TM %in% c("BHV","KF","RF","wRF","patristic","nNodes","Abouheif","sumDD")){
-        ## run treescape (suppress warnings about rootedness etc.)
-        res <- suppressWarnings(treescape(x, method=TM, nf=naxes))
+        ## run treespace (suppress warnings about rootedness etc.)
+        res <- suppressWarnings(treespace(x, method=TM, nf=naxes))
       } 
       else if(TM=="metric"){
-        ## don't actually need to call treescape here, to save on recomputation for varying lambda
+        ## don't actually need to call treespace here, to save on recomputation for varying lambda
         D <- getKCmatrix()
         pco <- getPCO()
         res <- list(D=D, pco=pco) 
@@ -674,8 +674,8 @@ shinyServer(function(input, output, session) {
     input$plotType
   })
   
-  ## TREESCAPE IMAGE ##
-  output$treescapePlot <- renderUI({
+  ## TREESPACE IMAGE ##
+  output$treespacePlot <- renderUI({
     type <- getPlotType()
     if (type==1){ # i.e. full tree landscape
       plotFunction <- getPlotFunction()
@@ -693,7 +693,7 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  # repeat treescapePlot for tree viewer tab
+  # repeat treespacePlot for tree viewer tab
   output$scatterplotD3TreeTab <- renderScatterD3({
     plotFunction <- getPlotFunction() # need to do this or you get an error when switching between plotGroves and plotGrovesD3
     if (plotFunction==1) { 
@@ -708,12 +708,12 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  output$treescapePlotTreeTab <- renderUI({
+  output$treespacePlotTreeTab <- renderUI({
     scatterD3Output("scatterplotD3TreeTab")
   })
   
   # 3d output
-  output$treescapePlot3D <- renderRglwidget({
+  output$treespacePlot3D <- renderRglwidget({
     validate(
       need(packageVersion("rgl")>='0.96.0',
            paste0("You are running version ",packageVersion("rgl")," of the package rgl, which may not contain all the necessary features for 3D plotting (which are based on the old, separate rglwidget package). Please update to the latest version.")
@@ -1095,8 +1095,8 @@ shinyServer(function(input, output, session) {
       x <- data$out
       res <- getClusters()
       if(!is.null(res)){
-        tab <- cbind.data.frame(res$groups, res$treescape$pco$li)
-        names(tab) <- c("cluster", paste("PC", 1:ncol(res$treescape$pco$li), sep="."))
+        tab <- cbind.data.frame(res$groups, res$treespace$pco$li)
+        names(tab) <- c("cluster", paste("PC", 1:ncol(res$treespace$pco$li), sep="."))
         row.names(tab) <- names(x)
       } else{
         res <- getAnalysis()

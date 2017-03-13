@@ -1,10 +1,10 @@
 ---
-title: "treescape worked example: Dengue trees"
+title: "treespace worked example: Dengue trees"
 author: "Michelle Kendall, Thibaut Jombart"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{treescape worked example: Dengue trees}
+  %\VignetteIndexEntry{treespace worked example: Dengue trees}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -18,17 +18,17 @@ knitr::knit_hooks$set(webgl=hook_webgl)
 ```
 
 
-This vignette demonstrates the use of *treescape* to compare a collection of trees. 
+This vignette demonstrates the use of *treespace* to compare a collection of trees. 
 For this example we use trees inferred from 17 dengue virus serotype 4 sequences from Lanciotti et al. (1997).
 We include a sample of trees from BEAST (v1.8), as well as creating neighbour-joining (NJ) and maximum-likelihood (ML) trees.
 
 
-Loading *treescape* and data:
+Loading *treespace* and data:
 -------------
 
 Load the required packages:
 ```{r load, message=FALSE, warning=FALSE}
-library("treescape")
+library("treespace")
 library("phangorn")
 ```
 
@@ -106,12 +106,12 @@ Plot the ML tree again, with bootstrap support values:
 plotBS(DfitTreeRooted, DMLboots, type="phylogram")
 ```
 
-Using *treescape* to compare trees
+Using *treespace* to compare trees
 -------------
 
-We now use the function `treescape` to find and plot distances between all these trees:
+We now use the function `treespace` to find and plot distances between all these trees:
 
-```{r run_treescape}
+```{r run_treespace}
 # collect the trees into a single object of class multiPhylo:
 DengueTrees <- c(BEASTtrees, Dnjboots$trees, DMLbootsrooted,
 		             DnjRooted, DfitTreeRooted)
@@ -125,8 +125,8 @@ names(DengueTrees)[[402]] <- "ML"
 # create vector corresponding to tree inference method:
 Dtype <- c(rep("BEAST",200),rep("NJboots",100),rep("MLboots",100),"NJ","ML")
 
-# use treescape to find and project the distances:
-Dscape <- treescape(DengueTrees, nf=5)
+# use treespace to find and project the distances:
+Dscape <- treespace(DengueTrees, nf=5)
 
 # simple plot:
 plotGrovesD3(Dscape$pco, groups=Dtype)
@@ -185,7 +185,7 @@ plotGrovesD3(Dscape$pco,
              legend_width=80)
 ```
 
-The scree plot is available as part of the `treescape` output:
+The scree plot is available as part of the `treespace` output:
 ```{r scree_plot}
 barplot(Dscape$pco$eig, col="navy")
 ```
@@ -204,10 +204,10 @@ rgl::plot3d(Dscape$pco$li[,1],Dscape$pco$li[,2],Dscape$pco$li[,3],
        xlab="", ylab="", zlab="")
 ```
 
-*treescape* analysis
+*treespace* analysis
 -------------
 
-From these plots we can see that *treescape* has identified variation in the trees according to the Kendall Colijn metric ($\lambda=0$, ignoring branch lengths). 
+From these plots we can see that *treespace* has identified variation in the trees according to the Kendall Colijn metric ($\lambda=0$, ignoring branch lengths). 
 The NJ and ML bootstrap trees have broadly similar topologies but are different from any of the BEAST trees.
 We can check whether any bootstrap trees have the same topology as either the NJ or ML tree, as follows:
 
@@ -262,7 +262,7 @@ plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE)
 treeDist(BEASTrep,randomBEASTtree)
 ```
 
-Using *treescape* to analyse the BEAST trees in more detail:
+Using *treespace* to analyse the BEAST trees in more detail:
 -------------
 
 We used TreeAnnotator (Drummond and Rambaut, 2007) to create a Maximum Clade Credibility (MCC) tree from amongst the BEAST trees.
@@ -271,8 +271,8 @@ We used TreeAnnotator (Drummond and Rambaut, 2007) to create a Maximum Clade Cre
 data(DengueBEASTMCC)
 # concatenate with other BEAST trees
 BEAST201 <- c(BEASTtrees, DengueBEASTMCC)
-# compare using treescape:
-BEASTscape <- treescape(BEAST201, nf=5)
+# compare using treespace:
+BEASTscape <- treespace(BEAST201, nf=5)
 # simple plot:
 plotGrovesD3(BEASTscape$pco)
 ```

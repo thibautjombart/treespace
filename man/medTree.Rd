@@ -10,7 +10,7 @@ medTree(x, groups = NULL, lambda = 0, weights = NULL,
 }
 \arguments{
 \item{x}{A list of trees of the class multiPhylo, for which the median tree will be computed, \cr
-OR a matrix of tree vectors as given by \code{treescape$vectors}.}
+OR a matrix of tree vectors as given by \code{treespace$vectors}.}
 
 \item{groups}{an optional factor defining groups of trees; if provided, one median tree will be found for each group.}
 

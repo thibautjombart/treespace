@@ -1,4 +1,4 @@
-Package: treescape
+Package: treespace
 Title: Statistical Exploration of Landscapes of Phylogenetic Trees
 Version: 1.10.19
 Date: 2017-02-08
@@ -9,7 +9,7 @@ Authors@R: c(TJ=person("Thibaut", "Jombart", email="thibaut.jombart@gmail.com", 
 Maintainer: Michelle Kendall <m.kendall@imperial.ac.uk>
 Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a shiny interface which can be started from R using
-    'treescapeServer()'.
+    'treespaceServer()'.
 Depends:
     R (>= 3.1.2),
     ape,
@@ -46,7 +46,7 @@ Collate:
     RcppExports.R
     metrics.R
     medTree.R
-    treescape.R
+    treespace.R
     findGroves.R
     plotGroves.R
     plotTreeDiff.R

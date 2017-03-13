@@ -1,4 +1,4 @@
-library(treescape)
+library(treespace)
 library(adegraphics)
 library(ape)
 
@@ -24,8 +24,8 @@ for(i in seq_along(trees)){
 
 
 
-## treescape result
-res <- treescape(trees, method="patristic", nf=2)
+## treespace result
+res <- treespace(trees, method="patristic", nf=2)
 
 ## groves
 groves <- findGroves(res, nclust=3)

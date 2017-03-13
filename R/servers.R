@@ -4,7 +4,7 @@
 #' This function opens up an application in a web browser for an interactive exploration of the diversity in a set of trees.
 #' For further details please see the "help" tab within the application.
 #' 
-#' @seealso For convenience, \code{treescapeServer} is also available as a separate web app which can be used from any browser (it is not necessary to have \R installed): {\url{http://shiny.imperial-stats-experimental.co.uk/users/mlkendal/treescape/}} 
+#' @seealso For convenience, \code{treespaceServer} is also available as a separate web app which can be used from any browser (it is not necessary to have \R installed): {\url{http://shiny.imperial-stats-experimental.co.uk/users/mlkendal/treespace/}} 
 #'
 #' @author Thibaut Jombart \email{thibautjombart@@gmail.com}
 #' @author Michelle Kendall \email{michelle.louise.kendall@@gmail.com}
@@ -31,9 +31,9 @@
 #' 
 #' 
 #' @export
-treescapeServer <- function(){
+treespaceServer <- function(){
     ## RUN APP
-    runApp(system.file("shiny",package="treescape"))
+    runApp(system.file("shiny",package="treespace"))
     return(invisible())
 }
 
@@ -61,8 +61,8 @@ treescapeServer <- function(){
                 cat("\n== Date ==\n")
                 print(date())
 
-                cat("\n== treescape version ==\n")
-                print(packageDescription("treescape", fields=c("Package", "Version", "Date", "Built")))
+                cat("\n== treespace version ==\n")
+                print(packageDescription("treespace", fields=c("Package", "Version", "Date", "Built")))
 
                 cat("\n== shiny version ==\n")
                 print(packageDescription("shiny", fields=c("Package", "Version", "Date", "Built")))

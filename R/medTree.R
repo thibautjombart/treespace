@@ -7,7 +7,7 @@
 #' @author Thibaut Jombart \email{thibautjombart@@gmail.com}
 #'
 #' @param x A list of trees of the class multiPhylo, for which the median tree will be computed, \cr
-#' OR a matrix of tree vectors as given by \code{treescape$vectors}.
+#' OR a matrix of tree vectors as given by \code{treespace$vectors}.
 #' @param groups an optional factor defining groups of trees; if provided, one median tree will be found for each group.
 #' @param lambda a number in [0,1] which specifies the extent to which topology (default, with lambda=0)  or branch lengths (lambda=1) are emphasised. This argument is ignored if \code{return.lambda.function=TRUE} or if the vectors are already supplied as the object \code{x}.
 #' @param weights A vector of weights for the trees. Defaults to a vector of 1's so that all trees are equally weighted, but can be used to encode likelihood, posterior probabilities or other characteristics.

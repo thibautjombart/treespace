@@ -25,7 +25,7 @@ This function returns the matrix of metric values for the given lambda.}
 The pairwise tree distance matrix or a function that produces the distance matrix given a value for lambda.
 }
 \description{
-Comparison of a list of trees using the Kendall Colijn metric. Output is given as a pairwise distance matrix. This is equivalent to the \code{$D} output from \code{treescape} but may be preferable for large datasets, and when principal co-ordinate analysis is not required. It includes an option to save memory at the expense of computation time.
+Comparison of a list of trees using the Kendall Colijn metric. Output is given as a pairwise distance matrix. This is equivalent to the \code{$D} output from \code{treespace} but may be preferable for large datasets, and when principal co-ordinate analysis is not required. It includes an option to save memory at the expense of computation time.
 }
 \examples{
 

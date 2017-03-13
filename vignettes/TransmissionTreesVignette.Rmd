@@ -1,10 +1,10 @@
 ---
-title: "treescape worked example: Transmission trees"
+title: "treespace worked example: Transmission trees"
 author: "Michelle Kendall"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{treescape worked example: Transmission trees}
+  %\VignetteIndexEntry{treespace worked example: Transmission trees}
   \usepackage[utf8]{inputenc}
 ---
   
@@ -16,15 +16,15 @@ options(digits = 4)
 ```
 
 
-This vignette demonstrates the use of *treescape* to compare a collection of transmission trees, as proposed in Kendall, Ayabina & Colijn, 2016 [arXiv:1609.09051](http://arxiv.org/abs/1609.09051).
+This vignette demonstrates the use of *treespace* to compare a collection of transmission trees, as proposed in Kendall, Ayabina & Colijn, 2016 [arXiv:1609.09051](http://arxiv.org/abs/1609.09051).
 
-First we load the package *treescape*:
+First we load the package *treespace*:
 
 ```{r load, message=FALSE}
-library(treescape)
+library(treespace)
 ```
 
-*treescape* contains three functions for handling and comparing transmission trees:
+*treespace* contains three functions for handling and comparing transmission trees:
 
 1) `findMRCIs()` which takes a "who infected whom matrix" (the information about infectors and infectees; more on this below) and outputs:
 
@@ -84,7 +84,7 @@ tree3graph <- graph_from_edgelist(tree3)
 plot(tree3graph)
 ```
 
-Then we can use *treescape* functions to make the following comparisons: 
+Then we can use *treespace* functions to make the following comparisons: 
 ```{r tree123_comparison}
 m1 <- findMRCIs(tree1) # find the source case, MRCIs and MRCI depths for tree 1
 m2 <- findMRCIs(tree2)

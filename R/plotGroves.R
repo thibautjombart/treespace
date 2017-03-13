@@ -2,7 +2,7 @@
 #' Scatterplot of groups of trees
 #'
 #' This function displays the scatterplot of the Multidimensional
-#' Scaling (MDS) output by treescape, superimposing group information
+#' Scaling (MDS) output by treespace, superimposing group information
 #' (derived by \code{\link{findGroves}}) using colors.
 #'
 #' This function relies on \code{\link[adegraphics]{s.class}}
@@ -50,7 +50,7 @@
 #' ## load data
 #' data(woodmiceTrees)
 #'
-#' ## run findGroves: treescape+clustering
+#' ## run findGroves: treespace+clustering
 #' res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 #'
 #' ## basic plot
@@ -68,10 +68,10 @@
 #' lab.optim=FALSE, scree.size=.35)
 #'
 #' ## example with no group information
-#' plotGroves(res$treescape$pco)
+#' plotGroves(res$treespace$pco)
 #'
 #' ## adding labels
-#' plotGroves(res$treescape$pco, lab.show=TRUE, lab.cex=2)
+#' plotGroves(res$treespace$pco, lab.show=TRUE, lab.cex=2)
 #'
 #' }
 #' }
@@ -89,9 +89,9 @@ plotGroves <- function(x, groups=NULL, xax=1, yax=2,
 
     ## x is a list returned by findGroves
     if(is.list(x) && !is.data.frame(x) && !inherits(x,"dudi")){
-        if(is.null(x$treescape)) stop("if x is a list, it should contain a slot $treescape")
+        if(is.null(x$treespace)) stop("if x is a list, it should contain a slot $treespace")
         groups <- x$groups
-        x <- x$treescape$pco
+        x <- x$treespace$pco
     }
 
     ## x is a dudi object
@@ -174,7 +174,7 @@ plotGroves <- function(x, groups=NULL, xax=1, yax=2,
 #' Scatterplot of groups of trees using \code{scatterD3}
 #'
 #' This function displays the scatterplot of the Multidimensional
-#' Scaling (MDS) output by treescape, superimposing group information
+#' Scaling (MDS) output by treespace, superimposing group information
 #' (derived by \code{\link{findGroves}}) using colors.
 #' \code{scatterD3} enables interactive plotting based on d3.js, including zooming, panning and fading effects in the legend.
 #'
@@ -210,7 +210,7 @@ plotGroves <- function(x, groups=NULL, xax=1, yax=2,
 #' ## load data
 #' data(woodmiceTrees)
 #'
-#' ## run findGroves: treescape+clustering
+#' ## run findGroves: treespace+clustering
 #' res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 #'
 #' ## basic plot
@@ -223,7 +223,7 @@ plotGroves <- function(x, groups=NULL, xax=1, yax=2,
 #' plotGrovesD3(res, symbol_var=res$groups)
 #'
 #' ## example with no group information
-#' plotGrovesD3(res$treescape$pco)
+#' plotGrovesD3(res$treespace$pco)
 #' }
 #' }
 #'
@@ -235,9 +235,9 @@ plotGrovesD3 <- function(x, groups=NULL, xax=1, yax=2, treeNames=NULL, symbol_va
 
   ## x is a list returned by findGroves
   if(is.list(x) && !is.data.frame(x) && !inherits(x,"dudi")){
-    if(is.null(x$treescape)) stop("if x is a list, it should contain a slot $treescape")
+    if(is.null(x$treespace)) stop("if x is a list, it should contain a slot $treespace")
     groups <- x$groups
-    x <- x$treescape$pco$li
+    x <- x$treespace$pco$li
   }
   
   ## x is a dudi object

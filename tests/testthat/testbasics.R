@@ -1,5 +1,5 @@
 library(testthat)
-library(treescape)
+library(treespace)
 library(ape)
 
 ############################
@@ -51,13 +51,13 @@ test_that("treeDist equals corresponding entry of refTreeDist", {
   expect_equal(treeDist(tree_a,trees[[1]],emphasise.tips = c("t1","t2")), refTreeDist(tree_a,trees,emphasise.tips = c("t1","t2"))[[1]])
 })
 
-test_that("multiDist equals the distance matrix from treescape", {
-  treedistMatrix <- treescape(trees,nf=2)$D
-  treedistMatrix0.5 <- treescape(trees,nf=2,lambda=l)$D 
+test_that("multiDist equals the distance matrix from treespace", {
+  treedistMatrix <- treespace(trees,nf=2)$D
+  treedistMatrix0.5 <- treespace(trees,nf=2,lambda=l)$D 
   multidistMatrixFunction <- multiDist(trees,return.lambda.function=TRUE)
   expect_equal(multidistMatrixFunction(0)[[n]],treedistMatrix[[n]])
   expect_equal(multidistMatrixFunction(l)[[n]],treedistMatrix0.5[[n]])
-  expect_equal(treescape(trees,nf=2,emphasise.tips=c("t1","t2"))$D[[n]],multiDist(trees,emphasise.tips=c("t1","t2"))[[n]])
+  expect_equal(treespace(trees,nf=2,emphasise.tips=c("t1","t2"))$D[[n]],multiDist(trees,emphasise.tips=c("t1","t2"))[[n]])
   })
 
 test_that("medTree results are consistent with treeVec", {
@@ -67,7 +67,7 @@ test_that("medTree results are consistent with treeVec", {
   })
 
 test_that("medTree results are consistent whether the trees or their vectors are supplied", {
-   expect_equal(medTree(trees)$mindist,medTree(treescape(trees,nf=2, return.tree.vectors = TRUE)$vectors)$mindist)
+   expect_equal(medTree(trees)$mindist,medTree(treespace(trees,nf=2, return.tree.vectors = TRUE)$vectors)$mindist)
   })
 
 ############################

@@ -8,27 +8,27 @@ findGroves(x, method = "treeVec", nf = NULL, clustering = "ward.D2",
   nclust = NULL, ...)
 }
 \arguments{
-\item{x}{an object of the class multiPhylo or the output of the function \code{treescape}}
+\item{x}{an object of the class multiPhylo or the output of the function \code{treespace}}
 
-\item{method}{(ignored if x is from \code{treescape}) this specifies a function which outputs the summary of a tree in the form of a vector. Defaults to \code{treeVec}.}
+\item{method}{(ignored if x is from \code{treespace}) this specifies a function which outputs the summary of a tree in the form of a vector. Defaults to \code{treeVec}.}
 
-\item{nf}{(ignored if x is from \code{treescape}) the number of principal components to retain}
+\item{nf}{(ignored if x is from \code{treespace}) the number of principal components to retain}
 
 \item{clustering}{a character string indicating the clustering method to be used; defaults to Ward's method; see argument \code{method} in \code{?hclust} for more details.}
 
 \item{nclust}{an integer indicating the number of clusters to find; if not provided, an interactive process based on cutoff threshold selection is used.}
 
-\item{...}{further arguments to be passed to \code{treescape}}
+\item{...}{further arguments to be passed to \code{treespace}}
 }
 \value{
 A list containing:
 \itemize{
  \item groups: a factor defining groups of trees
- \item treescape: the output of treescape
+ \item treespace: the output of treespace
 }
 }
 \description{
-This function uses hierarchical clustering on principal components output by \code{\link{treescape}} to identify groups of similar trees. Clustering relies on \code{\link{hclust}}, using Ward's method by default.
+This function uses hierarchical clustering on principal components output by \code{\link{treespace}} to identify groups of similar trees. Clustering relies on \code{\link{hclust}}, using Ward's method by default.
 }
 \examples{
 
@@ -36,11 +36,11 @@ if(require("adegenet") && require("adegraphics")){
 ## load data
 data(woodmiceTrees)
 
-## run findGroves: treescape+clustering
+## run findGroves: treespace+clustering
 res <- findGroves(woodmiceTrees, nf=5, nclust=6)
 
 ## plot results on first 2 axes
-PCs <- res$treescape$pco$li
+PCs <- res$treespace$pco$li
 s.class(PCs, fac=res$groups, col=funky(6))
 
 ## using plotGroves

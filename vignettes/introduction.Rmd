@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{treescape: exploration of landscapes of phylogenetic trees}
+  %\VignetteIndexEntry{treespace: exploration of landscapes of phylogenetic trees}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -18,37 +18,37 @@ library("rgl")
 knitr::knit_hooks$set(webgl=hook_webgl)
 ```
 
-*treescape*: exploration of landscapes of phylogenetic trees
+*treespace*: exploration of landscapes of phylogenetic trees
 =================================================
-*treescape* implements new methods for the exploration and analysis of distributions of phylogenetic trees for a given set of taxa.
+*treespace* implements new methods for the exploration and analysis of distributions of phylogenetic trees for a given set of taxa.
 
 
-Installing *treescape*
+Installing *treespace*
 -------------
 To install the development version from github:
 ```{r install, eval=FALSE}
 library(devtools)
-install_github("thibautjombart/treescape")
+install_github("thibautjombart/treespace")
 ```
 
 The stable version can be installed from CRAN using:
 ```{r install2, eval=FALSE}
-install.packages("treescape")
+install.packages("treespace")
 ```
 
 Then, to load the package, use:
 ```{r load}
-library("treescape")
+library("treespace")
 ```
 
 
 Content overview
 -------------
-The main functions implemented in *treescape* are:
+The main functions implemented in *treespace* are:
 
-* __`treescape`__: explore landscapes of phylogenetic trees
+* __`treespace`__: explore landscapes of phylogenetic trees
 
-* __`treescapeServer`__: open up an application in a web browser
+* __`treespaceServer`__: open up an application in a web browser
 for an interactive exploration of the diversity in a set of trees
 
 * __`findGroves`__: identify clusters of similar trees
@@ -84,33 +84,33 @@ Distributed datasets include:
 
 
 
-Exploring trees with *treescape*
+Exploring trees with *treespace*
 --------------
 
-We first load *treescape*, and the packages required for graphics:
+We first load *treespace*, and the packages required for graphics:
 ```{r load_packages, message=FALSE, warning=FALSE}
-library("treescape")
+library("treespace")
 library("adegenet")
 library("adegraphics")
 library("rgl")
 ```
 
-The function `treescape` defines typologies of phylogenetic trees using a two-step approach:
+The function `treespace` defines typologies of phylogenetic trees using a two-step approach:
 
 1. perform pairwise comparisons of trees using various (Euclidean) metrics; by default, the comparison uses the Kendall and Colijn metric (Kendall and Colijn, 2016) which is described in more detail below; other metrics rely on tip distances implemented in *adephylo* (Jombart *et al.*, 2010) and *phangorn* (Schliep 2011).
 
 2. use Metric Multidimensional Scaling (MDS, aka Principal Coordinates Analysis, PCoA) to summarise pairwise distances between the trees as well as possible into a few dimensions; the output of the MDS is typically visualised using scatterplots of the first few Principal Components (PCs); this step relies on the PCoA implemented in *ade4* (Dray and Dufour, 2007).
 
-The function `treescape` performs both tasks, returning both the matrix of pairwise tree comparisons (`$D`), and the PCoA (`$pco`).
+The function `treespace` performs both tasks, returning both the matrix of pairwise tree comparisons (`$D`), and the PCoA (`$pco`).
 This can be illustrated using randomly generated trees:
-```{r treescape}
+```{r treespace}
 # generate list of trees
 set.seed(1)
 x <- rmtree(10, 20)
 names(x) <- paste("tree", 1:10, sep = "")
 
-# use treescape
-res <- treescape(x, nf=3)
+# use treespace
+res <- treespace(x, nf=3)
 names(res)
 res
 ```
@@ -127,7 +127,7 @@ table.value(res$D, nclass=5, method="color",
 ```
 
 The best representation of these distances in a 2-dimensional space is given by the first 2 PCs of the MDS.
-These can be visualised using any scatter plotting tool; here we use the *treescape* function `plotGroves`, based on the *adegraphics* function `scatter`:
+These can be visualised using any scatter plotting tool; here we use the *treespace* function `plotGroves`, based on the *adegraphics* function `scatter`:
 
 ```{r plotgroves}
 plotGroves(res$pco, lab.show=TRUE, lab.cex=1.5)
@@ -140,10 +140,10 @@ plotGrovesD3(res$pco, treeNames=1:10)
 ```
 Tree labels can be dragged into new positions to avoid problems such as overlapping.
 
-The functionality of `treescape` can be further illustrated using *ape*'s dataset *woodmouse*, from which we built the 201 trees supplied in `woodmiceTrees` using the neighbour-joining and bootstrapping example from the *ape* documentation. 
+The functionality of `treespace` can be further illustrated using *ape*'s dataset *woodmouse*, from which we built the 201 trees supplied in `woodmiceTrees` using the neighbour-joining and bootstrapping example from the *ape* documentation. 
 ```{r woodmicePlots}
 data(woodmiceTrees)
-wm.res <- treescape(woodmiceTrees,nf=3)
+wm.res <- treespace(woodmiceTrees,nf=3)
 
 # PCs are stored in:
 head(wm.res$pco$li)
@@ -154,7 +154,7 @@ plotGrovesD3(wm.res$pco)
 
 Packages such as *adegraphics* and *ggplot2* can be used to make alternative plots, for example visualising the density of points within the space.
 
-The *treescape* function `multiDist` simply performs the pairwise comparison of trees and outputs a distance matrix. 
+The *treespace* function `multiDist` simply performs the pairwise comparison of trees and outputs a distance matrix. 
 This function may be preferable for large datasets, and when principal co-ordinate analysis is not required. 
 It includes an option to save memory at the expense of computation time.
 
@@ -174,7 +174,7 @@ One simple approach is:
 
 4. cut the dendrogram to obtain clusters
  
-In *treescape*, the function `findGroves` implements this approach, offering various clustering options (see `?findGroves`). Here we supply the function with our `treescape` output `wm.res` since we have already calculated it, but it is also possible to skip the steps above and directly supply `findGroves` with a multiPhylo list of trees.
+In *treespace*, the function `findGroves` implements this approach, offering various clustering options (see `?findGroves`). Here we supply the function with our `treespace` output `wm.res` since we have already calculated it, but it is also possible to skip the steps above and directly supply `findGroves` with a multiPhylo list of trees.
 ```{r findgroves, cache=FALSE}
 wm.groves <- findGroves(wm.res, nclust=6)
 names(wm.groves)
@@ -197,30 +197,30 @@ We can also plot in 3D:
 ```{r plotgroves_3D, rgl=TRUE, webgl=TRUE}
 # prepare a colour palette:
 colours <- fac2col(wm.groves$groups, col.pal=funky)
-plot3d(wm.groves$treescape$pco$li[,1],
-       wm.groves$treescape$pco$li[,2],
-       wm.groves$treescape$pco$li[,3],
+plot3d(wm.groves$treespace$pco$li[,1],
+       wm.groves$treespace$pco$li[,2],
+       wm.groves$treespace$pco$li[,3],
        col=colours, type="s", size=1.5,
        xlab="", ylab="", zlab="")
 ```
 
 
-`treescapeServer`: a web application for *treescape*
+`treespaceServer`: a web application for *treespace*
 --------------
-The functionalities of `treescape` are also available via a user-friendly web interface, running locally on the default web browser.
-It can be started by simply typing `treescapeServer()`.
-The interface allows you to import trees and run `treescape` to view and explore the tree space in 2 or 3 dimensions.
+The functionalities of `treespace` are also available via a user-friendly web interface, running locally on the default web browser.
+It can be started by simply typing `treespaceServer()`.
+The interface allows you to import trees and run `treespace` to view and explore the tree space in 2 or 3 dimensions.
 It is then straightforward to analyse the tree space by varying $\lambda$, looking for clusters using `findGroves` and saving results in various formats.
 Individual trees can be easily viewed, including median trees per cluster (see below). Pairs of trees can be viewed together with their tip-differences highlighted using the function `plotTreeDiff`, and collections of trees can be seen together using `densiTree` from the package *phangorn*.
 It is fully documented in the *help* tab.
 
 
 ```{r shiny_figures, echo=FALSE, out.width="650px", fig.retina = NULL}
-knitr::include_graphics("figs/treescape3d.png")
+knitr::include_graphics("figs/treespace3d.png")
 
-knitr::include_graphics("figs/treescapeTree.png")
+knitr::include_graphics("figs/treespaceTree.png")
 
-knitr::include_graphics("figs/treescapeDensiTree.png")
+knitr::include_graphics("figs/treespaceDensiTree.png")
 ```
 
 
@@ -231,8 +231,8 @@ Finding median trees
 --------------
 
 When a set of trees have very similar structures, it makes sense to summarize them into a single 'consensus' tree.
-In `treescape`, this is achieved by finding the *median tree* for a set of trees according to the Kendall and Colijn metric.
-That is, we find the tree which is closest to the centre of the set of trees in the tree landscape defined in `treescape`.
+In `treespace`, this is achieved by finding the *median tree* for a set of trees according to the Kendall and Colijn metric.
+That is, we find the tree which is closest to the centre of the set of trees in the tree landscape defined in `treespace`.
 This procedure is implemented by the function `medTree`:
 
 ```{r woodmiceMedian}
@@ -273,7 +273,7 @@ plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FA
 
 Performing this analysis enables the detection of distinct representative trees supported by data.
 
-Note that in this example we supplied the function `medTree` with the multiPhylo list of trees. A more computationally efficient process (at the expense of using more memory) is to use the option `return.tree.vectors` in the initial `treescape` call, and then supply these vectors directly to `medTree`.
+Note that in this example we supplied the function `medTree` with the multiPhylo list of trees. A more computationally efficient process (at the expense of using more memory) is to use the option `return.tree.vectors` in the initial `treespace` call, and then supply these vectors directly to `medTree`.
 In this case, the tree indices are returned by `medTree` but the trees are not (since they were not supplied).
 
 Emphasising the placement of certain tips or clades
@@ -283,7 +283,7 @@ In some analyses it may be informative to emphasise the placement of particular 
 
 For example, if we wanted to emphasise where the woodmice trees agree and disagree on the placement of the **(1007S,1208S,0909S)** clade, we can simply emphasise that clade as follows: 
 ```{r woodmice-tip-emphasis}
-wm3.res <- treescape(woodmiceTrees,nf=2,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
+wm3.res <- treespace(woodmiceTrees,nf=2,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
 
 # plot results
 plotGrovesD3(wm3.res$pco)
