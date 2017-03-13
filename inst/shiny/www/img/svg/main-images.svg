@@ -1471,16 +1471,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="305.20908"
-     inkscape:cy="569.61088"
+     inkscape:zoom="2"
+     inkscape:cx="453.01443"
+     inkscape:cy="563.84012"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="3836"
-     inkscape:window-height="2038"
-     inkscape:window-x="2"
-     inkscape:window-y="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1173"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -1509,9 +1509,9 @@
        d="m 175.00892,379.55008 a 64.700272,64.700272 0 1 1 -129.400544,0 64.700272,64.700272 0 1 1 129.400544,0 z"
        mask="url(#mask3974)"
        transform="matrix(0.63643326,0,0,0.63643326,49.628425,149.69107)"
-       inkscape:export-filename="/home/thibaut/dev/treescape/inst/shiny/www/img/logo.png"
-       inkscape:export-xdpi="318.00555"
-       inkscape:export-ydpi="318.00555" />
+       inkscape:export-filename="/home/thibaut/dev/treespace/inst/shiny/www/img/logo.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
     <text
        xml:space="preserve"
        style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;fill:#0055d4;fill-opacity:0.76470588;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
@@ -1574,13 +1574,13 @@
        x="158.1568"
        y="400.33362"
        id="text4029"
-       inkscape:export-filename="/home/thibaut/dev/treescape/inst/shiny/www/img/logo.png"
-       inkscape:export-xdpi="318.00555"
-       inkscape:export-ydpi="318.00555"><tspan
+       inkscape:export-filename="/home/thibaut/dev/treespace/inst/shiny/www/img/logo.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
          sodipodi:role="line"
          id="tspan4031"
          x="158.1568"
-         y="400.33362">treescape</tspan></text>
+         y="400.33362">treespace</tspan></text>
     <g
        id="g5679"
        style="fill-opacity:1;fill:url(#linearGradient5727)"
