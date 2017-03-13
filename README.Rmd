@@ -1,4 +1,5 @@
 [![Travis-CI Build Status](https://travis-ci.org/thibautjombart/treespace.png?branch=master)](https://travis-ci.org/thibautjombart/treespace)
+[![Build status](https://ci.appveyor.com/api/projects/status/klr8khh1ieb26rh4/branch/master?svg=true)](https://ci.appveyor.com/project/thibautjombart/treespace/branch/master)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/treespace)](https://cran.r-project.org/package=treespace)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/treespace)](https://cran.r-project.org/package=treespace)
 
