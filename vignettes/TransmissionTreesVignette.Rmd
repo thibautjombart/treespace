@@ -1,0 +1,214 @@
+---
+title: "treescape worked example: Transmission trees"
+author: "Michelle Kendall"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{treescape worked example: Transmission trees}
+  \usepackage[utf8]{inputenc}
+---
+  
+  
+```{r setup, echo=FALSE}
+# set global chunk options: images will be 7x5 inches
+knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
+options(digits = 4)
+```
+
+
+This vignette demonstrates the use of *treescape* to compare a collection of transmission trees, as proposed in Kendall, Ayabina & Colijn, 2016 [arXiv:1609.09051](http://arxiv.org/abs/1609.09051).
+
+First we load the package *treescape*:
+
+```{r load, message=FALSE}
+library(treescape)
+```
+
+*treescape* contains three functions for handling and comparing transmission trees:
+
+1) `findMRCIs()` which takes a "who infected whom matrix" (the information about infectors and infectees; more on this below) and outputs:
+
++ `sourceCase`: the number of the node which is the source case, i.e. the common infector of all cases (outputs a warning if there is more than one source case).
+
++ `mrcis`: a matrix where, for each pair of individuals i and j, the entry (i,j) is the node number of their MRCI. Note that if i infected j then this entry is i itself.
+
++ `mrciDepths`: a matrix where, for each pair of individuals i and j, the entry (i,j) is the *depth* of their MRCI, defined as the number of edges from the source case. The source case has depth zero, its direct infectees have depth 1, and so on. 
+
+2) `wiwTreeDist()` which takes a list of `mrciDepths` matrices and computes the distances between them. You have to supply the list of sampled cases in which you are interested, and then it takes the Euclidean distance between each pair of matrices restricted to the sampled cases (and written long-hand, as a vector)
+
+3) `wiwMedTree()` which takes a list of `mrciDepths` matrices, the list of sampled cases, an optional list of weights, and outputs the median transmission tree
+
+Examples
+---------
+
+We define a "who infected whom matrix" as a matrix of two columns, where the first represents the infectors and the second represents their infectees. For example, a simple transmission chain could be represented like this:
+```{r tree1}
+tree1 <- cbind(Infector=1:5,Infectee=2:6) 
+tree1
+```
+
+This can be easily visualised as a transmission chain using graph plotting packages such as *igraph* or *visNetwork*:
+
+```{r igraph_tree1, message=FALSE}
+library(igraph)
+# set plotting options:
+igraph_options(vertex.size=15,
+               vertex.color="cyan",
+               vertex.label.cex=2,
+               edge.color="lightgrey",
+               edge.arrow.size=1)
+
+tree1graph <- graph_from_edgelist(tree1)
+plot(tree1graph)
+```
+
+Applying the function `findMRCIs` gives the following:
+```{r simple_wiwMRCIs}
+findMRCIs(tree1)
+```
+
+### Comparing three simple trees
+
+Suppose we had other hypotheses for the transmission tree which describes who infected whom amongst these six cases:
+```{r trees2_and_3}
+# a second scenario:
+tree2 <- cbind(Infector=c(1,5,2,2,3),Infectee=2:6)
+tree2
+tree2graph <- graph_from_edgelist(tree2)
+plot(tree2graph)
+
+# and a third scenario:
+tree3 <- cbind(Infector=c(2,2,2,2,6),Infectee=c(1,3,4,6,5)) 
+tree3
+tree3graph <- graph_from_edgelist(tree3)
+plot(tree3graph)
+```
+
+Then we can use *treescape* functions to make the following comparisons: 
+```{r tree123_comparison}
+m1 <- findMRCIs(tree1) # find the source case, MRCIs and MRCI depths for tree 1
+m2 <- findMRCIs(tree2)
+m3 <- findMRCIs(tree3)
+
+matList <- list(m1$mrciDepths,m2$mrciDepths,m3$mrciDepths) # create a list of the mrciDepths matrices
+matList
+wiwTreeDist(matList, sampled=1:6) # find the Euclidean distances between these matrices, where all six cases are sampled
+```
+
+If we had only sampled cases 4, 5 and 6, so that "1", "2" and "3" could be regarded as arbitrary names of inferred, unsampled cases, we would compute:
+```{r tree123_sampled4:6}
+wiwTreeDist(matList, sampled=4:6)
+```
+which substantially changes the measures of similarities and differences between the trees.
+
+### Comparing many trees using an MDS plot
+
+Finally, we demonstrate comparing a larger set of transmission trees and finding the median:
+
+```{r trees1000}
+set.seed(123)
+num <- 500
+
+# create a list of 500 random transmission trees with 11 cases, where the source case is fixed as case 1:
+treelistSC1 <- lapply(1:num, function(x) {
+  edges <- rtree(6)$edge # effectively creating a random transmission scenario
+  relabel <- sample(1:11) # create a relabelling so that infections don't all happen in numerical order, but we force the source case to be 1:
+  relabel[[which(relabel==1)]] <- relabel[[7]]
+  relabel[[7]] <- 1
+  relabelledEdges1 <- sapply(edges[,1], function(x) relabel[[x]])
+  relabelledEdges2 <- sapply(edges[,2], function(x) relabel[[x]])
+  cbind(relabelledEdges1,relabelledEdges2)
+})
+
+# create 500 more random transmission trees, but where the source case is fixed as case 2:
+treelistSC2 <- lapply(1:num, function(x) {
+  edges <- rtree(6)$edge 
+  relabel <- sample(1:11) 
+  relabel[[which(relabel==2)]] <- relabel[[7]]
+  relabel[[7]] <- 2
+  relabelledEdges1 <- sapply(edges[,1], function(x) relabel[[x]])
+  relabelledEdges2 <- sapply(edges[,2], function(x) relabel[[x]])
+  cbind(relabelledEdges1,relabelledEdges2)
+})
+
+# combine:
+combinedLists <- c(treelistSC1,treelistSC2)
+
+# get mrciDepths matrices:
+matList1000 <- lapply(combinedLists, function(x)
+  findMRCIs(x)$mrciDepths
+)
+
+# find pairwise tree distances, treating all cases as sampled:
+WiwDists1000 <- wiwTreeDist(matList1000, sampled=1:11)
+```
+
+Now that we have a pairwise distance matrix we can use multidimensional scaling (MDS) to view the relative distances between the trees in a 2D projection. We will colour the points in the projection by the "depth" of the corresponding tree, and use symbols to indicate the source case. For "depth" here we simply use the mean of each "mrciDepths" matrix.
+
+```{r wiw_MDS1000, message=FALSE}
+wiwMDS <- dudi.pco(WiwDists1000, scannf=FALSE, nf=3)
+
+library(ggplot2)
+library(RColorBrewer)
+
+wiwPlot <- ggplot(wiwMDS$li, aes(x=wiwMDS$li[,1],y=wiwMDS$li[,2]))
+
+# prepare aesthetics
+depths <- sapply(matList1000, function(x) mean(x))
+sourcecase <- c(rep("1",num),rep("2",num))
+
+# prepare colours:
+colfunc <- colorRampPalette(brewer.pal(10,"Spectral"), space="Lab")
+
+wiwPlot + 
+  geom_point(size=4, colour="gray60", aes(shape=sourcecase)) + 
+  geom_point(size=3, aes(colour=depths, shape=sourcecase)) +
+  scale_colour_gradientn("Mean of v\n", 
+                         colours=colfunc(7),
+                         guide = guide_colourbar(barheight=10)) +
+  scale_shape_discrete("Source case\n", solid=T, guide = guide_legend(keyheight = 3, keywidth=1.5)) +
+  theme_bw(base_size = 12, base_family = "") +
+  theme_bw(base_size = 12, base_family = "") +
+  theme(
+    legend.title = element_text(size=20),
+    legend.text = element_text(size=20),
+    axis.text.x = element_text(size=20), axis.text.y = element_text(size=20)) +
+  xlab("") + ylab("")
+```
+
+The symmetry in the plot corresponds to the different source cases, and the trees are also clearly separated by depth.
+
+### Median trees
+
+If our transmission trees corresponded to real data it could be meaningful to find a single representative tree. To find the geometric median tree(s) from a collection, we use the function `wiwMedTree`:
+
+```{r wiwMedian}
+med <- wiwMedTree(matList1000)
+```
+
+This returns a list with components:
+
+```{r wiwMedian2}
+names(med)
+```
+
+* `centre` is the mean vector (which may not necessarily correspond to a valid transmission tree with a single source case)
+
+* `distances` gives the distance of each tree from the centre, as a vector
+
+* `mindist` gives the minimum of these distances
+
+* `median` gives the number(s) of the median tree(s)
+
+Here the median tree is:
+
+```{r wiwMedTree}
+med$median
+```
+
+and looks like this:
+
+```{r wiwMedTreePlot}
+medgraph <- graph_from_edgelist(combinedLists[[med$median]])
+plot(medgraph)
+```

@@ -1,0 +1,57 @@
+Package: treescape
+Title: Statistical Exploration of Landscapes of Phylogenetic Trees
+Version: 1.10.19
+Date: 2017-02-08
+Authors@R: c(TJ=person("Thibaut", "Jombart", email="thibaut.jombart@gmail.com", role = c("aut")),
+ 	     MK=person("Michelle", "Kendall", email="m.kendall@imperial.ac.uk", role = c("aut", "cre")),
+	     JAG=person("Jacob", "Almagro-Garcia", role = c("aut")),
+	     CC=person("Caroline", "Colijn", role = c("aut")))
+Maintainer: Michelle Kendall <m.kendall@imperial.ac.uk>
+Description: Tools for the exploration of distributions of phylogenetic trees.
+    This package includes a shiny interface which can be started from R using
+    'treescapeServer()'.
+Depends:
+    R (>= 3.1.2),
+    ape,
+    ade4
+Imports:
+    adegenet,
+    adegraphics,
+    adephylo,
+    combinat,
+    compiler,
+    distory,
+    fields,
+    htmlwidgets,
+    MASS,
+    phangorn,
+    Rcpp,
+    RLumShiny,
+    scatterD3,
+    shiny,
+    shinyBS,
+    utils
+LinkingTo: Rcpp
+Suggests:
+    igraph,
+    RColorBrewer,
+    ggplot2,
+    testthat, 
+    knitr,
+    rmarkdown,
+    rgl
+License: GPL (>=2)
+LazyData: true
+Collate:
+    RcppExports.R
+    metrics.R
+    medTree.R
+    treescape.R
+    findGroves.R
+    plotGroves.R
+    plotTreeDiff.R
+    servers.R
+    transmissionTrees.R
+    data.R
+RoxygenNote: 6.0.0
+VignetteBuilder: knitr

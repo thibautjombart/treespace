@@ -1,0 +1,11 @@
+.shiny-progress {
+  top: 50% !important;
+  left: 50% !important;
+  margin-top: -100px !important;
+  margin-left: -250px !important;
+}
+
+.shiny-output-error-validation {
+ font-size: 20px;
+ color: #777777;
+ }
