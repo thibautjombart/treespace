@@ -10,3 +10,5 @@ vignettes/*html
 vignettes/*.md
 vignettes/*cache*
 docs/articles/*cache*
+treespace.Rcheck/
+*.tar.gz
