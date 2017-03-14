@@ -40,7 +40,7 @@ Suggests:
     knitr,
     rmarkdown,
     rgl
-License: GPL (>=2)
+License: MIT + file LICENSE
 LazyData: true
 Collate:
     RcppExports.R
