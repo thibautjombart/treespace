@@ -1,0 +1,19 @@
+# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+
+language: r
+warnings_are_errors: false
+sudo: required
+
+r_binary_packages:
+  - phangorn
+  - rgl
+  - rmarkdown
+  - knitr
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+before_install:
+  - sudo apt-get install libglu1-mesa-dev
