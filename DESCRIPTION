@@ -1,12 +1,12 @@
 Package: treespace
 Title: Statistical Exploration of Landscapes of Phylogenetic Trees
 Version: 1.0.0
-Date: 2017-03-13
-Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibaut.jombart@gmail.com", role = c("aut")),
- 	     MK = person("Michelle", "Kendall", email="m.kendall@imperial.ac.uk", role = c("aut", "cre")),
-	     JAG = person("Jacob", "Almagro-Garcia", role = c("aut")),
-	     CC = person("Caroline", "Colijn", role = c("aut")))
-Maintainer: Michelle Kendall <m.kendall@imperial.ac.uk>
+Date: 2017-03-15
+Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com", role = c("aut", "cre")),
+ 	     MK = person("Michelle", "Kendall", email="m.kendall@imperial.ac.uk", role = "aut"),
+	     JAG = person("Jacob", "Almagro-Garcia", role = "aut"),
+	     CC = person("Caroline", "Colijn", role = "aut"))
+Maintainer: Thibaut Jombart <thibautjombart@gmail.com>
 Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a shiny interface which can be started from R using
     'treespaceServer()'.
