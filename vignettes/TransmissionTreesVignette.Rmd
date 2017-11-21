@@ -200,15 +200,15 @@ names(med)
 
 * `median` gives the number(s) of the median tree(s)
 
-Here the median tree is:
+Here the median trees are:
 
 ```{r wiwMedTree}
 med$median
 ```
 
-and looks like this:
+The first one looks like this:
 
 ```{r wiwMedTreePlot}
-medgraph <- graph_from_edgelist(combinedLists[[med$median]])
+medgraph <- graph_from_edgelist(combinedLists[[med$median[[1]]]])
 plot(medgraph)
 ```

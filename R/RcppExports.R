@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 updateDistancesWithCombinations <- function(length_root_distances, topological_root_distances, left_partition, right_partition, index_offsets, distance_to_root, edges_to_root) {
-    invisible(.Call('treespace_updateDistancesWithCombinations', PACKAGE = 'treespace', length_root_distances, topological_root_distances, left_partition, right_partition, index_offsets, distance_to_root, edges_to_root))
+    invisible(.Call('_treespace_updateDistancesWithCombinations', PACKAGE = 'treespace', length_root_distances, topological_root_distances, left_partition, right_partition, index_offsets, distance_to_root, edges_to_root))
 }
 
