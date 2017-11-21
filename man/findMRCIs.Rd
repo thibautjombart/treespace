@@ -7,7 +7,7 @@
 findMRCIs(wiw)
 }
 \arguments{
-\item{wiw}{a two-column matrix where the first column represents the infectors and the infectees; each row corresponds to a transmission event from an infector to an infectee.}
+\item{wiw}{a two-column matrix where the first column gives the infectors and the second column gives the infectees; each row corresponds to a transmission event from an infector to an infectee.}
 }
 \value{
 Returns three objects:

@@ -4,7 +4,7 @@
 #'
 #' @author  Michelle Kendall \email{michelle.louise.kendall@@gmail.com}
 #'
-#' @param wiw a two-column matrix where the first column represents the infectors and the infectees; each row corresponds to a transmission event from an infector to an infectee.
+#' @param wiw a two-column matrix where the first column gives the infectors and the second column gives the infectees; each row corresponds to a transmission event from an infector to an infectee.
 #'
 #' @return Returns three objects:
 #' \itemize{
@@ -27,6 +27,13 @@
 findMRCIs <- compiler::cmpfun(function(wiw) { 
   # expect wiw to be a "who infected whom" matrix: column 1 is infectors, column 2 infectees
   if (class(wiw) != "matrix") stop("The who infected whom information supplied should be of class matrix.")
+  
+  # convert whatever the wiw entries are into integers, but preserve the names for later
+  wiwCopy <- matrix(0,nrow(wiw),2)
+  wiwNames <- unique(c(wiw[,1],wiw[,2]))
+  wiwCopy[,1] <- match(wiw[,1],wiwNames)
+  wiwCopy[,2] <- match(wiw[,2],wiwNames)
+  wiw <- wiwCopy
   
   initial <- min(wiw) # the number of the first case
   # if the first case is "0" we'll get problems - add one to everything
@@ -116,9 +123,14 @@ findMRCIs <- compiler::cmpfun(function(wiw) {
     SCdescs <- unlist(DirectDesc[SCdescs], FALSE, FALSE)
   }
   
-  D <- matrix(ncol=l, nrow=l, depths[M])
+  D <- matrix(ncol=l, nrow=l, depths[M]) # create matrix D of depths
+  M <- matrix(ncol=l, nrow=l, wiwNames[M]) # convert M into the node names
 
-  return(list(sourceCase=sourceCase,mrcis=M,mrciDepths=D))
+  # re-associate the node names with the columns and rows of the matrices
+  colnames(M) <- rownames(M) <- colnames(D) <- rownames(D) <- wiwNames
+
+
+  return(list(sourceCase=wiwNames[[sourceCase]],mrcis=M,mrciDepths=D))
 })
 
 #' Transmission tree distance
