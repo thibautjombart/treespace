@@ -32,7 +32,7 @@ others inherited from \code{distTips} in \code{adephylo}:
 \item{...}{further arguments to be passed to \code{method}.}
 }
 \description{
-Compares phylogenetic trees and maps them into a small number of dimensions for easy visualisation and identification of clusters.
+Compares phylogenetic trees using a choice of metrics / measures, and maps their pairwise distances into a small number of dimensions for easy visualisation and identification of clusters.
 }
 \examples{
 

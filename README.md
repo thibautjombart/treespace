@@ -154,5 +154,5 @@ Maintainer of the CRAN version:
 
 
 See details of contributions on: <br>
-https://github.com/reconhub/outbreaker2/graphs/contributors
+https://github.com/thibautjombart/treespace/graphs/contributors
 
