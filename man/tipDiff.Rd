@@ -4,7 +4,7 @@
 \alias{tipDiff}
 \title{Find tip position differences}
 \usage{
-tipDiff(tr1, tr2, vec1 = NULL, vec2 = NULL)
+tipDiff(tr1, tr2, vec1 = NULL, vec2 = NULL, sizeOfDifferences = FALSE)
 }
 \arguments{
 \item{tr1}{an object of the class \code{phylo}: the first tree to compare.}
@@ -14,6 +14,8 @@ tipDiff(tr1, tr2, vec1 = NULL, vec2 = NULL)
 \item{vec1}{an optional input, the result of \code{treeVec(tr1, lambda=0)}, to speed up the computation.}
 
 \item{vec2}{an optional input, the result of \code{treeVec(tr2, lambda=0)}, to speed up the computation.}
+
+\item{sizeOfDifferences}{a logical (default FALSE) specifying whether the size of the differences in the vectors per tip is also computed}
 }
 \value{
 A data frame of the tree tips and the number of ancestral differences between them in the two trees, in order of increasing difference.

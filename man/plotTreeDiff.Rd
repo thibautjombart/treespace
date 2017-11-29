@@ -5,6 +5,7 @@
 \title{Plot tree differences}
 \usage{
 plotTreeDiff(tr1, tr2, tipDiff = NULL, vec1 = NULL, vec2 = NULL,
+  sizeOfDifferences = FALSE, tipMatch = TRUE, treesFacing = FALSE,
   baseCol = "grey", col1 = "peachpuff", col2 = "red2",
   colourMethod = "ramp", palette = lightseasun, ...)
 }
@@ -18,6 +19,12 @@ plotTreeDiff(tr1, tr2, tipDiff = NULL, vec1 = NULL, vec2 = NULL,
 \item{vec1}{an optional input, the result of \code{treeVec(tr1, lambda=0)}. This argument is ignored if \code{tipDiff} is supplied; otherwise supplying this will save time if calling \code{plotTreeDiff} repeatedly, for example with different aesthetics.}
 
 \item{vec2}{an optional input, the result of \code{treeVec(tr2, lambda=0)}. This argument is ignored if \code{tipDiff} is supplied; otherwise supplying this will save time if calling \code{plotTreeDiff} repeatedly, for example with different aesthetics.}
+
+\item{sizeOfDifferences}{a logical (default FALSE) specifying whether the size of the tip differences should be used, or just a count of the number of differences (see \code{tipDiff})}
+
+\item{tipMatch}{a logical (default TRUE) specifying whether the second tree should be rotated so that, as far as possible, each of its tips lies opposite its equivalent in the first tree}
+
+\item{treesFacing}{a logical (default FALSE) specifying whether the trees should be plotted facing each other - that is, with the second tree plotted "leftwards".}
 
 \item{baseCol}{the colour used for tips with identical ancestry in the two trees. Defaults to "grey".}
 
@@ -39,7 +46,7 @@ A plot of the two trees side by side. Tips are coloured in the following way:
 }
 }
 \description{
-Highlight the topologicial differences between two trees, plotted side by side. 
+Highlight the topological differences between two trees, plotted side by side. 
 This function is useful for comparing representative "median" trees - see \code{\link{medTree}}.
 It relies on the function \code{\link{tipDiff}}.
 }
@@ -51,17 +58,34 @@ plotTreeDiff(tr1,tr2)
 
 ## example on larger woodmice trees
 data(woodmiceTrees)
+tr1 <- woodmiceTrees[[1]]
+tr2 <- woodmiceTrees[[57]] # for example
+
 # find the tip differences in advance, to avoid recalculating with each plot
-wmTipDiff <- tipDiff(woodmiceTrees[[1]],woodmiceTrees[[2]])
-plotTreeDiff(woodmiceTrees[[1]],woodmiceTrees[[2]], tipDiff=wmTipDiff)
+wmTipDiff <- tipDiff(tr1,tr2, sizeOfDifferences=TRUE)
+plotTreeDiff(tr1,tr2, tipDiff=wmTipDiff, tipMatch=TRUE)
+
 ## change aesthetics:
-plotTreeDiff(woodmiceTrees[[1]],woodmiceTrees[[2]], tipDiff=wmTipDiff,
+# trees facing each other:
+plotTreeDiff(tr1,tr2, tipDiff=wmTipDiff, treesFacing=TRUE)
+
+# radial plots, and change colours:
+plotTreeDiff(tr1,tr2, tipDiff=wmTipDiff,
    baseCol="grey2", col1="cyan", col2="navy", 
    edge.width=2, type="radial", cex=0.5, font=2)
-## use colour palette from adegenet:
-plotTreeDiff(woodmiceTrees[[1]],woodmiceTrees[[2]], tipDiff=wmTipDiff,
-   baseCol="black", colourMethod="palette", 
+# cladogram plots, and use colour palette from adegenet to see differences more clearly:
+plotTreeDiff(tr1,tr2, tipDiff=wmTipDiff,
+   treesFacing=TRUE, baseCol="black", colourMethod="palette", 
    edge.width=2, type="cladogram", cex=0.5, font=2)    
+
+# including the size of the differences highlights tip "No0906s" a little more:
+# (this is typically a more informative plot in cases where many tips have the 
+# same difference count, for example when a whole clade has been shifted "up" 
+# or "down" the tree but its internal topology remains the same.) 
+ 
+plotTreeDiff(tr1,tr2, tipDiff=wmTipDiff, sizeOfDifferences=TRUE,
+   treesFacing=TRUE, baseCol="black", colourMethod="palette", 
+   edge.width=2, type="cladogram", cex=0.5, font=2)  
 
 }
 \seealso{
