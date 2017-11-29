@@ -112,9 +112,10 @@ test_that("error is given if input tree is unrooted", {
   expect_error(treeVec(unrootedtree))
   })
 
-test_that("warning is given if tree edge lengths are not defined, then they are set to 1", {
+test_that("warning is given if tree edge lengths are not defined and lambda>0 or return.lambda.function=T, then they are set to 1", {
   newicktree <- read.tree(text="((A,B),C);") # a tree without defined edge lengths
-  expect_warning(treeVec(newicktree))
+  expect_warning(treeVec(newicktree, lambda=0.5))
+  expect_warning(treeVec(newicktree, return.lambda.function = TRUE))
   })
 
 test_that("error is given if trees have different tip labels", {
