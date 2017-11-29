@@ -99,9 +99,16 @@ treeVec <- function(tree, lambda=0, return.lambda.function=FALSE, emphasise.tips
   if(lambda<0 || lambda>1) stop("Pick lambda in [0,1]")
   if(class(tree)!="phylo") stop("Tree should be of class phylo")
   if(is.rooted(tree)!=TRUE) stop("Metric is for rooted trees only")
-  if(is.null(tree$edge.length)) {
-    warning("Tree edge lengths are not defined, setting edges to have length 1")
-	tree$edge.length <- rep(1,length(tree$edge))
+  
+  # check edge lengths are defined; if not, assign them all to be "1". 
+  # If edge lengths are going to be involved in the vector, i.e. lambda>0 or the vector is a function of lambda, output a warning about this.
+  # With thanks to GitHub user hyanwong for pointing out the unnecessary warning in issue #2.
+  if (is.null(tree$edge.length)) {
+    tree$edge.length <- rep(1,length(tree$edge))
+	  
+    if ((return.lambda.function==TRUE)||(lambda>0)) {
+      warning("Tree edge lengths are not defined, setting edges to have length 1")
+    }
 	}
 
   num_leaves <- length(tree$tip.label)
@@ -133,7 +140,7 @@ treeVec <- function(tree, lambda=0, return.lambda.function=FALSE, emphasise.tips
   else{tip.weighting <- rep(1,0.5*num_leaves*(num_leaves+1))}
   
   
-    # We annotated the nodes of the tree in this list. In two passes we are going to
+  # We annotated the nodes of the tree in this list. In two passes we are going to
   # compute the partition each node induces in the tips (bottom-up pass) and the distance
   # (in branch length and number of branches) from the root to each node (top-down pass).
   annotated_nodes <- list()
