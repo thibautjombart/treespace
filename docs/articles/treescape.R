@@ -7,28 +7,28 @@ knitr::knit_hooks$set(webgl=hook_webgl)
 
 ## ----install, eval=FALSE-------------------------------------------------
 #  library(devtools)
-#  install_github("thibautjombart/treespace")
+#  install_github("thibautjombart/treescape")
 
 ## ----install2, eval=FALSE------------------------------------------------
-#  install.packages("treespace")
+#  install.packages("treescape")
 
 ## ----load----------------------------------------------------------------
-library("treespace")
+library("treescape")
 
 ## ----load_packages, message=FALSE, warning=FALSE-------------------------
-library("treespace")
+library("treescape")
 library("adegenet")
 library("adegraphics")
 library("rgl")
 
-## ----treespace-----------------------------------------------------------
+## ----treescape-----------------------------------------------------------
 # generate list of trees
 set.seed(1)
 x <- rmtree(10, 20)
 names(x) <- paste("tree", 1:10, sep = "")
 
-# use treespace
-res <- treespace(x, nf=3)
+# use treescape
+res <- treescape(x, nf=3)
 names(res)
 res
 
@@ -49,7 +49,7 @@ plotGrovesD3(res$pco, treeNames=1:10)
 
 ## ----woodmicePlots-------------------------------------------------------
 data(woodmiceTrees)
-wm.res <- treespace(woodmiceTrees,nf=3)
+wm.res <- treescape(woodmiceTrees,nf=3)
 
 # PCs are stored in:
 head(wm.res$pco$li)
@@ -74,18 +74,18 @@ plotGrovesD3(wm.groves, xax=2, yax=3, tooltip_text=paste0("Tree ",1:201), legend
 ## ----plotgroves_3D, rgl=TRUE, webgl=TRUE---------------------------------
 # prepare a colour palette:
 colours <- fac2col(wm.groves$groups, col.pal=funky)
-plot3d(wm.groves$treespace$pco$li[,1],
-       wm.groves$treespace$pco$li[,2],
-       wm.groves$treespace$pco$li[,3],
+plot3d(wm.groves$treescape$pco$li[,1],
+       wm.groves$treescape$pco$li[,2],
+       wm.groves$treescape$pco$li[,3],
        col=colours, type="s", size=1.5,
        xlab="", ylab="", zlab="")
 
 ## ----shiny_figures, echo=FALSE, out.width="650px", fig.retina = NULL-----
-knitr::include_graphics("figs/treespace3d.png")
+knitr::include_graphics("figs/treescape3d.png")
 
-knitr::include_graphics("figs/treespaceTree.png")
+knitr::include_graphics("figs/treescapeTree.png")
 
-knitr::include_graphics("figs/treespaceDensiTree.png")
+knitr::include_graphics("figs/treescapeDensiTree.png")
 
 ## ----woodmiceMedian------------------------------------------------------
 # get first median tree
@@ -116,7 +116,7 @@ plotTreeDiff(med.trees[[1]],med.trees[[2]], use.edge.length=FALSE)
 plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FALSE, edge.width=2, colourMethod="palette",palette=spectral)
 
 ## ----woodmice-tip-emphasis-----------------------------------------------
-wm3.res <- treespace(woodmiceTrees,nf=2,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
+wm3.res <- treescape(woodmiceTrees,nf=2,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
 
 # plot results
 plotGrovesD3(wm3.res$pco)
