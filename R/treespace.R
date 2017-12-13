@@ -123,6 +123,8 @@ treespace <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, .
     else if(method=="wRF"){
       names(x) <- NULL # temporary fix to avoid wRF error
       D <- wRF.dist(x)
+      ## make the distance Euclidean
+      D <- ade4::cailliez(D, print=FALSE)
     }
     else if(method=="KF"){
       D <- KF.dist(x)
