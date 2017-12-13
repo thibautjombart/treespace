@@ -27,6 +27,9 @@ makeTree <- function(x){
   tree
 }
 DnjRooted <- makeTree(DengueSeqs)
+# Note, there is a (small) negative branch length. 
+# We set this to 0 to avoid warnings from the phangorn package later:
+DnjRooted$edge.length[which(DnjRooted$edge.length < 0)] <- 0
 plot(DnjRooted)
 
 ## ----make_NJ_boots, results="hide"---------------------------------------
