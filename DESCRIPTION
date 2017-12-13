@@ -8,8 +8,8 @@ Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com",
 	     CC = person("Caroline", "Colijn", role = "aut"))
 Maintainer: Michelle Kendall <m.kendall@imperial.ac.uk>
 Description: Tools for the exploration of distributions of phylogenetic trees.
-    This package includes a shiny interface which can be started from R using
-    'treespaceServer()'.
+    This package includes a 'shiny' interface which can be started from R using
+    treespaceServer().
 Depends:
     R (>= 3.1.2),
     ape,

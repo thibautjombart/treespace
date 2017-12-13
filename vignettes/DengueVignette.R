@@ -1,6 +1,6 @@
 ## ----setup, echo=FALSE---------------------------------------------------
 # set global chunk options: images will be 7x5 inches
-knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
+knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 library("rgl")
 knitr::knit_hooks$set(webgl=hook_webgl)
@@ -8,6 +8,7 @@ knitr::knit_hooks$set(webgl=hook_webgl)
 ## ----load, message=FALSE, warning=FALSE----------------------------------
 library("treespace")
 library("phangorn")
+library("adegenet")
 
 ## ----load_BEAST_trees----------------------------------------------------
 data(DengueTrees)
@@ -148,6 +149,11 @@ which(as.matrix(Dscape$D)["ML",]==0)
 plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE)
 treeDist(DnjRooted,DfitTreeRooted)
 
+## ----compare_trees_NJ_v_ML_recoloured------------------------------------
+# comparing NJ and ML:
+plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
+
 ## ----make_BEAST_median---------------------------------------------------
 BEASTmed <- medTree(BEASTtrees)
 
@@ -160,15 +166,18 @@ BEASTrep <- BEASTmed$trees[[1]]
 
 ## ----compare_BEAST_to_other_trees----------------------------------------
 # comparing BEAST median and NJ:
-plotTreeDiff(BEASTrep,DnjRooted, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep,DnjRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,DnjRooted)
 # comparing BEAST median and ML:
-plotTreeDiff(BEASTrep,DfitTreeRooted, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep,DfitTreeRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,DfitTreeRooted)
 # comparing BEAST median to a random BEAST tree:
 num <- runif(1,1,200)
 randomBEASTtree <- BEASTtrees[[num]]
-plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,randomBEASTtree)
 
 ## ----BEASTtrees----------------------------------------------------------
@@ -220,8 +229,10 @@ plotGrovesD3(BEASTscape$pco,
 ## ----BEASTtree_diffs-----------------------------------------------------
 # differences between the MCC tree and the median from the largest cluster:
 treeDist(DengueBEASTMCC,BEASTMedTrees[[1]])
-plotTreeDiff(DengueBEASTMCC,BEASTMedTrees[[1]], use.edge.length=FALSE)
+plotTreeDiff(DengueBEASTMCC,BEASTMedTrees[[1]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 # differences between the median trees from clusters 1 and 2:
 treeDist(BEASTMedTrees[[1]],BEASTMedTrees[[2]])
-plotTreeDiff(BEASTMedTrees[[1]],BEASTMedTrees[[2]], use.edge.length=FALSE)
+plotTreeDiff(BEASTMedTrees[[1]],BEASTMedTrees[[2]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 
