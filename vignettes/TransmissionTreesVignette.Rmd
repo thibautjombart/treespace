@@ -1,6 +1,7 @@
 ---
 title: "treespace worked example: Transmission trees"
 author: "Michelle Kendall"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}

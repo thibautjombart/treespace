@@ -1,6 +1,7 @@
 ---
 title: "treespace worked example: Dengue trees"
 author: "Michelle Kendall, Thibaut Jombart"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
@@ -11,7 +12,7 @@ vignette: >
 
 ```{r setup, echo=FALSE}
 # set global chunk options: images will be 7x5 inches
-knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
+knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 library("rgl")
 knitr::knit_hooks$set(webgl=hook_webgl)
@@ -30,6 +31,7 @@ Load the required packages:
 ```{r load, message=FALSE, warning=FALSE}
 library("treespace")
 library("phangorn")
+library("adegenet")
 ```
 
 Load BEAST trees:
@@ -229,6 +231,14 @@ plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE)
 treeDist(DnjRooted,DfitTreeRooted)
 ```
 
+We can adjust the plot settings to make the visualisation clearer:
+
+```{r compare_trees_NJ_v_ML_recoloured}
+# comparing NJ and ML:
+plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
+```
+
 For pairwise comparisons it is helpful to find a small number of representative trees. 
 We can find a geometric median tree from the BEAST trees using the `medTree` function:
 ```{r make_BEAST_median}
@@ -250,15 +260,18 @@ BEASTrep <- BEASTmed$trees[[1]]
 
 ```{r compare_BEAST_to_other_trees}
 # comparing BEAST median and NJ:
-plotTreeDiff(BEASTrep,DnjRooted, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep,DnjRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,DnjRooted)
 # comparing BEAST median and ML:
-plotTreeDiff(BEASTrep,DfitTreeRooted, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep,DfitTreeRooted, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,DfitTreeRooted)
 # comparing BEAST median to a random BEAST tree:
 num <- runif(1,1,200)
 randomBEASTtree <- BEASTtrees[[num]]
-plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE)
+plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,randomBEASTtree)
 ```
 
@@ -323,10 +336,12 @@ To understand the differences between the representative trees we can use `plotT
 ```{r BEASTtree_diffs}
 # differences between the MCC tree and the median from the largest cluster:
 treeDist(DengueBEASTMCC,BEASTMedTrees[[1]])
-plotTreeDiff(DengueBEASTMCC,BEASTMedTrees[[1]], use.edge.length=FALSE)
+plotTreeDiff(DengueBEASTMCC,BEASTMedTrees[[1]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 # differences between the median trees from clusters 1 and 2:
 treeDist(BEASTMedTrees[[1]],BEASTMedTrees[[2]])
-plotTreeDiff(BEASTMedTrees[[1]],BEASTMedTrees[[2]], use.edge.length=FALSE)
+plotTreeDiff(BEASTMedTrees[[1]],BEASTMedTrees[[2]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 ```
 
 

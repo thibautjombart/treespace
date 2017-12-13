@@ -12,7 +12,7 @@ vignette: >
 
 ```{r setup, echo=FALSE}
 # set global chunk options: images will be 7x5 inches
-knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
+knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 library("rgl")
 knitr::knit_hooks$set(webgl=hook_webgl)
@@ -213,12 +213,12 @@ Individual trees can be easily viewed, including median trees per cluster (see b
 It is fully documented in the *help* tab.
 
 
-```{r shiny_figures, echo=FALSE, out.width="650px", fig.retina = NULL}
-knitr::include_graphics("figs/treespace3d.png")
+```{r shiny_figures, echo=FALSE, fig.retina = NULL}
+knitr::include_graphics("figs/treespace3d.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceTree.png")
+knitr::include_graphics("figs/treespaceTree.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceDensiTree.png")
+knitr::include_graphics("figs/treespaceDensiTree.png", dpi=72)
 ```
 
 
@@ -264,9 +264,11 @@ To examine the differences between the trees in a pairwise manner, we can use th
 
 ```{r woodmice_plotTreeDiff}
 # Compare median trees from clusters 1 and 2:
-plotTreeDiff(med.trees[[1]],med.trees[[2]], use.edge.length=FALSE)
+plotTreeDiff(med.trees[[1]],med.trees[[2]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 # Compare median trees from clusters 1 and 4, and change aesthetics:
-plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FALSE, edge.width=2, colourMethod="palette",palette=spectral)
+plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FALSE, 
+             treesFacing = TRUE, edge.width=2, colourMethod="palette", palette=spectral)
 ```
 
 Performing this analysis enables the detection of distinct representative trees supported by data.
@@ -299,8 +301,8 @@ Method: characterising a tree by a vector
 --------------
 Kendall and Colijn proposed a [metric](http://dx.doi.org/10.1093/molbev/msw124) for comparing rooted phylogenetic trees (Kendall and COlijn, 2016). Each tree is characterised by a vector which notes the placement of the most recent common ancestor (MRCA) of each pair of tips, as demonstrated in this example:
 
-```{r figure_construction, echo=FALSE, out.width="650px", fig.retina = NULL}
-knitr::include_graphics("figs/construction.png")
+```{r figure_construction, echo=FALSE, fig.retina = NULL}
+knitr::include_graphics("figs/construction.png", dpi=72)
 ```
 
 Specifically, it records the distance between the MRCA of a pair of tips $(i,j)$ and the root in two ways: the number of edges $m_{i,j}$, and the path length $M_{i,j}$. It also records the length $p_i$ of each 'pendant' edge between a tip $i$ and its immediate ancestor. This procedure results in two vectors for a tree $T$:

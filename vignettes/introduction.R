@@ -1,6 +1,6 @@
 ## ----setup, echo=FALSE---------------------------------------------------
 # set global chunk options: images will be 7x5 inches
-knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
+knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 library("rgl")
 knitr::knit_hooks$set(webgl=hook_webgl)
@@ -80,12 +80,12 @@ plot3d(wm.groves$treespace$pco$li[,1],
        col=colours, type="s", size=1.5,
        xlab="", ylab="", zlab="")
 
-## ----shiny_figures, echo=FALSE, out.width="650px", fig.retina = NULL-----
-knitr::include_graphics("figs/treespace3d.png")
+## ----shiny_figures, echo=FALSE, fig.retina = NULL------------------------
+knitr::include_graphics("figs/treespace3d.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceTree.png")
+knitr::include_graphics("figs/treespaceTree.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceDensiTree.png")
+knitr::include_graphics("figs/treespaceDensiTree.png", dpi=72)
 
 ## ----woodmiceMedian------------------------------------------------------
 # get first median tree
@@ -111,9 +111,11 @@ for(i in 1:length(med.trees)) plot(med.trees[[i]], main=paste("cluster",i),cex=1
 
 ## ----woodmice_plotTreeDiff-----------------------------------------------
 # Compare median trees from clusters 1 and 2:
-plotTreeDiff(med.trees[[1]],med.trees[[2]], use.edge.length=FALSE)
+plotTreeDiff(med.trees[[1]],med.trees[[2]], use.edge.length=FALSE, 
+             treesFacing = TRUE, colourMethod = "palette", palette = funky)
 # Compare median trees from clusters 1 and 4, and change aesthetics:
-plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FALSE, edge.width=2, colourMethod="palette",palette=spectral)
+plotTreeDiff(med.trees[[1]],med.trees[[4]], type="cladogram", use.edge.length=FALSE, 
+             treesFacing = TRUE, edge.width=2, colourMethod="palette", palette=spectral)
 
 ## ----woodmice-tip-emphasis-----------------------------------------------
 wm3.res <- treespace(woodmiceTrees,nf=2,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
@@ -125,8 +127,8 @@ plotGrovesD3(wm3.res$pco)
 wm3.groves <- findGroves(woodmiceTrees,nf=3,nclust=6,emphasise.tips=c("No1007S","No1208S","No0909S"),emphasise.weight=3)
 plotGrovesD3(wm3.groves)
 
-## ----figure_construction, echo=FALSE, out.width="650px", fig.retina = NULL----
-knitr::include_graphics("figs/construction.png")
+## ----figure_construction, echo=FALSE, fig.retina = NULL------------------
+knitr::include_graphics("figs/construction.png", dpi=72)
 
 ## ----treevec-------------------------------------------------------------
 # generate a random tree:
