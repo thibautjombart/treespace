@@ -7,6 +7,7 @@
 #'
 #' @import ape
 #' @importFrom combinat combn2
+#' @importFrom adegenet num2col
 #'
 #' @param tr1 an object of the class \code{phylo}: the first tree to compare.
 #' @param tr2 an object of the class \code{phylo}: the second tree to compare.
