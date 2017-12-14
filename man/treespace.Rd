@@ -4,8 +4,8 @@
 \alias{treespace}
 \title{Phylogenetic tree exploration}
 \usage{
-treespace(x, method = "treeVec", nf = NULL, return.tree.vectors = FALSE,
-  ...)
+treespace(x, method = "treeVec", nf = NULL, lambda = 0,
+  return.tree.vectors = FALSE, ...)
 }
 \arguments{
 \item{x}{an object of the class multiPhylo}

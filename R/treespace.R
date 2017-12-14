@@ -34,6 +34,7 @@
 #' @importFrom phangorn path.dist
 #' @importFrom phangorn RF.dist
 #' @importFrom phangorn wRF.dist
+#' @importFrom parallel mcmapply detectCores
 #'
 #' @examples
 #'
@@ -67,7 +68,7 @@
 #'
 #'
 #' @export
-treespace <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, ...){
+treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vectors=FALSE, ...){
   
     ## CHECKS ##
     if(!inherits(x, "multiPhylo")) stop("x should be a multiphylo object")
@@ -96,16 +97,25 @@ treespace <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, .
         stop(paste0("Tree ",lab[[i]]," has different tip labels from the first tree."))
       }
     }
+    
+    # detect cores (following method from package rwty, with thanks)
+    if(Sys.info()["sysname"] == 'Windows'){
+      # mcmapply is not supported on windows
+      processors <- 1
+    } else {
+      available_processors <- detectCores(all.tests = FALSE, logical = FALSE)
+      processors <- max(c(1, c(available_processors - 1)))
+    }
 
     ## GET DISTANCES BETWEEN TREES, according to method ##
-    ## get data.frame of all summary vectors ##
+    ## get summary vectors then compute pairwise distances ##
     if (method=="treeVec") {
-      df <- t(data.frame(lapply(x, function(e) as.vector(treeVec(e, ...)))))
+      df <- t(mcmapply(treeVec, x, lambda=lambda, MoreArgs=dots, mc.cores=processors))
       ## get pairwise Euclidean distances ##
       D <- as.dist(rdist(df))
     }
     else if(method %in% c("Abouheif","sumDD")){
-      df <- t(data.frame(lapply(x, function(e) as.vector(adephylo::distTips(e,method=method,...)))))
+      df <- t(mcmapply(adephylo::distTips, x, method=method, MoreArgs=dots, mc.cores=processors))
       ## get pairwise Euclidean distances ##
       D <- as.dist(rdist(df))
     }
@@ -121,7 +131,6 @@ treespace <- function(x, method="treeVec", nf=NULL, return.tree.vectors=FALSE, .
       D <- ade4::cailliez(D, print=FALSE)
     }
     else if(method=="wRF"){
-      names(x) <- NULL # temporary fix to avoid wRF error
       D <- wRF.dist(x)
       ## make the distance Euclidean
       D <- ade4::cailliez(D, print=FALSE)

@@ -24,6 +24,7 @@ Imports:
     fields,
     htmlwidgets,
     MASS,
+    parallel,
     phangorn,
     Rcpp,
     RLumShiny,
