@@ -25,6 +25,7 @@ Imports:
     MASS,
     parallel,
     phangorn,
+    phytools,
     Rcpp,
     RLumShiny,
     scatterD3,
