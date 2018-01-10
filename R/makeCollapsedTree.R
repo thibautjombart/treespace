@@ -20,7 +20,7 @@
 #' 
 #' @examples  
 #' # simulate a tree which is monophyletic per category
-#' tree <- simulateIndTree(rtree(5), permuteTips=F)
+#' tree <- simulateIndTree(rtree(5), permuteTips=FALSE)
 #' 
 #' df <- cbind(sort(rep(rtree(5)$tip.label,5)),sort(tree$tip.label))
 #' palette <- c("red","blue","black","green","purple")#' 
@@ -37,7 +37,7 @@
 #' plot(collapsedTree, tip.color=palette[as.factor(collapsedTree$tip.label)])
 #' 
 #' @export 
-makeCollapsedTree <- function(tree,df,warnings=T){
+makeCollapsedTree <- function(tree,df,warnings=TRUE){
   # check whether tips are monophyletic per category,
   # if not, pick a "representative" tip for each category from the largest clade
 
@@ -58,7 +58,7 @@ makeCollapsedTree <- function(tree,df,warnings=T){
   tipsToKeep <- vector()
   
   if (any(!category_is_mono)) {
-    if(warnings==T)  print("Note: the tree was not monophyletic per category")
+    if(warnings==TRUE)  print("Note: the tree was not monophyletic per category")
     for (c in categories[!category_is_mono]){
       tips <- inds_by_category[[c]]
       # find clade sizes of nodes whose descendant tips all belong to this category 
