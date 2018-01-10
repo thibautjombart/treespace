@@ -54,5 +54,10 @@ Collate:
     servers.R
     transmissionTrees.R
     data.R
+    makeCollapsedTree.R
+    relatedTreeDist.R
+    simulateIndTree.R
+    tipsMRCAdepths.R
+    treeConcordance.R
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
