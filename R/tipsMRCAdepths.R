@@ -6,7 +6,7 @@
 #' @param tree An object of class phylo
 #'
 #' @import ape
-#' @importFrom utils combn
+#' @importFrom combinat combn
 #' @importFrom Rcpp evalCpp
 #'
 #' @examples

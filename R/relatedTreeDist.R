@@ -7,7 +7,7 @@
 #' @param checkTrees a logical (default TRUE) specifying whether the trees should be checked. When TRUE, error messages will be helpful in locating problematic trees, that is, any trees with repeated tip labels, or any trees with missing categories.
 #'
 #' @import ape
-#' @importFrom utils combn
+#' @importFrom combinat combn
 #' @importFrom fields rdist
 #'
 #' @examples
