@@ -19,6 +19,7 @@
 #' \item \code{sumDD}: sum of direct descendants of all nodes on the path, related to Abouheif's test. See \code{adephylo}.
 #' }
 #' @param nf the number of principal components to retain
+#' @param lambda a number in [0,1] which specifies the extent to which topology (default, with lambda=0)  or branch lengths (lambda=1) are emphasised in the Kendall Colijn metric.
 #' @param return.tree.vectors option to also return the tree vectors. Note that this can use a lot of memory so defaults to \code{FALSE}.
 #' @param ... further arguments to be passed to \code{method}.
 #'
