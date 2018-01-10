@@ -4,7 +4,7 @@
 \alias{makeCollapsedTree}
 \title{Collapse a tree into a single tip per category}
 \usage{
-makeCollapsedTree(tree, df, warnings = T)
+makeCollapsedTree(tree, df, warnings = TRUE)
 }
 \arguments{
 \item{tree}{an object of the class \code{phylo}: the tree to collapse.}
@@ -24,7 +24,7 @@ Where a category's tips are paraphyletic, the largest clade for that category is
 \examples{
  
 # simulate a tree which is monophyletic per category
-tree <- simulateIndTree(rtree(5), permuteTips=F)
+tree <- simulateIndTree(rtree(5), permuteTips=FALSE)
 
 df <- cbind(sort(rep(rtree(5)$tip.label,5)),sort(tree$tip.label))
 palette <- c("red","blue","black","green","purple")#' 
