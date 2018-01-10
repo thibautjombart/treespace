@@ -473,10 +473,19 @@ shinyUI(
                                                         choices=c("phylogram","cladogram", "fan", "unrooted", "radial"),
                                                         selected="phylogram", width="100%"),
                                            
-                                           ## tree direction
-                                           radioButtons("treedirection", "Direction of the tree",
+                                           conditionalPanel(condition = "input.treePlotType==1",
+                                              ## tree direction
+                                              radioButtons("treedirection", "Direction of the tree",
                                                         choices=c("rightwards", "leftwards", "upwards", "downwards"),
-                                                        selected="rightwards", width="100%"),
+                                                        selected="rightwards", width="100%")
+                                           ),
+                                           
+                                           conditionalPanel(condition = "input.treePlotType==2",
+                                                            ## trees facing?
+                                                            radioButtons("treesFacing", "Direction of trees",
+                                                                         choices=c("facing"=T, "rightwards"=F),
+                                                                         selected=T, width="100%")
+                                           ),
                                            
                                            ## tip labels
                                            checkboxInput("showtiplabels", label="Display tip labels?", value=TRUE),

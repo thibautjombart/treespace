@@ -1004,7 +1004,7 @@ shinyServer(function(input, output, session) {
                    show.tip.lab=input$showtiplabels, 
                    font=as.numeric(input$tiplabelfont), 
                    cex=input$tiplabelsize,
-                   direction=input$treedirection,
+                   treesFacing=input$treesFacing,
                    edge.width=input$edgewidth,
                    edge.color=input$edgecolor
       )
@@ -1214,10 +1214,22 @@ shinyServer(function(input, output, session) {
       tr1 <- getTree1()
       tr2 <- getTree2()
       png(file=file)
-      plotTreeDiff(tr1, tr2, type=input$treetype,
-           show.tip.lab=input$showtiplabels, font=as.numeric(input$tiplabelfont), cex=input$tiplabelsize,
-           direction=input$treedirection,
-           edge.width=input$edgewidth)
+      plotTreeDiff(tr1,tr2, 
+                   tipDiff = tipDiff,
+                   baseCol=input$basetiplabelcolour,
+                   col1=input$minortiplabelcolour,
+                   col2=input$majortiplabelcolour,
+                   colourMethod=CM,
+                   palette=tipPal,
+                   type=input$treetype,
+                   use.edge.length=as.logical(input$edgelengths),
+                   show.tip.lab=input$showtiplabels, 
+                   font=as.numeric(input$tiplabelfont), 
+                   cex=input$tiplabelsize,
+                   treesFacing = input$treesFacing,
+                   edge.width=input$edgewidth,
+                   edge.color=input$edgecolor
+      )
       dev.off()
       contentType = 'image/png'
     }
