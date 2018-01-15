@@ -53,6 +53,14 @@ The main functions implemented in *treespace* are:
 
 * __`medTree`__: find geometric median tree(s) to summarise a group of trees
 
+* __`wiwTreeDist`__: find the distance between transmission trees by comparing their MRCI depth matrices
+
+* __`wiwMedTree`__: find the median of a list of transmission scenarios
+
+* __`relatedTreeDist`__: calculate the distances between trees whose tips belong to the same categories but are not necessarily identically labelled
+
+* __`treeConcordance`__: calculate the concordance between a category tree and an individuals tree
+
 
 Other functions are central to the computations of distances between trees:
 
@@ -68,6 +76,10 @@ Other functions are central to the computations of distances between trees:
 
 * __`plotTreeDiff`__: plot a pair of trees, highlighting the tips with differing
   ancestry
+
+* __`findMRCIs`__: find the most recent common infector (MRCI) matrix from "who infected whom" information
+
+* __`tipsMRCAdepths`__: similar to `treeVec` but the output is a matrix where columns 1 and 2 correspond to tip labels and column 3 gives the depth of the MRCA of that pair of tips
 
 
 Distributed datasets include:
