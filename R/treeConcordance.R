@@ -13,13 +13,13 @@
 #' catTree <- read.tree(text="(C:1,(B:1,A:1):1);")
 #' plot(catTree)
 #'
-#' # create data frame linking categories with individuals
-#' df <- cbind(c(rep("A",3),rep("B",2),rep("C",4)),
-#' c("a1","a2","a3","b1","b2","c1","c2","c3","c4"))
-#'
 #' # make individuals tree with complete concordance:
 #' indTree1 <- read.tree(text="(((c4,c3),(c2,c1)),((b1,b2),((a3,a2),a1)));")
 #' plot(indTree1)
+#' 
+#' #' # create data frame linking categories with individuals
+#' df <- cbind(c(rep("A",3),rep("B",2),rep("C",4)),sort(indTree1$tip.label))
+#' 
 #' treeConcordance(catTree,indTree1,df)
 #'
 #' # make a less concordant tree:
@@ -27,7 +27,7 @@
 #' plot(indTree2)
 #' treeConcordance(catTree,indTree2,df)
 #' 
-#' # simulate larger examples:
+#' # simulate larger example:
 #' catTree <- rtree(10)
 #' indTree3 <- simulateIndTree(catTree, tipPercent=10)
 #' df <- cbind(sort(rep(catTree$tip.label,5)),sort(indTree3$tip.label))
