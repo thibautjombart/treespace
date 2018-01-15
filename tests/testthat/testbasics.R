@@ -1,7 +1,3 @@
-library(testthat)
-library(treespace)
-library(ape)
-
 ############################
 # create some test objects
 ############################
@@ -70,6 +66,32 @@ test_that("medTree results are consistent whether the trees or their vectors are
    expect_equal(medTree(trees)$mindist,medTree(treespace(trees,nf=2, return.tree.vectors = TRUE)$vectors)$mindist)
   })
 
+
+############################
+# test consistency amongst "related tip" and concordance functions
+############################
+
+# create some test trees
+catTree <- rtree(5)
+indTree1 <- simulateIndTree(catTree, permuteTips = FALSE)
+indTree2 <- simulateIndTree(catTree, permuteTips = FALSE)
+df <- cbind(sort(rep(catTree$tip.label,5)),sort(indTree1$tip.label))
+
+test_that("indTrees are fully concordant with catTree", {
+  expect_equal(treeConcordance(catTree,indTree1,df),1)
+  expect_equal(treeConcordance(catTree,indTree2,df),1)
+})
+
+test_that("indTree and catTree should be identical by relatedTreeDist measure", {
+  expect_equal(relatedTreeDist(list(indTree1,indTree2),df)[[1]],0)
+})
+
+test_that("collapsing indTrees gets catTree back", {
+  expect_equal(treeDist(makeCollapsedTree(indTree1,df),catTree),0)
+  expect_equal(treeDist(makeCollapsedTree(indTree2,df),catTree),0)
+})
+
+
 ############################
 # test that save_memory versions match non-save_memory versions
 ############################
@@ -135,3 +157,4 @@ test_that("warning is given for the combination return.lambda.function=TRUE, sav
   expect_warning(multiDist(trees,return.lambda.function=TRUE, save.memory=TRUE))
   expect_warning(medTree(trees,return.lambda.function=TRUE, save.memory=TRUE))
   })
+
