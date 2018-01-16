@@ -34,13 +34,15 @@ Imports:
     utils
 LinkingTo: Rcpp
 Suggests:
-    igraph,
-    RColorBrewer,
     ggplot2,
-    testthat, 
+    igraph,
     knitr,
+    pander,
+    RColorBrewer,
+    reshape2,
+    rgl,
     rmarkdown,
-    rgl
+    testthat
 License: MIT + file LICENSE
 LazyData: true
 Collate:
