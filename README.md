@@ -133,6 +133,7 @@ It also comes with the following vignettes:
   trees*](https://thibautjombart.github.io/treespace/articles/TransmissionTreesVignette.html):
   worked example using transmission trees.
 
+- *tip categories*: introduction to the measures for comparing trees with shared tip label "categories"
 
 
 
