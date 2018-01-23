@@ -15,7 +15,7 @@ knitr::opts_chunk$set(fig.width=7, fig.height=4, fig.path="figs/", cache=FALSE, 
 options(digits = 4)
 ```
 
-We introduce distance measures between trees with 'related' tip labels in a recently submitted paper, "Comparing trees according to tip label categories", soon to be available on bioRxiv.
+We introduce distance measures between trees with 'related' tip labels in a recent bioRxiv preprint, [*Comparing phylogenetic trees according to tip label categories*](https://doi.org/10.1101/251710).
 Here we provide an overview of the measures and present some simple examples.
 
 ```{r setupVisible, message=FALSE}
