@@ -9,7 +9,7 @@
 *treespace*: exploration of landscapes of phylogenetic trees
 ============================================================
 
-*treespace* implements new methods for the exploration and a nalysis of
+*treespace* implements new methods for the exploration and analysis of
 distributions of phylogenetic trees for a given set of taxa.
 
 
