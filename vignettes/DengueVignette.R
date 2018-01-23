@@ -79,6 +79,7 @@ Dtype <- c(rep("BEAST",200),rep("NJboots",100),rep("MLboots",100),"NJ","ML")
 # use treespace to find and project the distances:
 Dscape <- treespace(DengueTrees, nf=5)
 
+## ----simple_plot---------------------------------------------------------
 # simple plot:
 plotGrovesD3(Dscape$pco, groups=Dtype)
 
