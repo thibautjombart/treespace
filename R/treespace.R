@@ -21,6 +21,7 @@
 #' @param nf the number of principal components to retain
 #' @param lambda a number in [0,1] which specifies the extent to which topology (default, with lambda=0)  or branch lengths (lambda=1) are emphasised in the Kendall Colijn metric.
 #' @param return.tree.vectors option to also return the tree vectors. Note that this can use a lot of memory so defaults to \code{FALSE}.
+#' @param processors value (default 1) to be passed to mcmapply specifying the number of cores to use. Must be 1 on Windows (see \code{mcmapply} for more details).
 #' @param ... further arguments to be passed to \code{method}.
 #'
 #' @author Thibaut Jombart \email{thibautjombart@@gmail.com}
@@ -69,7 +70,7 @@
 #'
 #'
 #' @export
-treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vectors=FALSE, ...){
+treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vectors=FALSE, processors=1, ...){
   
     ## CHECKS ##
     if(!inherits(x, "multiPhylo")) stop("x should be a multiphylo object")
@@ -98,19 +99,6 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
         stop(paste0("Tree ",lab[[i]]," has different tip labels from the first tree."))
       }
     }
-    
-    
-    processors <- 1
-    
-    ## The following is not allowed by CRAN policies so hard-coding the processors value for now
-    # # detect cores (following method from package rwty, with thanks)
-    # if(Sys.info()["sysname"] == 'Windows'){
-    #   # mcmapply is not supported on windows
-    #   processors <- 1
-    # } else {
-    #   available_processors <- detectCores(all.tests = FALSE, logical = FALSE)
-    #   processors <- max(c(1, c(available_processors - 1)))
-    # }
 
     ## GET DISTANCES BETWEEN TREES, according to method ##
     ## get summary vectors then compute pairwise distances ##

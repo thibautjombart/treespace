@@ -5,7 +5,7 @@
 \title{Phylogenetic tree exploration}
 \usage{
 treespace(x, method = "treeVec", nf = NULL, lambda = 0,
-  return.tree.vectors = FALSE, ...)
+  return.tree.vectors = FALSE, processors = 1, ...)
 }
 \arguments{
 \item{x}{an object of the class multiPhylo}
@@ -30,6 +30,8 @@ others inherited from \code{distTips} in \code{adephylo}:
 \item{lambda}{a number in [0,1] which specifies the extent to which topology (default, with lambda=0)  or branch lengths (lambda=1) are emphasised in the Kendall Colijn metric.}
 
 \item{return.tree.vectors}{option to also return the tree vectors. Note that this can use a lot of memory so defaults to \code{FALSE}.}
+
+\item{processors}{value (default 1) to be passed to mcmapply specifying the number of cores to use. Must be 1 on Windows (see \code{mcmapply} for more details).}
 
 \item{...}{further arguments to be passed to \code{method}.}
 }
