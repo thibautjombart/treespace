@@ -35,7 +35,7 @@
 #' @importFrom phangorn path.dist
 #' @importFrom phangorn RF.dist
 #' @importFrom phangorn wRF.dist
-#' @importFrom parallel mcmapply detectCores
+#' @importFrom parallel mcmapply
 #'
 #' @examples
 #'
@@ -99,14 +99,18 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
       }
     }
     
-    # detect cores (following method from package rwty, with thanks)
-    if(Sys.info()["sysname"] == 'Windows'){
-      # mcmapply is not supported on windows
-      processors <- 1
-    } else {
-      available_processors <- detectCores(all.tests = FALSE, logical = FALSE)
-      processors <- max(c(1, c(available_processors - 1)))
-    }
+    
+    processors <- 1
+    
+    ## The following is not allowed by CRAN policies so hard-coding the processors value for now
+    # # detect cores (following method from package rwty, with thanks)
+    # if(Sys.info()["sysname"] == 'Windows'){
+    #   # mcmapply is not supported on windows
+    #   processors <- 1
+    # } else {
+    #   available_processors <- detectCores(all.tests = FALSE, logical = FALSE)
+    #   processors <- max(c(1, c(available_processors - 1)))
+    # }
 
     ## GET DISTANCES BETWEEN TREES, according to method ##
     ## get summary vectors then compute pairwise distances ##

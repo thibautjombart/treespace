@@ -1,7 +1,7 @@
 Package: treespace
 Title: Statistical Exploration of Landscapes of Phylogenetic Trees
-Date: 2018-01-16
-Version: 1.1.0
+Date: 2018-01-23
+Version: 1.1.1
 Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com", role = "aut"),
  	     MK = person("Michelle", "Kendall", email="m.kendall@imperial.ac.uk", role = c("aut", "cre")),
 	     JAG = person("Jacob", "Almagro-Garcia", role = "aut"),
