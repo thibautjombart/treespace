@@ -11,7 +11,7 @@ Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a 'shiny' interface which can be started from R using
     treespaceServer().
 Depends:
-    R (>= 3.1.2),
+    R (>= 3.4.3),
     ape,
     ade4
 Imports:
