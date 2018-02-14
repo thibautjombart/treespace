@@ -79,7 +79,7 @@ makeCollapsedTree <- function(tree,df,warnings=TRUE){
   tipsToDrop <- setdiff(tree$tip.label, tipsToKeep)
   collapsedTree <- drop.tip(tree, tip=tipsToDrop, collapse.singles = TRUE) # pruning step
 
-  collapsedTree$tip.label <- as.character(sapply(collapsedTree$tip.label, function(t) df[which(df[,2]==t),1])) # relabel the tips by category name
+  collapsedTree$tip.label <- as.character(sapply(collapsedTree$tip.label, function(t) df[which(df[,2]==t)[[1]],1])) # relabel the tips by category name
 
   return(collapsedTree)
 }
