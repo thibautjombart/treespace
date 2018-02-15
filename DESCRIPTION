@@ -3,10 +3,10 @@ Title: Statistical Exploration of Landscapes of Phylogenetic Trees
 Date: 2018-01-23
 Version: 1.1.1
 Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com", role = "aut"),
- 	     MK = person("Michelle", "Kendall", email="m.kendall@imperial.ac.uk", role = c("aut", "cre")),
+ 	     MK = person("Michelle", "Kendall", email="michelle.kendall@bdi.ox.ac.uk", role = c("aut", "cre")),
 	     JAG = person("Jacob", "Almagro-Garcia", role = "aut"),
 	     CC = person("Caroline", "Colijn", role = "aut"))
-Maintainer: Michelle Kendall <m.kendall@imperial.ac.uk>
+Maintainer: Michelle Kendall <michelle.kendall@bdi.ox.ac.uk>
 Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a 'shiny' interface which can be started from R using
     treespaceServer().

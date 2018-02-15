@@ -155,14 +155,14 @@ Authors
 -------
 Authors:
 * [Thibaut Jombart](https://sites.google.com/site/thibautjombart/)
-* [Michelle Kendall](http://www.imperial.ac.uk/people/m.kendall)
+* [Michelle Kendall](https://michellekendall.github.io/)
 
 Contributors:
 * [Jacob Almagro-Garcia](http://www.well.ox.ac.uk/jacob-almagro-garcia)
 * [Caroline Colijn](http://www.imperial.ac.uk/people/c.colijn)
 
 Maintainer of the CRAN version:
-* [Michelle Kendall](http://www.imperial.ac.uk/people/m.kendall)
+* [Michelle Kendall](https://michellekendall.github.io/)
 
 
 

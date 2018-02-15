@@ -8,7 +8,7 @@
 #' @param nf the number of principal components to retain
 #' @param ... further arguments to be passed to \code{method}
 #'
-#' @author Thibaut Jombart \email{thibautjombart@@gmail.com}, Michelle Kendall \email{michelle.louise.kendall@@gmail.com}, Caroline Colijn \email{c.colijn@@imperial.ac.uk}
+#' @author Thibaut Jombart \email{thibautjombart@@gmail.com}, Michelle Kendall \email{michelle.kendall@@bdi.ox.ac.uk}, Caroline Colijn \email{c.colijn@@imperial.ac.uk}
 #'
 #' @export
 #'
@@ -22,12 +22,12 @@
 #' x <- rmtree(10, 20)
 #' names(x) <- paste("tree", 1:10, sep = "")
 #'
-#' ## use treescape
-#' res <- treescape(x, nf=3)
+#' ## use treespace
+#' res <- treespace(x, nf=3)
 #' table.paint(as.matrix(res$D))
 #' scatter(res$pco)
 #'
-treescape <- function(x, method=tree.vec, nf=NULL, ...){
+treespace <- function(x, method=tree.vec, nf=NULL, ...){
     ## CHECKS ##
     if(!inherits(x, "multiPhylo")) stop("x should be a multiphylo object")
     if(is.null(names(x))) names(x) <- 1:length(x)
@@ -49,4 +49,4 @@ treescape <- function(x, method=tree.vec, nf=NULL, ...){
     ## BUILD RESULT AND RETURN ##
     out <- list(D=D, pco=pco)
     return(out)
-} # end treescape
+} # end treespace

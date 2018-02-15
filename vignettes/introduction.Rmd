@@ -384,7 +384,7 @@ Authors:
 
 * [Thibaut Jombart](https://sites.google.com/site/thibautjombart/)
 
-* [Michelle Kendall](http://www.imperial.ac.uk/people/m.kendall)
+* [Michelle Kendall](https://michellekendall.github.io/)
 
 Contributors:
 
@@ -394,4 +394,4 @@ Contributors:
 
 Maintainer of the CRAN version:
 
-* [Michelle Kendall](http://www.imperial.ac.uk/people/m.kendall)
+* [Michelle Kendall](https://michellekendall.github.io/)
