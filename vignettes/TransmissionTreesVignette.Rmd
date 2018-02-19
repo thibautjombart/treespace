@@ -17,7 +17,7 @@ options(digits = 4)
 ```
 
 
-This vignette demonstrates the use of *treespace* to compare a collection of transmission trees, as proposed in Kendall, Ayabina & Colijn, 2016 [arXiv:1609.09051](http://arxiv.org/abs/1609.09051).
+This vignette demonstrates the use of *treespace* to compare a collection of transmission trees as proposed in [Kendall et al. 2018](http://dx.doi.org/10.1214/17-STS637).
 
 First we load the package *treespace*:
 
