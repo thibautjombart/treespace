@@ -46,6 +46,9 @@ treeConcordance <- function(catTree,indTree,df) {
   catTree_pairs <- catTree_leaves * (catTree_leaves-1)/2
   indTree_pairs <- indTree_leaves * (indTree_leaves -1)/2
 
+  # avoid unnecessary computation by reducing df to unique rows
+  df <- unique(df)
+  
   # function to find category corresponding to individual:
   sigma <- function(g) {
     s_row <- which(df[,2]==g)
