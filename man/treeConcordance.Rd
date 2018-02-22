@@ -25,7 +25,7 @@ plot(catTree)
 indTree1 <- read.tree(text="(((c4,c3),(c2,c1)),((b1,b2),((a3,a2),a1)));")
 plot(indTree1)
 
-#' # create data frame linking categories with individuals
+# create data frame linking categories with individuals
 df <- cbind(c(rep("A",3),rep("B",2),rep("C",4)),sort(indTree1$tip.label))
 
 treeConcordance(catTree,indTree1,df)

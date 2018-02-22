@@ -1,5 +1,5 @@
 ## ----setup, echo=FALSE---------------------------------------------------
-# set global chunk options: images will be 7x5 inches
+# set global chunk options: images will be 7x7 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 library("rgl")
