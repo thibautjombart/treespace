@@ -28,6 +28,7 @@ Imports:
     phangorn,
     phytools,
     Rcpp,
+    rgl,
     RLumShiny,
     scatterD3,
     shiny,
@@ -41,7 +42,6 @@ Suggests:
     pander,
     RColorBrewer,
     reshape2,
-    rgl,
     rmarkdown,
     testthat
 License: MIT + file LICENSE
@@ -64,3 +64,5 @@ Collate:
     treeConcordance.R
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
+URL: https://github.com/thibautjombart/treespace
+BugReports: https://github.com/thibautjombart/treespace/issues

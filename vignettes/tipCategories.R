@@ -31,7 +31,7 @@ exTable <- cbind(cats,indivs)
 colnames(exTable) <- c("Categories", "Individuals")
 
 ## ----table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'----
-require(pander)
+library(pander)
 panderOptions('table.split.table', Inf)
 pander(exTable, style = 'rmarkdown')
 

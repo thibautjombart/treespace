@@ -2,14 +2,11 @@
 # set global chunk options: images will be 7x7 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
-library("rgl")
-knitr::knit_hooks$set(webgl=hook_webgl)
 
 ## ----load, message=FALSE, warning=FALSE----------------------------------
 library("treespace")
 library("phangorn")
 library("adegenet")
-library("rgl")
 
 ## ----load_BEAST_trees----------------------------------------------------
 data(DengueTrees)
@@ -131,17 +128,6 @@ plotGrovesD3(Dscape$pco,
 
 ## ----scree_plot----------------------------------------------------------
 barplot(Dscape$pco$eig, col="navy")
-
-## ----load_rgl------------------------------------------------------------
-library(rgl)
-
-## ----plot_3D, rgl=TRUE, webgl=TRUE---------------------------------------
-Dcols3D <- c(rep(Dcols[[1]],200),rep(Dcols[[2]],100),rep(Dcols[[3]],100),Dcols[[2]],Dcols[[3]])
-rgl::plot3d(Dscape$pco$li[,1],Dscape$pco$li[,2],Dscape$pco$li[,3],
-       type="s",
-       size=c(rep(1.5,400),3,3), 
-       col=Dcols3D,
-       xlab="", ylab="", zlab="")
 
 ## ----NJ_and_ML_overlap---------------------------------------------------
 # trees with the same topology as the NJ tree:
