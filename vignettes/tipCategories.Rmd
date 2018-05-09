@@ -52,7 +52,7 @@ colnames(exTable) <- c("Categories", "Individuals")
 ```
 
 ```{r table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-library(pander)
+require(pander)
 panderOptions('table.split.table', Inf)
 pander(exTable, style = 'rmarkdown')
 ```

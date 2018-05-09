@@ -13,7 +13,6 @@
 
 #' @import scatterD3
 #' @import shiny
-#' @import rgl
 #' @importFrom ade4 dudi.pco
 #' @importFrom adegraphics s1d.barchart 
 #' @importFrom adegraphics s.class 
