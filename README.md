@@ -1,4 +1,3 @@
-[![Travis-CI Build Status](https://travis-ci.org/thibautjombart/treespace.png?branch=master)](https://travis-ci.org/thibautjombart/treespace)
 [![Build status](https://ci.appveyor.com/api/projects/status/klr8khh1ieb26rh4/branch/master?svg=true)](https://ci.appveyor.com/project/thibautjombart/treespace/branch/master)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/treespace)](https://cran.r-project.org/package=treespace)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/treespace)](https://cran.r-project.org/package=treespace)
@@ -116,24 +115,21 @@ Distributed datasets include:
 Documentation
 -------------
 
-*treespace* is fully documented on a [dedicated
- website](https://thibautjombart.github.io/treespace/). 
-
-It also comes with the following vignettes:
+*treespace* comes with the following vignettes:
 
 -
-  [*introduction*](https://thibautjombart.github.io/treespace/articles/introduction.html):
+  [*introduction*](https://cran.r-project.org/web/packages/treespace/vignettes/introduction.html):
   general introduction using a worked example.
 
 - [*Dengue
-  example*](https://thibautjombart.github.io/treespace/articles/DengueVignette.html):
+  example*](https://cran.r-project.org/web/packages/treespace/vignettes/DengueVignette.html):
   worked example using a Dengue dataset, used in the *treespace* publication.
 
 - [*transmission
-  trees*](https://thibautjombart.github.io/treespace/articles/TransmissionTreesVignette.html):
+  trees*](https://cran.r-project.org/web/packages/treespace/vignettes/TransmissionTreesVignette.html):
   worked example using transmission trees.
 
-- *tip categories*: introduction to the measures for comparing trees with shared tip label "categories"
+- [*tip categories*](https://cran.r-project.org/web/packages/treespace/vignettes/tipCategories.html): introduction to the measures for comparing trees with shared tip label "categories"
 
 
 
@@ -154,7 +150,7 @@ system](https://github.com/thibautjombart/treespace/issues).
 Authors
 -------
 Authors:
-* [Thibaut Jombart](https://sites.google.com/site/thibautjombart/)
+* [Thibaut Jombart](https://thibautjombart.netlify.com/)
 * [Michelle Kendall](https://michellekendall.github.io/)
 
 Contributors:
