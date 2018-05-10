@@ -64,3 +64,5 @@ Collate:
     treeConcordance.R
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
+URL: https://cran.r-project.org/package=treespace, https://github.com/thibautjombart/treespace
+BugReports: https://github.com/thibautjombart/treespace/issues
