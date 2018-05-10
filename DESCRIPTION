@@ -13,7 +13,8 @@ Description: Tools for the exploration of distributions of phylogenetic trees.
 Depends:
     R (>= 3.4.0),
     ape,
-    ade4
+    ade4,
+    rgl
 Imports:
     adegenet,
     adegraphics,
@@ -41,7 +42,6 @@ Suggests:
     pander,
     RColorBrewer,
     reshape2,
-    rgl,
     rmarkdown,
     testthat
 License: MIT + file LICENSE
