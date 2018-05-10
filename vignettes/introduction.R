@@ -81,11 +81,11 @@ plot3d(wm.groves$treespace$pco$li[,1],
        xlab="", ylab="", zlab="")
 
 ## ----shiny_figures, echo=FALSE, fig.retina = NULL------------------------
-knitr::include_graphics("figs/treespace3d.png", dpi=72)
+knitr::include_graphics("treespace3d.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceTree.png", dpi=72)
+knitr::include_graphics("treespaceTree.png", dpi=72)
 
-knitr::include_graphics("figs/treespaceDensiTree.png", dpi=72)
+knitr::include_graphics("treespaceDensiTree.png", dpi=72)
 
 ## ----woodmiceMedian------------------------------------------------------
 # get first median tree

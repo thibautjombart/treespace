@@ -34,6 +34,7 @@
 #' @export
 treespaceServer <- function(){
     ## RUN APP
+    options(rgl.useNULL=TRUE)
     runApp(system.file("shiny",package="treespace"))
     return(invisible())
 }

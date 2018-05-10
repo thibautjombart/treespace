@@ -1,3 +1,4 @@
+options(rgl.useNULL=TRUE)
 ## DEFINE THE SERVER SIDE OF THE APPLICATION
 shinyServer(function(input, output, session) {
   ## LOAD PACKAGES
