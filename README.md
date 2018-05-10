@@ -118,18 +118,18 @@ Documentation
 *treespace* comes with the following vignettes:
 
 -
-  [*introduction*](https://cran.r-project.org/web/packages/treespace/vignettes/introduction.html):
+  [*introduction*](https://cran.r-project.org/package=treespace/vignettes/introduction.html):
   general introduction using a worked example.
 
 - [*Dengue
-  example*](https://cran.r-project.org/web/packages/treespace/vignettes/DengueVignette.html):
+  example*](https://cran.r-project.org/package=treespace/vignettes/DengueVignette.html):
   worked example using a Dengue dataset, used in the *treespace* publication.
 
 - [*transmission
-  trees*](https://cran.r-project.org/web/packages/treespace/vignettes/TransmissionTreesVignette.html):
+  trees*](https://cran.r-project.org/package=treespace/vignettes/TransmissionTreesVignette.html):
   worked example using transmission trees.
 
-- [*tip categories*](https://cran.r-project.org/web/packages/treespace/vignettes/tipCategories.html): introduction to the measures for comparing trees with shared tip label "categories"
+- [*tip categories*](https://cran.r-project.org/package=treespace/vignettes/tipCategories.html): introduction to the measures for comparing trees with shared tip label "categories"
 
 
 
