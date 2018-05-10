@@ -28,6 +28,7 @@ Imports:
     phangorn,
     phytools,
     Rcpp,
+    rgl,
     RLumShiny,
     scatterD3,
     shiny,
@@ -41,7 +42,6 @@ Suggests:
     pander,
     RColorBrewer,
     reshape2,
-    rgl,
     rmarkdown,
     testthat
 License: MIT + file LICENSE
