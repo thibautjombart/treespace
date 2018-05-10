@@ -14,8 +14,6 @@ vignette: >
 # set global chunk options: images will be 7x7 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
-library("rgl")
-knitr::knit_hooks$set(webgl=hook_webgl)
 ```
 
 
@@ -32,7 +30,6 @@ Load the required packages:
 library("treespace")
 library("phangorn")
 library("adegenet")
-library("rgl")
 ```
 
 Load BEAST trees:
@@ -199,11 +196,8 @@ barplot(Dscape$pco$eig, col="navy")
 ```
 
 We can also view the plot in 3D:
-```{r load_rgl}
+```{r plot_3D, eval=FALSE}
 library(rgl)
-```
-
-```{r plot_3D, rgl=TRUE, webgl=TRUE}
 Dcols3D <- c(rep(Dcols[[1]],200),rep(Dcols[[2]],100),rep(Dcols[[3]],100),Dcols[[2]],Dcols[[3]])
 rgl::plot3d(Dscape$pco$li[,1],Dscape$pco$li[,2],Dscape$pco$li[,3],
        type="s",
