@@ -1,0 +1,14 @@
+citHeader("To cite treespace in publications, please use:")
+
+citEntry(entry = "article",
+         author = "Thibaut Jombart, Michelle Kendall, Jacob Almagro-Garcia and Caroline Colijn",
+         title = "treespace: Statistical Exploration of Landscapes of Phylogenetic Trees",
+         journal = "Molecular Ecology Resources",
+         volume = "17",
+         issue = "6",
+         pages = "1385-1392",
+         publisher = "Wiley",
+         year = "2017",
+         url = "https://doi.org/10.1111/1755-0998.12676",
+         textVersion = "T. Jombart, M. Kendall, J. Almagro-Garcia and C. Colijn. treespace: Statistical Exploration of Landscapes of Phylogenetic Trees. Molecular Ecology Resources, 17(6):1385-1392, 2017."
+)
