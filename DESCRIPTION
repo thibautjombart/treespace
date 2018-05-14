@@ -9,7 +9,8 @@ Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com",
 Maintainer: Michelle Kendall <michelle.kendall@bdi.ox.ac.uk>
 Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a 'shiny' interface which can be started from R using
-    treespaceServer().
+    treespaceServer(). 
+    For further details see Jombart et al. (2017) <DOI:10.1111/1755-0998.12676>.
 Depends:
     R (>= 3.4.0),
     ape,
@@ -66,4 +67,3 @@ RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 URL: https://cran.r-project.org/package=treespace, https://github.com/thibautjombart/treespace
 BugReports: https://github.com/thibautjombart/treespace/issues
-Reference: T. Jombart, M. Kendall, J. Almagro-Garcia and C. Colijn (2017) <https://doi.org/10.1111/1755-0998.12676>
