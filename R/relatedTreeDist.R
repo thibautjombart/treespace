@@ -74,7 +74,7 @@ relatedTreeDist <- function(trees,df,checkTrees=TRUE){
   # for each tree k and each pair of categories i,j,
   # vk_{i,j} = the average depth of the corresponding leaf pairs in tree_k
 
-  vectors <- sapply(1:l, function(t) {  # vector for each tree
+  vectors <- sapply(1:l, function(t) {  # one vector for each of the l trees
 
     tree_vec <- vector()
     leaf_pairs <- choose(tree_leaf_nums[[t]],2) # number of leaf pairs in this tree
