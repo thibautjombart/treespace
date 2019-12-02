@@ -107,6 +107,7 @@ which substantially changes the measures of similarities and differences between
 Finally, we demonstrate comparing a larger set of transmission trees and finding the median:
 
 ```{r trees1000}
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(123)
 num <- 500
 

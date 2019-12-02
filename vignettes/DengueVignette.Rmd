@@ -41,6 +41,7 @@ We load a random sample of 500 of the trees (from the second half of the posteri
 
 For convenience in our initial analysis we will take a random sample of 200 of these trees; sample sizes can be increased later.
 ```{r sample_BEAST_trees}
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(123)
 BEASTtrees <- DengueTrees[sample(1:length(DengueTrees),200)]
 ```

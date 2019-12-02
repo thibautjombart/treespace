@@ -148,6 +148,7 @@ $$
 We now give a larger example with more trees. Along the way we use the function `simulateIndTree` which takes a "category-level" tree and randomly adds individuals to make an example individuals tree.
 
 ```{r six_comparable_trees, fig.height=12}
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(948)
 # set colour scheme
 pal2 <- brewer.pal(8,"Dark2")
