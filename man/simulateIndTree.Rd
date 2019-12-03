@@ -4,8 +4,13 @@
 \alias{simulateIndTree}
 \title{Simulate randomised "individuals" tree}
 \usage{
-simulateIndTree(catTree, itips = 5, permuteCat = FALSE,
-  permuteTips = TRUE, tipPercent = 100)
+simulateIndTree(
+  catTree,
+  itips = 5,
+  permuteCat = FALSE,
+  permuteTips = TRUE,
+  tipPercent = 100
+)
 }
 \arguments{
 \item{catTree}{object of class phylo, the category-level tree}

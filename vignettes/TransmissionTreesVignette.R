@@ -1,16 +1,16 @@
-## ----setup, echo=FALSE---------------------------------------------------
+## ----setup, echo=FALSE--------------------------------------------------------
 # set global chunk options: images will be 7x5 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE)
 options(digits = 4)
 
-## ----load, message=FALSE-------------------------------------------------
+## ----load, message=FALSE------------------------------------------------------
 library(treespace)
 
-## ----tree1---------------------------------------------------------------
+## ----tree1--------------------------------------------------------------------
 tree1 <- cbind(Infector=1:5,Infectee=2:6) 
 tree1
 
-## ----igraph_tree1, message=FALSE-----------------------------------------
+## ----igraph_tree1, message=FALSE----------------------------------------------
 library(igraph)
 # set plotting options:
 igraph_options(vertex.size=15,
@@ -22,10 +22,10 @@ igraph_options(vertex.size=15,
 tree1graph <- graph_from_edgelist(tree1)
 plot(tree1graph)
 
-## ----simple_wiwMRCIs-----------------------------------------------------
+## ----simple_wiwMRCIs----------------------------------------------------------
 findMRCIs(tree1)
 
-## ----trees2_and_3--------------------------------------------------------
+## ----trees2_and_3-------------------------------------------------------------
 # a second scenario:
 tree2 <- cbind(Infector=c(1,5,2,2,3),Infectee=2:6)
 tree2
@@ -38,7 +38,7 @@ tree3
 tree3graph <- graph_from_edgelist(tree3)
 plot(tree3graph)
 
-## ----tree123_comparison--------------------------------------------------
+## ----tree123_comparison-------------------------------------------------------
 m1 <- findMRCIs(tree1) # find the source case, MRCIs and MRCI depths for tree 1
 m2 <- findMRCIs(tree2)
 m3 <- findMRCIs(tree3)
@@ -47,10 +47,11 @@ matList <- list(m1$mrciDepths,m2$mrciDepths,m3$mrciDepths) # create a list of th
 matList
 wiwTreeDist(matList, sampled=1:6) # find the Euclidean distances between these matrices, where all six cases are sampled
 
-## ----tree123_sampled4:6--------------------------------------------------
+## ----tree123_sampled4:6-------------------------------------------------------
 wiwTreeDist(matList, sampled=4:6)
 
-## ----trees1000-----------------------------------------------------------
+## ----trees1000----------------------------------------------------------------
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(123)
 num <- 500
 
@@ -87,7 +88,7 @@ matList1000 <- lapply(combinedLists, function(x)
 # find pairwise tree distances, treating all cases as sampled:
 WiwDists1000 <- wiwTreeDist(matList1000, sampled=1:11)
 
-## ----wiw_MDS1000, message=FALSE------------------------------------------
+## ----wiw_MDS1000, message=FALSE-----------------------------------------------
 wiwMDS <- dudi.pco(WiwDists1000, scannf=FALSE, nf=3)
 
 library(ggplot2)
@@ -117,16 +118,16 @@ wiwPlot +
     axis.text.x = element_text(size=20), axis.text.y = element_text(size=20)) +
   xlab("") + ylab("")
 
-## ----wiwMedian-----------------------------------------------------------
+## ----wiwMedian----------------------------------------------------------------
 med <- wiwMedTree(matList1000)
 
-## ----wiwMedian2----------------------------------------------------------
+## ----wiwMedian2---------------------------------------------------------------
 names(med)
 
-## ----wiwMedTree----------------------------------------------------------
+## ----wiwMedTree---------------------------------------------------------------
 med$median
 
-## ----wiwMedTreePlot------------------------------------------------------
+## ----wiwMedTreePlot-----------------------------------------------------------
 medgraph <- graph_from_edgelist(combinedLists[[med$median[[1]]]])
 plot(medgraph)
 

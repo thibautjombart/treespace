@@ -1,24 +1,25 @@
-## ----setup, echo=FALSE---------------------------------------------------
+## ----setup, echo=FALSE--------------------------------------------------------
 # set global chunk options: images will be 7x7 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=7, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 
-## ----load, message=FALSE, warning=FALSE----------------------------------
+## ----load, message=FALSE, warning=FALSE---------------------------------------
 library("treespace")
 library("phangorn")
 library("adegenet")
 
-## ----load_BEAST_trees----------------------------------------------------
+## ----load_BEAST_trees---------------------------------------------------------
 data(DengueTrees)
 
-## ----sample_BEAST_trees--------------------------------------------------
+## ----sample_BEAST_trees-------------------------------------------------------
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(123)
 BEASTtrees <- DengueTrees[sample(1:length(DengueTrees),200)]
 
-## ----load_seqs-----------------------------------------------------------
+## ----load_seqs----------------------------------------------------------------
 data(DengueSeqs)
 
-## ----make_NJ-------------------------------------------------------------
+## ----make_NJ------------------------------------------------------------------
 makeTree <- function(x){
   tree <- nj(dist.dna(x, model = "TN93"))
   tree <- root(tree, resolve.root=TRUE, outgroup="D4Thai63")
@@ -30,26 +31,26 @@ DnjRooted <- makeTree(DengueSeqs)
 DnjRooted$edge.length[which(DnjRooted$edge.length < 0)] <- 0
 plot(DnjRooted)
 
-## ----make_NJ_boots, results="hide"---------------------------------------
+## ----make_NJ_boots, results="hide"--------------------------------------------
 Dnjboots <- boot.phylo(DnjRooted, DengueSeqs, B=100, 
 	    	       makeTree, trees=TRUE, rooted=TRUE)
 Dnjboots
 
-## ----see_NJ_boots--------------------------------------------------------
+## ----see_NJ_boots-------------------------------------------------------------
 plot(DnjRooted)
 drawSupportOnEdges(Dnjboots$BP)
 
-## ----make_ML, results="hide", message=FALSE------------------------------
+## ----make_ML, results="hide", message=FALSE-----------------------------------
 Dfit.ini <- pml(DnjRooted, as.phyDat(DengueSeqs), k=4)
 Dfit <- optim.pml(Dfit.ini, optNni=TRUE, optBf=TRUE,
                   optQ=TRUE, optGamma=TRUE, model="GTR")
 # root:
 DfitTreeRooted <- root(Dfit$tree, resolve.root=TRUE, outgroup="D4Thai63")
 
-## ----view_ML-------------------------------------------------------------
+## ----view_ML------------------------------------------------------------------
 plot(DfitTreeRooted)
 
-## ----make_ML_boots, results="hide"---------------------------------------
+## ----make_ML_boots, results="hide"--------------------------------------------
 # bootstrap supports:
 DMLboots <- bootstrap.pml(Dfit, optNni=TRUE)
 # root:
@@ -57,10 +58,10 @@ DMLbootsrooted <- lapply(DMLboots, function(x) root(x, resolve.root=TRUE, outgro
 class(DMLbootsrooted) <- "multiPhylo"
 
 
-## ----see_ML_boots--------------------------------------------------------
+## ----see_ML_boots-------------------------------------------------------------
 plotBS(DfitTreeRooted, DMLboots, type="phylogram")
 
-## ----run_treespace-------------------------------------------------------
+## ----run_treespace------------------------------------------------------------
 # collect the trees into a single object of class multiPhylo:
 DengueTrees <- c(BEASTtrees, Dnjboots$trees, DMLbootsrooted,
 		             DnjRooted, DfitTreeRooted)
@@ -77,11 +78,11 @@ Dtype <- c(rep("BEAST",200),rep("NJboots",100),rep("MLboots",100),"NJ","ML")
 # use treespace to find and project the distances:
 Dscape <- treespace(DengueTrees, nf=5)
 
-## ----simple_plot---------------------------------------------------------
+## ----simple_plot--------------------------------------------------------------
 # simple plot:
 plotGrovesD3(Dscape$pco, groups=Dtype)
 
-## ----make_better_plot----------------------------------------------------
+## ----make_better_plot---------------------------------------------------------
 Dcols <- c("#1b9e77","#d95f02","#7570b3")
 Dmethod <- c(rep("BEAST",200),rep("NJ",100),rep("ML",100),"NJ","ML")
 Dbootstraps <- c(rep("replicates",400),"NJ","ML")
@@ -98,7 +99,7 @@ plotGrovesD3(Dscape$pco,
              point_opacity=c(rep(0.4,400),1,1), 
              legend_width=80)
 
-## ----make_better_plot_with_labels----------------------------------------
+## ----make_better_plot_with_labels---------------------------------------------
 plotGrovesD3(Dscape$pco, 
              groups=Dmethod, 
              treeNames = names(DengueTrees), # add the tree names as labels
@@ -112,7 +113,7 @@ plotGrovesD3(Dscape$pco,
              point_opacity=c(rep(0.4,400),1,1), 
              legend_width=80)
 
-## ----make_better_plot_with_tooltips--------------------------------------
+## ----make_better_plot_with_tooltips-------------------------------------------
 plotGrovesD3(Dscape$pco, 
              groups=Dmethod, 
              tooltip_text = names(DengueTrees), # add the tree names as tooltip text
@@ -126,10 +127,10 @@ plotGrovesD3(Dscape$pco,
              point_opacity=c(rep(0.4,400),1,1), 
              legend_width=80)
 
-## ----scree_plot----------------------------------------------------------
+## ----scree_plot---------------------------------------------------------------
 barplot(Dscape$pco$eig, col="navy")
 
-## ----plot_3D, eval=FALSE-------------------------------------------------
+## ----plot_3D, eval=FALSE------------------------------------------------------
 #  library(rgl)
 #  Dcols3D <- c(rep(Dcols[[1]],200),rep(Dcols[[2]],100),rep(Dcols[[3]],100),Dcols[[2]],Dcols[[3]])
 #  rgl::plot3d(Dscape$pco$li[,1],Dscape$pco$li[,2],Dscape$pco$li[,3],
@@ -138,33 +139,33 @@ barplot(Dscape$pco$eig, col="navy")
 #         col=Dcols3D,
 #         xlab="", ylab="", zlab="")
 
-## ----NJ_and_ML_overlap---------------------------------------------------
+## ----NJ_and_ML_overlap--------------------------------------------------------
 # trees with the same topology as the NJ tree:
 which(as.matrix(Dscape$D)["NJ",]==0)
 # trees with the same topology as the ML tree:
 which(as.matrix(Dscape$D)["ML",]==0)
 
-## ----compare_trees_NJ_v_ML-----------------------------------------------
+## ----compare_trees_NJ_v_ML----------------------------------------------------
 # comparing NJ and ML:
 plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE)
 treeDist(DnjRooted,DfitTreeRooted)
 
-## ----compare_trees_NJ_v_ML_recoloured------------------------------------
+## ----compare_trees_NJ_v_ML_recoloured-----------------------------------------
 # comparing NJ and ML:
 plotTreeDiff(DnjRooted,DfitTreeRooted, use.edge.length=FALSE, 
              treesFacing = TRUE, colourMethod = "palette", palette = funky)
 
-## ----make_BEAST_median---------------------------------------------------
+## ----make_BEAST_median--------------------------------------------------------
 BEASTmed <- medTree(BEASTtrees)
 
-## ----compare_BEAST_meds--------------------------------------------------
+## ----compare_BEAST_meds-------------------------------------------------------
 BEASTmed$trees
 treeDist(BEASTmed$trees[[1]],BEASTmed$trees[[2]])
 
-## ----save_BEAST_median---------------------------------------------------
+## ----save_BEAST_median--------------------------------------------------------
 BEASTrep <- BEASTmed$trees[[1]]
 
-## ----compare_BEAST_to_other_trees----------------------------------------
+## ----compare_BEAST_to_other_trees---------------------------------------------
 # comparing BEAST median and NJ:
 plotTreeDiff(BEASTrep,DnjRooted, use.edge.length=FALSE, 
              treesFacing = TRUE, colourMethod = "palette", palette = funky)
@@ -180,7 +181,7 @@ plotTreeDiff(BEASTrep, randomBEASTtree, use.edge.length=FALSE,
              treesFacing = TRUE, colourMethod = "palette", palette = funky)
 treeDist(BEASTrep,randomBEASTtree)
 
-## ----BEASTtrees----------------------------------------------------------
+## ----BEASTtrees---------------------------------------------------------------
 # load the MCC tree
 data(DengueBEASTMCC)
 # concatenate with other BEAST trees
@@ -190,11 +191,11 @@ BEASTscape <- treespace(BEAST201, nf=5)
 # simple plot:
 plotGrovesD3(BEASTscape$pco)
 
-## ----BEASTtrees_clusters-------------------------------------------------
+## ----BEASTtrees_clusters------------------------------------------------------
 # find clusters or 'groves':
 BEASTGroves <- findGroves(BEASTscape, nclust=4, clustering = "single")
 
-## ----BEASTtrees_meds-----------------------------------------------------
+## ----BEASTtrees_meds----------------------------------------------------------
 # find median tree(s) per cluster:
 BEASTMeds <- medTree(BEAST201, groups=BEASTGroves$groups)
 # for each cluster, select a single median tree to represent it:
@@ -203,7 +204,7 @@ BEASTMedTrees <- c(BEASTMeds$`1`$trees[[1]],
                    BEASTMeds$`3`$trees[[1]],
                    BEASTMeds$`4`$trees[[1]])
 
-## ----BEASTtrees_plot, warning=FALSE--------------------------------------
+## ----BEASTtrees_plot, warning=FALSE-------------------------------------------
 # extract the numbers from the tree list 'BEASTtrees' which correspond to the median trees: 
 BEASTMedTreeNums <-c(which(BEASTGroves$groups==1)[[BEASTMeds$`1`$treenumbers[[1]]]],
                      which(BEASTGroves$groups==2)[[BEASTMeds$`2`$treenumbers[[1]]]],
@@ -226,7 +227,7 @@ plotGrovesD3(BEASTscape$pco,
           size_var = highlightTrees,
           legend_width=0)
 
-## ----BEASTtree_diffs-----------------------------------------------------
+## ----BEASTtree_diffs----------------------------------------------------------
 # differences between the MCC tree and the median from the largest cluster:
 treeDist(DengueBEASTMCC,BEASTMedTrees[[1]])
 plotTreeDiff(DengueBEASTMCC,BEASTMedTrees[[1]], use.edge.length=FALSE, 

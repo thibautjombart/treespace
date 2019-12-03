@@ -4,9 +4,16 @@
 \alias{medTree}
 \title{Geometric median tree function}
 \usage{
-medTree(x, groups = NULL, lambda = 0, weights = NULL,
-  emphasise.tips = NULL, emphasise.weight = 2,
-  return.lambda.function = FALSE, save.memory = FALSE)
+medTree(
+  x,
+  groups = NULL,
+  lambda = 0,
+  weights = NULL,
+  emphasise.tips = NULL,
+  emphasise.weight = 2,
+  return.lambda.function = FALSE,
+  save.memory = FALSE
+)
 }
 \arguments{
 \item{x}{A list of trees of the class multiPhylo, for which the median tree will be computed, \cr

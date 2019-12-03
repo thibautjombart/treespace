@@ -4,8 +4,14 @@
 \alias{treeDist}
 \title{Metric function}
 \usage{
-treeDist(tree.a, tree.b, lambda = 0, return.lambda.function = FALSE,
-  emphasise.tips = NULL, emphasise.weight = 2)
+treeDist(
+  tree.a,
+  tree.b,
+  lambda = 0,
+  return.lambda.function = FALSE,
+  emphasise.tips = NULL,
+  emphasise.weight = 2
+)
 }
 \arguments{
 \item{tree.a}{an object of the class \code{phylo}}

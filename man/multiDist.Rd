@@ -4,8 +4,14 @@
 \alias{multiDist}
 \title{Metric function for \code{multiPhylo} input}
 \usage{
-multiDist(trees, lambda = 0, return.lambda.function = FALSE,
-  save.memory = FALSE, emphasise.tips = NULL, emphasise.weight = 2)
+multiDist(
+  trees,
+  lambda = 0,
+  return.lambda.function = FALSE,
+  save.memory = FALSE,
+  emphasise.tips = NULL,
+  emphasise.weight = 2
+)
 }
 \arguments{
 \item{trees}{an object of the class \code{multiPhylo} containing the trees to be compared}

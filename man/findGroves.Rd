@@ -4,8 +4,14 @@
 \alias{findGroves}
 \title{Identify clusters of similar trees}
 \usage{
-findGroves(x, method = "treeVec", nf = NULL, clustering = "ward.D2",
-  nclust = NULL, ...)
+findGroves(
+  x,
+  method = "treeVec",
+  nf = NULL,
+  clustering = "ward.D2",
+  nclust = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{an object of the class multiPhylo or the output of the function \code{treespace}}

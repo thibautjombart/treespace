@@ -4,8 +4,14 @@
 \alias{refTreeDist}
 \title{Metric function for comparing a reference \code{phylo} to \code{multiPhylo} input}
 \usage{
-refTreeDist(refTree, trees, lambda = 0, return.lambda.function = FALSE,
-  emphasise.tips = NULL, emphasise.weight = 2)
+refTreeDist(
+  refTree,
+  trees,
+  lambda = 0,
+  return.lambda.function = FALSE,
+  emphasise.tips = NULL,
+  emphasise.weight = 2
+)
 }
 \arguments{
 \item{refTree}{a tree of class \code{phylo}, the "reference tree".}

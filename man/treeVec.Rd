@@ -4,8 +4,13 @@
 \alias{treeVec}
 \title{Tree vector function}
 \usage{
-treeVec(tree, lambda = 0, return.lambda.function = FALSE,
-  emphasise.tips = NULL, emphasise.weight = 2)
+treeVec(
+  tree,
+  lambda = 0,
+  return.lambda.function = FALSE,
+  emphasise.tips = NULL,
+  emphasise.weight = 2
+)
 }
 \arguments{
 \item{tree}{an object of the class \code{phylo}}

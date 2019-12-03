@@ -4,10 +4,24 @@
 \alias{plotGroves}
 \title{Scatterplot of groups of trees}
 \usage{
-plotGroves(x, groups = NULL, xax = 1, yax = 2, type = c("chull",
-  "ellipse"), col.pal = funky, bg = "white", lab.show = FALSE,
-  lab.col = "black", lab.cex = 1, lab.optim = TRUE, point.cex = 1,
-  scree.pal = NULL, scree.size = 0.2, scree.posi = c(0.02, 0.02), ...)
+plotGroves(
+  x,
+  groups = NULL,
+  xax = 1,
+  yax = 2,
+  type = c("chull", "ellipse"),
+  col.pal = funky,
+  bg = "white",
+  lab.show = FALSE,
+  lab.col = "black",
+  lab.cex = 1,
+  lab.optim = TRUE,
+  point.cex = 1,
+  scree.pal = NULL,
+  scree.size = 0.2,
+  scree.posi = c(0.02, 0.02),
+  ...
+)
 }
 \arguments{
 \item{x}{a list returned by \code{\link{findGroves}} or a MDS with class \code{dudi}}

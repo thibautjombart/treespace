@@ -4,9 +4,17 @@
 \alias{plotGrovesD3}
 \title{Scatterplot of groups of trees using \code{scatterD3}}
 \usage{
-plotGrovesD3(x, groups = NULL, xax = 1, yax = 2, treeNames = NULL,
-  symbol_var = NULL, xlab = paste0("Axis ", xax), ylab = paste0("Axis ",
-  yax), ...)
+plotGrovesD3(
+  x,
+  groups = NULL,
+  xax = 1,
+  yax = 2,
+  treeNames = NULL,
+  symbol_var = NULL,
+  xlab = paste0("Axis ", xax),
+  ylab = paste0("Axis ", yax),
+  ...
+)
 }
 \arguments{
 \item{x}{a list returned by \code{\link{findGroves}} or a MDS with class \code{dudi}}

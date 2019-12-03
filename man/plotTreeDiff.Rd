@@ -4,10 +4,22 @@
 \alias{plotTreeDiff}
 \title{Plot tree differences}
 \usage{
-plotTreeDiff(tr1, tr2, tipDiff = NULL, vec1 = NULL, vec2 = NULL,
-  sizeOfDifferences = FALSE, tipMatch = TRUE, treesFacing = FALSE,
-  baseCol = "grey", col1 = "peachpuff", col2 = "red2",
-  colourMethod = "ramp", palette = lightseasun, ...)
+plotTreeDiff(
+  tr1,
+  tr2,
+  tipDiff = NULL,
+  vec1 = NULL,
+  vec2 = NULL,
+  sizeOfDifferences = FALSE,
+  tipMatch = TRUE,
+  treesFacing = FALSE,
+  baseCol = "grey",
+  col1 = "peachpuff",
+  col2 = "red2",
+  colourMethod = "ramp",
+  palette = lightseasun,
+  ...
+)
 }
 \arguments{
 \item{tr1}{an object of the class \code{phylo}: the first tree to plot.}

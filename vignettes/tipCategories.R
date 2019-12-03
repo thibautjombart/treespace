@@ -1,9 +1,9 @@
-## ----setup, echo=FALSE---------------------------------------------------
+## ----setup, echo=FALSE--------------------------------------------------------
 # set global chunk options: images will be 7x4 inches
 knitr::opts_chunk$set(fig.width=7, fig.height=4, fig.path="figs/", cache=FALSE, dpi=96)
 options(digits = 4)
 
-## ----setupVisible, message=FALSE-----------------------------------------
+## ----setupVisible, message=FALSE----------------------------------------------
 # load treespace and packages for plotting:
 library(treespace)
 library(RColorBrewer) 
@@ -12,7 +12,7 @@ library(reshape2)
 # set colour scheme
 pal <- brewer.pal(3,"Dark2")
 
-## ----create_examples_table, echo=FALSE-----------------------------------
+## ----create_examples_table, echo=FALSE----------------------------------------
 cats <- c("Bacterial sub-types e.g. serogroups",
           "Species",
           "Host",
@@ -30,12 +30,12 @@ indivs <- c("Bacterial isolates",
 exTable <- cbind(cats,indivs)
 colnames(exTable) <- c("Categories", "Individuals")
 
-## ----table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'----
+## ----table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'--------
 require(pander)
 panderOptions('table.split.table', Inf)
 pander(exTable, style = 'rmarkdown')
 
-## ----create_trees_for_collapsing_example, echo=FALSE---------------------
+## ----create_trees_for_collapsing_example, echo=FALSE--------------------------
 tr1 <- read.tree(text="(((c4,c3),(c2,c1)),((b3,(b2,b1)),((a3,a2),a1)));")
 tr1$tip.label <- c("Patient C read 4","Patient C read 3",
                   "Patient C read 2","Patient C read 1",
@@ -58,7 +58,7 @@ tr2$tip.label <- c("Patient C read 4","Patient C read 3",
 tr2Collapsed <- read.tree(text="((C,B),(B,A));")
 tr2Collapsed$tip.label <- c("Patient C","Patient B","Patient B","Patient A")
 
-## ----plot_patient_trees, echo=FALSE--------------------------------------
+## ----plot_patient_trees, echo=FALSE-------------------------------------------
 layout(matrix(1:2,1,2))
 plot(tr1, tip.color=c(rep(pal[[1]],4),rep(pal[[2]],3),rep(pal[[3]],3)),
      edge.width = 4, type="cladogram", no.margin=TRUE,
@@ -69,7 +69,7 @@ plot(tr2, tip.color=c(rep(pal[[1]],4),rep(pal[[2]],2),rep(pal[[3]],3)),
      label.offset= 0.5, cex=0.8,
      edge.color=c(rep("black",2),rep(pal[[1]],6),pal[[2]],"black",pal[[2]],"black",      rep(pal[[3]],4)))
 
-## ----plot_collapsed_trees, echo=FALSE------------------------------------
+## ----plot_collapsed_trees, echo=FALSE-----------------------------------------
 layout(matrix(1:2,1,2))
 plot(tr1Collapsed, tip.color=c(pal[[1]],pal[[2]],pal[[3]]),
      edge.width = 4, type="cladogram", no.margin=TRUE,
@@ -80,22 +80,23 @@ plot(tr2Collapsed, tip.color=c(pal[[1]],rep(pal[[2]],2),pal[[3]]),
      label.offset=0.1, font=4, cex=0.8,
      edge.color=c("black",pal[[1]],pal[[2]],"black",pal[[2]],pal[[3]]))
 
-## ----relatedTreeDist-----------------------------------------------------
+## ----relatedTreeDist----------------------------------------------------------
 df <- cbind(c(rep("Patient A",3),rep("Patient B",3),rep("Patient C",4)),
             sort(tr1$tip.label))
 df
 relatedTreeDist(list(tr1,tr2),df)[[1]]
 
-## ----tipsMRCAdepths------------------------------------------------------
+## ----tipsMRCAdepths-----------------------------------------------------------
 tipsMRCAdepths(tr1Collapsed)
 tipsMRCAdepths(tr2Collapsed)
 
-## ----calculation_of_relatedTreeDist, echo=FALSE--------------------------
+## ----calculation_of_relatedTreeDist, echo=FALSE-------------------------------
 MRCAdepths <- cbind(tipsMRCAdepths(tr1Collapsed),c(0.5,0,0.5))
 colnames(MRCAdepths) <- c("tip1","tip2","Tree 1", "Tree 2")
 MRCAdepths
 
-## ----six_comparable_trees, fig.height=12---------------------------------
+## ----six_comparable_trees, fig.height=12--------------------------------------
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(948)
 # set colour scheme
 pal2 <- brewer.pal(8,"Dark2")
@@ -150,14 +151,14 @@ plot(tree6, tip.color=tipcolors6[tree6TipOrder], no.margin=TRUE,
      edge.width = 4, use.edge.length = FALSE,
      label.offset= 0.5, font=4, cex=1.2)
 
-## ----relatedTreeDist_six_trees-------------------------------------------
+## ----relatedTreeDist_six_trees------------------------------------------------
 trees <- list(tree1,tree2,tree3,tree4,tree5,tree6)
 df <- cbind(sort(rep(letters[1:8],9)),sort(paste0(letters[1:8],"_",rep(1:9,8))))
 
 dists <- relatedTreeDist(trees,df)
 dists
 
-## ----six_heatmap---------------------------------------------------------
+## ----six_heatmap--------------------------------------------------------------
 dists <- as.matrix(dists)
 colnames(dists) <- rownames(dists) <- c("Tree 1", "Tree 2", "Tree 3", "Tree 4",
                                         "Tree 5", "Tree 6")
@@ -183,7 +184,7 @@ ggheatmap +
     legend.position = "none" )
 
 
-## ----concordance_basic---------------------------------------------------
+## ----concordance_basic--------------------------------------------------------
 catTree <- read.tree(text="(C,(B,A));")
 indTree1 <- read.tree(text="(((c4,c3),(c2,c1)),((b1,b2),((a3,a2),a1)));")
 indTree2 <- read.tree(text="(((c4,c3),(c2,c1)),((b1,a2),((a3,b2),a1)));")
@@ -210,17 +211,17 @@ plot(indTree3, tip.color=c(rep(pal[[3]],3),pal[[2]],rep(pal[[1]],2),pal[[2]],rep
                   rep("black",2),pal[[1]],pal[[2]],rep(pal[[1]],3)))
 
 
-## ----concordance_T1------------------------------------------------------
+## ----concordance_T1-----------------------------------------------------------
 df <- cbind(c(rep("A",3),rep("B",2),rep("C",4)),sort(indTree1$tip.label))
 treeConcordance(catTree,indTree1,df)
 
-## ----concordance_T2------------------------------------------------------
+## ----concordance_T2-----------------------------------------------------------
 treeConcordance(catTree,indTree2,df)
 
-## ----concordance_T3------------------------------------------------------
+## ----concordance_T3-----------------------------------------------------------
 treeConcordance(catTree,indTree3,df)
 
-## ----concordance_permuations---------------------------------------------
+## ----concordance_permuations--------------------------------------------------
 n <- 5
 reps <- 10
 reftree <- rtree(n, tip.label=letters[1:n])
