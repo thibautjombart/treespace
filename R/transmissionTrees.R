@@ -26,7 +26,7 @@
 #' @export
 findMRCIs <- compiler::cmpfun(function(wiw) { 
   # expect wiw to be a "who infected whom" matrix: column 1 is infectors, column 2 infectees
-  if (class(wiw) != "matrix") stop("The who infected whom information supplied should be of class matrix.")
+  if (!is.matrix(wiw)) stop("The who infected whom information supplied should be of class matrix.")
   
   # convert whatever the wiw entries are into integers, but preserve the names for later
   wiwCopy <- matrix(0,nrow(wiw),2)
