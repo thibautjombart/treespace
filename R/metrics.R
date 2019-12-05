@@ -78,6 +78,7 @@ linearMrca <- compiler::cmpfun(linearMrca) # compile
 #' @import ape
 #' @importFrom Rcpp evalCpp
 #' @importFrom combinat combn2
+#' @importFrom methods is
 #' @useDynLib treespace
 #'
 #' @examples

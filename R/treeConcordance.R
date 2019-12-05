@@ -7,6 +7,7 @@
 #' @param df data frame specifying to which category each individual belongs. Each row gives an individual (column 2) and its corresponding category (column 1)
 #'
 #' @import ape
+#' @importFrom methods is
 #'
 #' @examples
 #' # create an example category tree

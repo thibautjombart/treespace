@@ -8,6 +8,7 @@
 #' @import ape
 #' @importFrom combinat combn
 #' @importFrom Rcpp evalCpp
+#' @importFrom methods is
 #'
 #' @examples
 #' tree <- rtree(10)

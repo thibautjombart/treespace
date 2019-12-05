@@ -8,6 +8,7 @@
 #' @import ape
 #' @importFrom combinat combn2
 #' @importFrom adegenet num2col
+#' @importFrom methods is
 #'
 #' @param tr1 an object of the class \code{phylo}: the first tree to compare.
 #' @param tr2 an object of the class \code{phylo}: the second tree to compare.
@@ -110,6 +111,7 @@ tipDiff <- function(tr1,tr2,vec1=NULL,vec2=NULL,sizeOfDifferences=FALSE) {
 #' @importFrom adegenet num2col
 #' @importFrom grDevices colorRampPalette
 #' @importFrom graphics layout
+#' @importFrom methods is
 #'
 #' @param tr1 an object of the class \code{phylo}: the first tree to plot.
 #' @param tr2 an object of the class \code{phylo}: the second tree to plot.

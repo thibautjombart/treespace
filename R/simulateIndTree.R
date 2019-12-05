@@ -10,6 +10,7 @@
 #'
 #' @import ape
 #' @importFrom phytools paste.tree
+#' @importFrom methods is
 #' 
 #' @examples
 #' tree <- simulateIndTree(rtree(3))
