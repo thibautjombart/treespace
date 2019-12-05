@@ -19,6 +19,9 @@
 #'
 #' @export
 simulateIndTree <- function(catTree,itips=5,permuteCat=FALSE,permuteTips=TRUE,tipPercent=100) {
+  
+  if(!is(catTree,"phylo")) stop("The category-level tree catTree must be of class phylo")
+  
   bigTree <- catTree # copy of catTree, to have smaller trees grafted on to it
   if (permuteCat){
     bigTree$tip.label <- sample(bigTree$tip.label) # permute tips on category tree, for more discordance

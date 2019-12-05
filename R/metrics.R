@@ -97,7 +97,7 @@ linearMrca <- compiler::cmpfun(linearMrca) # compile
 #' @export
 treeVec <- function(tree, lambda=0, return.lambda.function=FALSE, emphasise.tips=NULL, emphasise.weight=2) {
   if(lambda<0 || lambda>1) stop("Pick lambda in [0,1]")
-  if(class(tree)!="phylo") stop("Tree should be of class phylo")
+  if(!is(tree, "phylo")) stop("Tree should be of class phylo")
   if(is.rooted(tree)!=TRUE) stop("Metric is for rooted trees only")
   
   # check edge lengths are defined; if not, assign them all to be "1". 

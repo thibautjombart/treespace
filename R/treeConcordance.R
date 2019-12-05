@@ -38,6 +38,10 @@
 #'
 #' @export
 treeConcordance <- function(catTree,indTree,df) {
+    
+  if(!is(catTree,"phylo")) stop("The category-level tree catTree must be of class phylo")
+  if(!is(indTree,"phylo")) stop("The individual-level tree indTree must be of class phylo")
+    
   # find the number of pairs of different individuals:
   catTree_leaves <- length(catTree$tip.label)
   indTree_leaves <- length(indTree$tip.label)

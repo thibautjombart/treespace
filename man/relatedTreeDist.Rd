@@ -7,7 +7,7 @@
 relatedTreeDist(trees, df, checkTrees = TRUE)
 }
 \arguments{
-\item{trees}{an object of class multiphylo}
+\item{trees}{a list of trees or multiphylo object}
 
 \item{df}{a data frame specifying to which category each individual (from all the trees) belongs. Each row gives: an individual (column 2) and its corresponding category (column 1)}
 

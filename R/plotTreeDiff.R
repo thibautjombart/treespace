@@ -33,6 +33,8 @@
 #' 
 #' @export 
 tipDiff <- function(tr1,tr2,vec1=NULL,vec2=NULL,sizeOfDifferences=FALSE) {
+    
+  if(!((is(tr1, "phylo"))&&(is(tr2,"phylo")))) stop("Trees must be of class phylo")
   
   l <- length(tr1$tip.label)
   lchoose2 <- l*(l-1)/2
@@ -175,6 +177,8 @@ plotTreeDiff <- function(tr1,tr2,tipDiff=NULL,vec1=NULL,vec2=NULL, sizeOfDiffere
                          tipMatch=TRUE, treesFacing=FALSE,
                          baseCol="grey",col1="peachpuff",col2="red2",colourMethod="ramp",palette=lightseasun,
                          ...) {
+                             
+  if(!((is(tr1, "phylo"))&&(is(tr2,"phylo")))) stop("Trees must be of class phylo")
   
   l <- length(tr1$tip.label)
   

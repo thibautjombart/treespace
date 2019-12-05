@@ -2,7 +2,7 @@
 #'
 #' This function calculates the distances between trees whose tips belong to the same categories but are not necessarily identically labelled
 #'
-#' @param trees an object of class multiphylo
+#' @param trees a list of trees or multiphylo object
 #' @param df a data frame specifying to which category each individual (from all the trees) belongs. Each row gives: an individual (column 2) and its corresponding category (column 1)
 #' @param checkTrees a logical (default TRUE) specifying whether the trees should be checked. When TRUE, error messages will be helpful in locating problematic trees, that is, any trees with repeated tip labels, or any trees with missing categories.
 #'
