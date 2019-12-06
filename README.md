@@ -155,8 +155,8 @@ Contributing / asking a question
 Contributions are welcome via **pull requests**.
 
 Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+Conduct](https://thibautjombart.github.io/treespace/CONDUCT.html). By
+participating in this project you agree to abide by its terms.
 
 Questions, feature requests and bugs can be reported using the package’s
 [issue system](https://github.com/thibautjombart/treespace/issues).
