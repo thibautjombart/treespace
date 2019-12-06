@@ -214,17 +214,6 @@ Individual trees can be easily viewed, including median trees per cluster (see b
 It is fully documented in the *help* tab.
 
 
-```{r shiny_figures, echo=FALSE, fig.retina = NULL}
-knitr::include_graphics("treespace3d.png", dpi=72)
-
-knitr::include_graphics("treespaceTree.png", dpi=72)
-
-knitr::include_graphics("treespaceDensiTree.png", dpi=72)
-```
-
-
-
-
 
 Finding median trees
 --------------
