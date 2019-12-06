@@ -1,0 +1,9 @@
+pandoc: 2.3.1
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  DengueVignette: DengueVignette.html
+  TransmissionTreesVignette: TransmissionTreesVignette.html
+  introduction: introduction.html
+  tipCategories: tipCategories.html
+
