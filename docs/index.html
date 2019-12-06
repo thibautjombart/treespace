@@ -101,15 +101,40 @@
 <a href="#installing-treespace" class="anchor"></a>Installing <em>treespace</em>
 </h2>
 <p>To install the development version from github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"thibautjombart/treespace"</span>)</a></code></pre></div>
 <p>The stable version can be installed from CRAN using:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"treespace"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"treespace"</span>)</a></code></pre></div>
 <p>Then, to load the package, use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"treespace"</span>)</a></code></pre></div>
-<pre><code>## Loading required package: ape</code></pre>
-<pre><code>## Loading required package: ade4</code></pre>
-<pre><code>## Creating a generic function for 'toJSON' from package 'jsonlite' in package 'googleVis'</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"treespace"</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">## Loading required package: ape</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">## Loading required package: ade4</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">## Creating a generic function for 'toJSON' from package 'jsonlite' in package 'googleVis'</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">## Registered S3 method overwritten by 'spdep':</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">##   method   from</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">##   plot.mst ape</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">## Registered S3 methods overwritten by 'adegraphics':</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">##   method         from</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">##   biplot.dudi    ade4</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">##   kplot.foucart  ade4</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">##   kplot.mcoa     ade4</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">##   kplot.mfa      ade4</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">##   kplot.pta      ade4</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">##   kplot.sepan    ade4</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">##   kplot.statis   ade4</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">##   scatter.coa    ade4</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">##   scatter.dudi   ade4</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">##   scatter.nipals ade4</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">##   scatter.pco    ade4</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">##   score.acm      ade4</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">##   score.mix      ade4</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">##   score.pca      ade4</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">##   screeplot.dudi ade4</span></a></code></pre></div>
 </div>
 <div id="content-overview" class="section level2">
 <h2 class="hasAnchor">
@@ -144,7 +169,6 @@
 <li><p><strong><code>DengueSeqs</code></strong>: 17 dengue virus serotype 4 sequences from (Lanciotti <em>et al.</em>, 1997), from which the <code>DengueTrees</code> were inferred.</p></li>
 <li><p><strong><code>DengueBEASTMCC</code></strong>: the maximum clade credibility (MCC) tree from the <code>DengueTrees</code>.</p></li>
 </ul>
-<p><br></p>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -167,20 +191,9 @@
 <div id="authors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#authors" class="anchor"></a>Authors</h2>
-<p>Authors:</p>
-<ul>
-<li><a href="https://thibautjombart.netlify.com/">Thibaut Jombart</a></li>
-<li><a href="https://michellekendall.github.io/">Michelle Kendall</a></li>
-</ul>
-<p>Contributors:</p>
-<ul>
-<li><a href="http://www.well.ox.ac.uk/jacob-almagro-garcia">Jacob Almagro-Garcia</a></li>
-<li><a href="http://www.imperial.ac.uk/people/c.colijn">Caroline Colijn</a></li>
-</ul>
-<p>Maintainer of the CRAN version:</p>
-<ul>
-<li><a href="https://michellekendall.github.io/">Michelle Kendall</a></li>
-</ul>
+<p>Authors: * <a href="https://thibautjombart.netlify.com/">Thibaut Jombart</a> * <a href="https://michellekendall.github.io/">Michelle Kendall</a></p>
+<p>Contributors: * <a href="http://www.well.ox.ac.uk/jacob-almagro-garcia">Jacob Almagro-Garcia</a> * <a href="http://www.imperial.ac.uk/people/c.colijn">Caroline Colijn</a></p>
+<p>Maintainer of the CRAN version: * <a href="https://michellekendall.github.io/">Michelle Kendall</a></p>
 <p>See details of contributions on: <br><a href="https://github.com/thibautjombart/treespace/graphs/contributors" class="uri">https://github.com/thibautjombart/treespace/graphs/contributors</a></p>
 </div>
 </div>
