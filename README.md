@@ -164,15 +164,22 @@ Questions, feature requests and bugs can be reported using the package’s
 Authors
 -------
 
-Authors: \* [Thibaut Jombart](https://thibautjombart.netlify.com/) \*
-[Michelle Kendall](https://michellekendall.github.io/)
+Authors:
 
-Contributors: \* [Jacob
-Almagro-Garcia](http://www.well.ox.ac.uk/jacob-almagro-garcia) \*
-[Caroline Colijn](http://www.imperial.ac.uk/people/c.colijn)
+-   [Thibaut Jombart](https://thibautjombart.netlify.com/)
 
-Maintainer of the CRAN version: \* [Michelle
-Kendall](https://michellekendall.github.io/)
+-   [Michelle Kendall](https://michellekendall.github.io/)
+
+Contributors:
+
+-   [Jacob
+    Almagro-Garcia](http://www.well.ox.ac.uk/jacob-almagro-garcia)
+
+-   [Caroline Colijn](http://www.imperial.ac.uk/people/c.colijn)
+
+Maintainer of the CRAN version:
+
+-   [Michelle Kendall](https://michellekendall.github.io/)
 
 See details of contributions on: <br>
 <a href="https://github.com/thibautjombart/treespace/graphs/contributors" class="uri">https://github.com/thibautjombart/treespace/graphs/contributors</a>
