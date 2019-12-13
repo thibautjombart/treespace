@@ -91,7 +91,7 @@
       <h1>treespace worked example: Transmission trees</h1>
                         <h4 class="author">Michelle Kendall</h4>
             
-            <h4 class="date">2019-12-06</h4>
+            <h4 class="date">2019-12-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/master/vignettes/TransmissionTreesVignette.Rmd"><code>vignettes/TransmissionTreesVignette.Rmd</code></a></small>
       <div class="hidden name"><code>TransmissionTreesVignette.Rmd</code></div>
@@ -140,7 +140,7 @@
 <a class="sourceLine" id="cb4-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">tree1graph &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span>(tree1)</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree1graph)</a></code></pre></div>
-<p><img src="figs/igraph_tree1-1.png" width="672"></p>
+<p><img src="TransmissionTreesVignette_files/figure-html/igraph_tree1-1.png" width="672"></p>
 <p>Applying the function <code>findMRCIs</code> gives the following:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/findMRCIs.html">findMRCIs</a></span>(tree1)</a></code></pre></div>
 <pre><code>## $sourceCase
@@ -178,7 +178,7 @@
 ## [5,]        3        6</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">tree2graph &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span>(tree2)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree2graph)</a></code></pre></div>
-<p><img src="figs/trees2_and_3-1.png" width="672"></p>
+<p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-1.png" width="672"></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># and a third scenario:</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">tree3 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="dt">Infector=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">6</span>),<span class="dt">Infectee=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">5</span>)) </a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">tree3</a></code></pre></div>
@@ -190,7 +190,7 @@
 ## [5,]        6        5</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">tree3graph &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span>(tree3)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree3graph)</a></code></pre></div>
-<p><img src="figs/trees2_and_3-2.png" width="672"></p>
+<p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-2.png" width="672"></p>
 <p>Then we can use <em>treespace</em> functions to make the following comparisons:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">m1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/findMRCIs.html">findMRCIs</a></span>(tree1) <span class="co"># find the source case, MRCIs and MRCI depths for tree 1</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">m2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/findMRCIs.html">findMRCIs</a></span>(tree2)</a>
@@ -304,7 +304,7 @@
 <a class="sourceLine" id="cb20-26" data-line-number="26">    <span class="dt">legend.text =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">20</span>),</a>
 <a class="sourceLine" id="cb20-27" data-line-number="27">    <span class="dt">axis.text.x =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">20</span>), <span class="dt">axis.text.y =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">20</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb20-28" data-line-number="28"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">""</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">""</span>)</a></code></pre></div>
-<p><img src="figs/wiw_MDS1000-1.png" width="672"></p>
+<p><img src="TransmissionTreesVignette_files/figure-html/wiw_MDS1000-1.png" width="672"></p>
 <p>The symmetry in the plot corresponds to the different source cases, and the trees are also clearly separated by depth.</p>
 </div>
 <div id="median-trees" class="section level3">
@@ -330,7 +330,7 @@
 <p>The first one looks like this:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">medgraph &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span>(combinedLists[[med<span class="op">$</span>median[[<span class="dv">1</span>]]]])</a>
 <a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(medgraph)</a></code></pre></div>
-<p><img src="figs/wiwMedTreePlot-1.png" width="672"></p>
+<p><img src="TransmissionTreesVignette_files/figure-html/wiwMedTreePlot-1.png" width="672"></p>
 </div>
 </div>
   </div>

@@ -91,7 +91,7 @@
       <h1>Comparing trees by tip label categories</h1>
                         <h4 class="author">Michelle Kendall</h4>
             
-            <h4 class="date">2019-12-06</h4>
+            <h4 class="date">2019-12-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/master/vignettes/tipCategories.Rmd"><code>vignettes/tipCategories.Rmd</code></a></small>
       <div class="hidden name"><code>tipCategories.Rmd</code></div>
@@ -150,9 +150,9 @@
 <h2 class="hasAnchor">
 <a href="#related-tree-distance" class="anchor"></a>Related tree distance</h2>
 <p>We begin by demonstrating the measure between trees with related tip sets, <code>relatedTreeDist</code>. As an example, suppose we have trees created from deep-sequencing reads from patients A, B and C as follows:</p>
-<p><img src="figs/plot_patient_trees-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/plot_patient_trees-1.png" width="672"></p>
 <p>We can think of “collapsing” these trees down to one tip per monophyletic clade of tips from the same category, and renaming the new tips with just the category labels. For example, the trees above would collapse into these, respectively:</p>
-<p><img src="figs/plot_collapsed_trees-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/plot_collapsed_trees-1.png" width="672"></p>
 <p>We calculate the distance between the original trees using <code>relatedTreeDist</code> as follows. The function requires a data frame telling it which individuals belong to which categories:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Patient A"</span>,<span class="dv">3</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Patient B"</span>,<span class="dv">3</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Patient C"</span>,<span class="dv">4</span>)),</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">            <span class="kw"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(tr1<span class="op">$</span>tip.label))</a>
@@ -249,7 +249,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a class="sourceLine" id="cb11-52" data-line-number="52"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tree6, <span class="dt">tip.color=</span>tipcolors6[tree6TipOrder], <span class="dt">no.margin=</span><span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb11-53" data-line-number="53">     <span class="dt">edge.width =</span> <span class="dv">4</span>, <span class="dt">use.edge.length =</span> <span class="ot">FALSE</span>,</a>
 <a class="sourceLine" id="cb11-54" data-line-number="54">     <span class="dt">label.offset=</span> <span class="fl">0.5</span>, <span class="dt">font=</span><span class="dv">4</span>, <span class="dt">cex=</span><span class="fl">1.2</span>)</a></code></pre></div>
-<p><img src="figs/six_comparable_trees-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/six_comparable_trees-1.png" width="672"></p>
 <p>We have created a variety of trees. Trees 1 and 2 have differing numbers of tips, and differing tip labels, but their collapsed forms would be identical. Tree 3 is similar to Trees 1 and 2 but with a few tips permuted, so that the categories are no longer monophyletic. Tree 4 is similar but with more tips permuted. Trees 5 and 6 were created from a different “base” tree so the relationships between the categories are quite different when we compare, for example, Tree 1 and Tree 5.</p>
 <p>The function <code>relatedTreeDist</code> gives a quantitative description of these similarities and differences. First we just put the trees into a list and create a data frame linking individuals to categories:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">trees &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(tree1,tree2,tree3,tree4,tree5,tree6)</a>
@@ -287,7 +287,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a class="sourceLine" id="cb14-21" data-line-number="21">    <span class="dt">axis.text =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">12</span>),</a>
 <a class="sourceLine" id="cb14-22" data-line-number="22">    <span class="dt">axis.ticks =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),</a>
 <a class="sourceLine" id="cb14-23" data-line-number="23">    <span class="dt">legend.position =</span> <span class="st">"none"</span> )</a></code></pre></div>
-<p><img src="figs/six_heatmap-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/six_heatmap-1.png" width="672"></p>
 </div>
 <div id="concordance" class="section level2">
 <h2 class="hasAnchor">
@@ -303,7 +303,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a class="sourceLine" id="cb15-7" data-line-number="7">     <span class="dt">edge.width =</span> <span class="dv">4</span>, <span class="dt">type=</span><span class="st">"cladogram"</span>,</a>
 <a class="sourceLine" id="cb15-8" data-line-number="8">     <span class="dt">label.offset=</span> <span class="fl">0.5</span>, <span class="dt">font=</span><span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb15-9" data-line-number="9">     <span class="dt">edge.color=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(pal[[<span class="dv">1</span>]],<span class="st">"black"</span>,pal[[<span class="dv">2</span>]],pal[[<span class="dv">3</span>]]))</a></code></pre></div>
-<p><img src="figs/concordance_basic-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/concordance_basic-1.png" width="672"></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/layout.html">layout</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(indTree1, <span class="dt">tip.color=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(pal[[<span class="dv">1</span>]],<span class="dv">4</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(pal[[<span class="dv">2</span>]],<span class="dv">2</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(pal[[<span class="dv">3</span>]],<span class="dv">3</span>)),</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3">     <span class="dt">edge.width =</span> <span class="dv">4</span>, <span class="dt">type=</span><span class="st">"cladogram"</span>, <span class="dt">no.margin=</span><span class="ot">TRUE</span>,</a>
@@ -319,7 +319,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a class="sourceLine" id="cb16-13" data-line-number="13">     <span class="dt">label.offset=</span> <span class="fl">0.5</span>, <span class="dt">font=</span><span class="dv">4</span>, <span class="dt">cex=</span><span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb16-14" data-line-number="14">     <span class="dt">edge.color=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"black"</span>,<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(pal[[<span class="dv">3</span>]],<span class="dv">4</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"black"</span>,<span class="dv">2</span>),pal[[<span class="dv">2</span>]],pal[[<span class="dv">1</span>]],</a>
 <a class="sourceLine" id="cb16-15" data-line-number="15">                  <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"black"</span>,<span class="dv">2</span>),pal[[<span class="dv">1</span>]],pal[[<span class="dv">2</span>]],<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(pal[[<span class="dv">1</span>]],<span class="dv">3</span>)))</a></code></pre></div>
-<p><img src="figs/concordance_basic-2.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/concordance_basic-2.png" width="672"></p>
 <p>The first tree has monophyly per category, and the relative positions of those categories are identical to the reference tree. Correspondingly, the concordance is 1:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"A"</span>,<span class="dv">3</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"B"</span>,<span class="dv">2</span>),<span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"C"</span>,<span class="dv">4</span>)),<span class="kw"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(indTree1<span class="op">$</span>tip.label))</a>
 <a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="../reference/treeConcordance.html">treeConcordance</a></span>(catTree,indTree1,df)</a></code></pre></div>
@@ -350,7 +350,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a class="sourceLine" id="cb23-17" data-line-number="17"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Percentage of tips permuted"</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb23-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">18</span>),</a>
 <a class="sourceLine" id="cb23-19" data-line-number="19">        <span class="dt">axis.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">size=</span><span class="dv">18</span>))</a></code></pre></div>
-<p><img src="figs/concordance_permuations-1.png" width="672"></p>
+<p><img src="tipCategories_files/figure-html/concordance_permuations-1.png" width="672"></p>
 </div>
   </div>
 
