@@ -155,17 +155,16 @@
     <tr>
       <th>method</th>
       <td><p>the method for summarising the tree as a vector.
-Choose from:
-<code>treeVec</code> (default) the Kendall Colijn metric vector
-<code>BHV</code> the Billera, Holmes Vogtmann metric using <code>dist.multiPhylo</code> from package <code>distory</code>
-<code>KF</code> the Kuhner Felsenstein metric (branch score distance) using <code>KF.dist</code> from package <code>phangorn</code> (Note: this considers the trees as unrooted)
-<code>RF</code> the Robinson Foulds metric using <code>RF.dist</code> from package <code>phangorn</code> (Note: this considers the trees as unrooted and issues a corresponding warning)
-<code>wRF</code> the weighted Robinson Foulds metric using <code>wRF.dist</code> from package <code>phangorn</code> (Note: this considers the trees as unrooted and issues a corresponding warning)
-<code>nNodes</code> the Steel &amp; Penny tip-tip path difference metric, (topological, ignoring branch lengths), using <code>path.dist</code> from package <code>phangorn</code> (Note: this considers the trees as unrooted)
-<code>patristic</code> the Steel &amp; Penny tip-tip path difference metric, using branch lengths, calling <code>path.dist</code> from package <code>phangorn</code> (Note: this considers the trees as unrooted)
-others inherited from <code>distTips</code> in <code>adephylo</code>:</p><ul>
-<li><p><code>Abouheif</code>: performs Abouheif's test. See Pavoine et al. (2008) and <code>adephylo</code>.</p></li>
-<li><p><code>sumDD</code>: sum of direct descendants of all nodes on the path, related to Abouheif's test. See <code>adephylo</code>.</p></li>
+Choose from:</p><ul>
+<li><p><code>treeVec</code> (default) the Kendall Colijn metric vector (for rooted trees)</p></li>
+<li><p><code>BHV</code> the Billera, Holmes Vogtmann metric using <code>dist.multiPhylo</code> from package <code>distory</code> (for rooted trees)</p></li>
+<li><p><code>KF</code> the Kuhner Felsenstein metric (branch score distance) using <code>KF.dist</code> from package <code>phangorn</code> (considers the trees unrooted)</p></li>
+<li><p><code>RF</code> the Robinson Foulds metric using <code>RF.dist</code> from package <code>phangorn</code> (considers the trees unrooted)</p></li>
+<li><p><code>wRF</code> the weighted Robinson Foulds metric using <code>wRF.dist</code> from package <code>phangorn</code> (considers the trees unrooted)</p></li>
+<li><p><code>nNodes</code> the Steel &amp; Penny tip-tip path difference metric, (topological, ignoring branch lengths), using <code>path.dist</code> from package <code>phangorn</code> (considers the trees unrooted)</p></li>
+<li><p><code>patristic</code> the Steel &amp; Penny tip-tip path difference metric, using branch lengths, calling <code>path.dist</code> from package <code>phangorn</code> (considers the trees unrooted)</p></li>
+<li><p><code>Abouheif</code>: performs Abouheif's test, inherited from <code>distTips</code> in <code>adephylo</code>. See Pavoine et al. (2008) and <code>adephylo</code>.</p></li>
+<li><p><code>sumDD</code>: sum of direct descendants of all nodes on the path, related to Abouheif's test, inherited from <code>distTips</code> in <code>adephylo</code>.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -178,7 +177,7 @@ others inherited from <code>distTips</code> in <code>adephylo</code>:</p><ul>
     </tr>
     <tr>
       <th>return.tree.vectors</th>
-      <td><p>option to also return the tree vectors. Note that this can use a lot of memory so defaults to <code>FALSE</code>.</p></td>
+      <td><p>if using the Kendall Colijn metric, this option will return the tree vectors as part of the output. Note that this can use a lot of memory so defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>processors</th>
