@@ -1,6 +1,6 @@
 ## ----setup, echo=FALSE--------------------------------------------------------
 # set global chunk options: images will be 7x4 inches
-knitr::opts_chunk$set(fig.width=7, fig.height=4, fig.path="figs/", cache=FALSE, dpi=96)
+knitr::opts_chunk$set(fig.width=7, fig.height=4, cache=FALSE, dpi=96)
 options(digits = 4)
 
 ## ----setupVisible, message=FALSE----------------------------------------------
