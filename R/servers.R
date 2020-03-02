@@ -4,7 +4,7 @@
 #' This function opens up an application in a web browser for an interactive exploration of the diversity in a set of trees.
 #' For further details please see the "help" tab within the application.
 #' 
-#' @seealso For convenience, \code{treespaceServer} is also available as a separate web app which can be used from any browser (it is not necessary to have \R installed): {\url{http://shiny.imperial-stats-experimental.co.uk/users/mlkendal/treespace/}} 
+#' @seealso For convenience, \code{treespaceServer} is also available as a separate web app which can be used from any browser (it is not necessary to have \R installed): {\url{https://mkendall.shinyapps.io/treespace/}} 
 #'
 #' @author Thibaut Jombart \email{thibautjombart@@gmail.com}
 #' @author Michelle Kendall \email{michelle.louise.kendall@@gmail.com}
