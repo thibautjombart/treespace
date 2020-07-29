@@ -4,7 +4,9 @@
 \name{DengueTrees}
 \alias{DengueTrees}
 \title{BEAST analysis of Dengue fever}
-\format{A multiPhylo object containing 500 trees, each with 17 tips}
+\format{
+A multiPhylo object containing 500 trees, each with 17 tips
+}
 \source{
 http://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-7-214
 }

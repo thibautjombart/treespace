@@ -4,7 +4,9 @@
 \name{fluTrees}
 \alias{fluTrees}
 \title{BEAST analysis of seasonal influenza (A/H3N2)}
-\format{A multiPhylo object containing 200 trees, each with 165 tips}
+\format{
+A multiPhylo object containing 200 trees, each with 165 tips
+}
 \source{
 http://beast.bio.ed.ac.uk/tutorials
 }
