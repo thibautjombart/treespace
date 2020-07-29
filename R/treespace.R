@@ -82,6 +82,27 @@
 #' }
 #' }
 #'
+#' @encoding UTF-8
+#' @references 
+#' Bogdanowicz D, Giaro K (2012). “Matching split distance for unrooted binary
+#' phylogenetic trees.” IEEE/ACM Transactions on Computational Biology and 
+#' Bioinformatics, 9(1), 150–160. doi: 10.1109/TCBB.2011.48.
+#' 
+#' Kendall M, Colijn C (2016). “Mapping phylogenetic trees to reveal distinct
+#' patterns of evolution.” Molecular Biology and Evolution, 33(10), 2735--2743.
+#' doi: 10.1093/molbev/msw124 
+#' 
+#' Robinson DF, Foulds LR (1981). “Comparison of phylogenetic trees.” 
+#' Mathematical Biosciences, 53(1-2), 131–147. 
+#' doi: 10.1016/0025-5564(81)90043-2.
+#' 
+#' Smith MR (2020). “Information theoretic Generalized Robinson-Foulds metrics 
+#' for comparing phylogenetic trees.” Bioinformatics, in production. 
+#' doi: 10.1093/bioinformatics/btaa614.
+#'
+#' Steel, M. A., & Penny, D. (1993). Distributions of tree comparison 
+#' metrics—some new results. Systematic Biology, 42 (2), 126–141.
+#' doi: 10.1093/sysbio/42.2.126
 #'
 #' @export
 treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vectors=FALSE, processors=1, ...){
