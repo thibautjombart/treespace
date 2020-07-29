@@ -59,6 +59,15 @@ res <- treespace(x, nf=3)
 table.paint(as.matrix(res$D))
 scatter(res$pco)
 
+## Consider trees rooted:
+rootedtrees <- structure(lapply(x, function (tr){
+  tr$edge.length <- NULL
+  TreeTools::AddTip(tr, where=0)
+}), class='multiPhylo')
+rootedres <- treespace(rootedtrees,nf=3)
+table.paint(as.matrix(rootedres$D))
+scatter(rootedres$pco)
+
 data(woodmiceTrees)
 woodmiceDists <- treespace(woodmiceTrees,nf=3)
 plot(woodmiceDists$pco$li[,1],woodmiceDists$pco$li[,2])
