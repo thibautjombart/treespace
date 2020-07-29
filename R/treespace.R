@@ -14,6 +14,10 @@
 #' \item \code{wRF} the weighted Robinson Foulds metric using \code{wRF.dist} from package \code{phangorn} (considers the trees unrooted)
 #' \item \code{nNodes} the Steel & Penny tip-tip path difference metric, (topological, ignoring branch lengths), using \code{path.dist} from package \code{phangorn} (considers the trees unrooted)
 #' \item \code{patristic} the Steel & Penny tip-tip path difference metric, using branch lengths, calling \code{path.dist} from package \code{phangorn} (considers the trees unrooted)
+#' \item \code{CID} the clustering information difference metric, calling \code{ClusteringInformationDistance()} from package \pkg{TreeDist} (considers the trees unrooted)
+#' \item \code{PID} the phylogenetic information difference metric, calling \code{PhylogeneticInformationDistance()} from package \pkg{TreeDist} (considers the trees unrooted)
+#' \item \code{MS} the matching splits distance, calling \code{MatchingSplitsDistance()} from package \pkg{TreeDist} (considers the trees unrooted)
+#' \item \code{MSID} the matching splits information difference metric, calling \code{ClusteringInformationDistance()} from package \pkg{TreeDist} (considers the trees unrooted)
 #' \item \code{Abouheif}: performs Abouheif's test, inherited from \code{distTips} in \code{adephylo}. See Pavoine et al. (2008) and \code{adephylo}.
 #' \item \code{sumDD}: sum of direct descendants of all nodes on the path, related to Abouheif's test, inherited from \code{distTips} in \code{adephylo}.
 #' }
@@ -36,6 +40,8 @@
 #' @importFrom phangorn RF.dist
 #' @importFrom phangorn wRF.dist
 #' @importFrom parallel mcmapply
+#' @importFrom TreeDist ClusteringInfoDistance MatchingSplitsDistance
+#'  MatchingSplitsInfoDistance PhylogeneticInfoDistance
 #'
 #' @examples
 #'
@@ -144,6 +150,18 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
         D <- ade4::cailliez(D, print=FALSE)
       }
     }
+    else if (method == 'CID') {
+      D <- ClusteringInfoDistance(x)
+    }
+    else if (method == 'PID') {
+      D <- PhylogeneticInfoDistance(x)
+    }
+    else if (method == 'MS') {
+      D <- MatchingSplitsDistance(x)
+    }
+    else if (method == 'MSID') {
+      D <- MatchingSplitsInfoDistance(x)
+    }
 
     ## restore labels
     attr(D,"Labels") <- lab
@@ -154,10 +172,10 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
 
     ## BUILD RESULT AND RETURN ##
     if (return.tree.vectors==TRUE) {
-    out <- list(D=D, pco=pco, vectors=df)
+      out <- list(D=D, pco=pco, vectors=df)
     }
     else {
-    out <- list(D=D, pco=pco)
+      out <- list(D=D, pco=pco)
     }
     return(out)
 } # end treespace
