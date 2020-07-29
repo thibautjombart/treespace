@@ -40,8 +40,8 @@
 #' @importFrom phangorn RF.dist
 #' @importFrom phangorn wRF.dist
 #' @importFrom parallel mcmapply
-#' @importFrom TreeDist ClusteringInfoDistance MatchingSplitsDistance
-#'  MatchingSplitsInfoDistance PhylogeneticInfoDistance
+#' @importFrom TreeDist ClusteringInfoDistance MatchingSplitDistance
+#'  MatchingSplitInfoDistance PhylogeneticInfoDistance
 #'
 #' @examples
 #'
@@ -157,10 +157,10 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
       D <- PhylogeneticInfoDistance(x)
     }
     else if (method == 'MS') {
-      D <- MatchingSplitsDistance(x)
+      D <- MatchingSplitDistance(x)
     }
     else if (method == 'MSID') {
-      D <- MatchingSplitsInfoDistance(x)
+      D <- MatchingSplitInfoDistance(x)
     }
 
     ## restore labels
