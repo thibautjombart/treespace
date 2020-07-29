@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{treespace worked example: comparing by tip categories}
+  %\VignetteIndexEntry{Comparing trees by tip label categories}
   \usepackage[utf8]{inputenc}
 ---
 
