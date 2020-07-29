@@ -1,11 +1,11 @@
 ---
-title: "Comparing trees by tip label categories"
+title: "treespace worked example: comparing by tip categories"
 author: "Michelle Kendall"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Comparing trees by tip label categories}
+  %\VignetteIndexEntry{treespace worked example: comparing by tip categories}
   \usepackage[utf8]{inputenc}
 ---
 
