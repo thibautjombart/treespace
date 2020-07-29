@@ -181,16 +181,16 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
       }
     }
     else if (method == 'CID') {
-      D <- ClusteringInfoDistance(x)
+      D <- as.dist(ClusteringInfoDistance(x))
     }
     else if (method == 'PID') {
-      D <- PhylogeneticInfoDistance(x)
+      D <- as.dist(PhylogeneticInfoDistance(x))
     }
     else if (method == 'MS') {
-      D <- MatchingSplitDistance(x)
+      D <- as.dist(MatchingSplitDistance(x))
     }
     else if (method == 'MSID') {
-      D <- MatchingSplitInfoDistance(x)
+      D <- as.dist(MatchingSplitInfoDistance(x))
     }
 
     ## restore labels
