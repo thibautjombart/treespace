@@ -4,7 +4,9 @@
 \name{DengueSeqs}
 \alias{DengueSeqs}
 \title{Dengue fever sequences}
-\format{A DNAbin object containing 17 DNA sequences, each of length 1485.}
+\format{
+A DNAbin object containing 17 DNA sequences, each of length 1485.
+}
 \source{
 http://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-7-214
 }

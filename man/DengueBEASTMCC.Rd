@@ -4,7 +4,9 @@
 \name{DengueBEASTMCC}
 \alias{DengueBEASTMCC}
 \title{Dengue fever BEAST MCC tree}
-\format{A phylo object}
+\format{
+A phylo object
+}
 \source{
 http://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-7-214
 }

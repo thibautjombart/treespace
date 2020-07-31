@@ -1,5 +1,5 @@
 ---
-title: "Comparing trees by tip label categories"
+title: "treespace worked example: comparing by tip categories"
 author: "Michelle Kendall"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

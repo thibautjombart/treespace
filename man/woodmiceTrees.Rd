@@ -4,7 +4,9 @@
 \name{woodmiceTrees}
 \alias{woodmiceTrees}
 \title{Bootstrap trees from woodmouse dataset}
-\format{A multiPhylo object containing 201 trees, each with 15 tips}
+\format{
+A multiPhylo object containing 201 trees, each with 15 tips
+}
 \source{
 A set of 15 sequences of the mitochondrial gene cytochrome b of the
 woodmouse (Apodemus sylvaticus) which is a subset of the data analysed by
