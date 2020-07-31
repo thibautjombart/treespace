@@ -14,7 +14,7 @@ Description: Tools for the exploration of distributions of phylogenetic trees.
 Depends: R (>= 3.4.0), ape, ade4
 Imports: adegenet, adegraphics, adephylo, combinat, compiler, distory,
         fields, htmlwidgets, MASS, methods, parallel, phangorn, phytools, Rcpp,
-        rgl, RLumShiny, scatterD3, shiny, shinyBS, utils
+        rgl, RLumShiny, scatterD3, shiny, shinyBS, TreeDist, utils
 LinkingTo: Rcpp
 Suggests: ggplot2, igraph, knitr, pander, RColorBrewer, reshape2,
         rmarkdown, testthat
