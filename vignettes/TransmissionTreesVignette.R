@@ -52,7 +52,7 @@ wiwTreeDist(matList, sampled=4:6)
 
 ## ----trees1000----------------------------------------------------------------
 suppressWarnings(RNGversion("3.5.0"))
-set.seed(123)
+set.seed(456)
 num <- 500
 
 # create a list of 500 random transmission trees with 11 cases, where the source case is fixed as case 1:

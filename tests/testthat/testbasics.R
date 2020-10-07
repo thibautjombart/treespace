@@ -158,3 +158,20 @@ test_that("warning is given for the combination return.lambda.function=TRUE, sav
   expect_warning(medTree(trees,return.lambda.function=TRUE, save.memory=TRUE))
   })
 
+#############################################
+# create some transmission tree test objects
+#############################################
+
+# two identical trees but with the edges listed in different orders
+tree1 <- cbind(Infector=1:6, Infectee=2:7)
+tree2 <- tree1[sample(1:6),]
+
+matList <- list(findMRCIs(tree1)$mrciDepths, findMRCIs(tree2)$mrciDepths)
+
+##########################################################
+# test that transmission tree distances are well behaved
+##########################################################
+
+test_that("transmission tree distances are independent of the node naming order", {
+  expect_equal(0, wiwTreeDist(matList, sampled=1:7)[[1]])
+})

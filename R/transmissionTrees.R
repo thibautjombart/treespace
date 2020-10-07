@@ -128,7 +128,8 @@ findMRCIs <- compiler::cmpfun(function(wiw) {
 
   # re-associate the node names with the columns and rows of the matrices
   colnames(M) <- rownames(M) <- colnames(D) <- rownames(D) <- wiwNames
-
+  D <- D[order(wiwNames),order(wiwNames)]
+  M <- M[order(wiwNames),order(wiwNames)]
 
   return(list(sourceCase=wiwNames[[sourceCase]],mrcis=M,mrciDepths=D))
 })

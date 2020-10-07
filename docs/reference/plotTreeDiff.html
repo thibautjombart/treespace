@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +43,6 @@
 <meta property="og:description" content="Highlight the topological differences between two trees, plotted side by side. 
 This function is useful for comparing representative &quot;median&quot; trees - see medTree.
 It relies on the function tipDiff." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -57,7 +60,7 @@ It relies on the function tipDiff." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -110,7 +113,7 @@ It relies on the function tipDiff." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/thibautjombart/treespace">
+  <a href="https://github.com/thibautjombart/treespace/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -139,22 +142,22 @@ This function is useful for comparing representative "median" trees - see <code>
 It relies on the function <code><a href='tipDiff.html'>tipDiff</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotTreeDiff</span>(
-  <span class='no'>tr1</span>,
-  <span class='no'>tr2</span>,
-  <span class='kw'>tipDiff</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>vec1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>vec2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sizeOfDifferences</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>tipMatch</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>treesFacing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>baseCol</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
-  <span class='kw'>col1</span> <span class='kw'>=</span> <span class='st'>"peachpuff"</span>,
-  <span class='kw'>col2</span> <span class='kw'>=</span> <span class='st'>"red2"</span>,
-  <span class='kw'>colourMethod</span> <span class='kw'>=</span> <span class='st'>"ramp"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='no'>lightseasun</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plotTreeDiff</span><span class='op'>(</span>
+  <span class='va'>tr1</span>,
+  <span class='va'>tr2</span>,
+  tipDiff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  vec1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  vec2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sizeOfDifferences <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  tipMatch <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  treesFacing <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  baseCol <span class='op'>=</span> <span class='st'>"grey"</span>,
+  col1 <span class='op'>=</span> <span class='st'>"peachpuff"</span>,
+  col2 <span class='op'>=</span> <span class='st'>"red2"</span>,
+  colourMethod <span class='op'>=</span> <span class='st'>"ramp"</span>,
+  palette <span class='op'>=</span> <span class='va'>lightseasun</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,7 +212,7 @@ It relies on the function <code><a href='tipDiff.html'>tipDiff</a></code>.</p>
     </tr>
     <tr>
       <th>palette</th>
-      <td><p>the colour palette to be used if <code>colourMethod="palette"</code>. For a list of available palettes see <code>?num2col</code>.</p></td>
+      <td><p>the colour palette to be used if <code>colourMethod="palette"</code>. For a list of available palettes see <code><a href='https://rdrr.io/pkg/adegenet/man/auxil.html'>?num2col</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -227,51 +230,53 @@ It relies on the function <code><a href='tipDiff.html'>tipDiff</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='medTree.html'>medTree</a></code>, <code><a href='tipDiff.html'>tipDiff</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Michelle Kendall <a href='mailto:michelle.louise.kendall@gmail.com'>michelle.louise.kendall@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## simple example on trees with five tips:</span>
-<span class='no'>tr1</span> <span class='kw'>&lt;-</span> <span class='fu'>read.tree</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"((A:1,B:1):1,((C:1,D:1):1,E:1):1):1;"</span>)
-<span class='no'>tr2</span> <span class='kw'>&lt;-</span> <span class='fu'>read.tree</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"((A:1,B:1):1,(C:1,(D:1,E:1):1):1):1;"</span>)
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>)</div><div class='img'><img src='plotTreeDiff-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>tr1</span> <span class='op'>&lt;-</span> <span class='fu'>read.tree</span><span class='op'>(</span>text<span class='op'>=</span><span class='st'>"((A:1,B:1):1,((C:1,D:1):1,E:1):1):1;"</span><span class='op'>)</span>
+<span class='va'>tr2</span> <span class='op'>&lt;-</span> <span class='fu'>read.tree</span><span class='op'>(</span>text<span class='op'>=</span><span class='st'>"((A:1,B:1):1,(C:1,(D:1,E:1):1):1):1;"</span><span class='op'>)</span>
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span><span class='op'>)</span>
+</div><div class='img'><img src='plotTreeDiff-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## example on larger woodmice trees</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>woodmiceTrees</span>)
-<span class='no'>tr1</span> <span class='kw'>&lt;-</span> <span class='no'>woodmiceTrees</span><span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='no'>tr2</span> <span class='kw'>&lt;-</span> <span class='no'>woodmiceTrees</span><span class='kw'>[[</span><span class='fl'>57</span>]] <span class='co'># for example</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>woodmiceTrees</span><span class='op'>)</span>
+<span class='va'>tr1</span> <span class='op'>&lt;-</span> <span class='va'>woodmiceTrees</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>tr2</span> <span class='op'>&lt;-</span> <span class='va'>woodmiceTrees</span><span class='op'>[[</span><span class='fl'>57</span><span class='op'>]</span><span class='op'>]</span> <span class='co'># for example</span>
 
 <span class='co'># find the tip differences in advance, to avoid recalculating with each plot</span>
-<span class='no'>wmTipDiff</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tipDiff.html'>tipDiff</a></span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>sizeOfDifferences</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>tipDiff</span><span class='kw'>=</span><span class='no'>wmTipDiff</span>, <span class='kw'>tipMatch</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='plotTreeDiff-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>wmTipDiff</span> <span class='op'>&lt;-</span> <span class='fu'><a href='tipDiff.html'>tipDiff</a></span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, sizeOfDifferences<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, tipDiff<span class='op'>=</span><span class='va'>wmTipDiff</span>, tipMatch<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='plotTreeDiff-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## change aesthetics:</span>
 <span class='co'># trees facing each other:</span>
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>tipDiff</span><span class='kw'>=</span><span class='no'>wmTipDiff</span>, <span class='kw'>treesFacing</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='plotTreeDiff-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, tipDiff<span class='op'>=</span><span class='va'>wmTipDiff</span>, treesFacing<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='plotTreeDiff-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># radial plots, and change colours:</span>
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>tipDiff</span><span class='kw'>=</span><span class='no'>wmTipDiff</span>,
-   <span class='kw'>baseCol</span><span class='kw'>=</span><span class='st'>"grey2"</span>, <span class='kw'>col1</span><span class='kw'>=</span><span class='st'>"cyan"</span>, <span class='kw'>col2</span><span class='kw'>=</span><span class='st'>"navy"</span>,
-   <span class='kw'>edge.width</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"radial"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.5</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='img'><img src='plotTreeDiff-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># cladogram plots, and use colour palette from adegenet to see differences more clearly:</span>
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>tipDiff</span><span class='kw'>=</span><span class='no'>wmTipDiff</span>,
-   <span class='kw'>treesFacing</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>baseCol</span><span class='kw'>=</span><span class='st'>"black"</span>, <span class='kw'>colourMethod</span><span class='kw'>=</span><span class='st'>"palette"</span>,
-   <span class='kw'>edge.width</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"cladogram"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.5</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='img'><img src='plotTreeDiff-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, tipDiff<span class='op'>=</span><span class='va'>wmTipDiff</span>,
+   baseCol<span class='op'>=</span><span class='st'>"grey2"</span>, col1<span class='op'>=</span><span class='st'>"cyan"</span>, col2<span class='op'>=</span><span class='st'>"navy"</span>, 
+   edge.width<span class='op'>=</span><span class='fl'>2</span>, type<span class='op'>=</span><span class='st'>"radial"</span>, cex<span class='op'>=</span><span class='fl'>0.5</span>, font<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='plotTreeDiff-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># cladogram plots, and use colour palette from adegenet to see differences more clearly:</span>
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, tipDiff<span class='op'>=</span><span class='va'>wmTipDiff</span>,
+   treesFacing<span class='op'>=</span><span class='cn'>TRUE</span>, baseCol<span class='op'>=</span><span class='st'>"black"</span>, colourMethod<span class='op'>=</span><span class='st'>"palette"</span>, 
+   edge.width<span class='op'>=</span><span class='fl'>2</span>, type<span class='op'>=</span><span class='st'>"cladogram"</span>, cex<span class='op'>=</span><span class='fl'>0.5</span>, font<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>    
+</div><div class='img'><img src='plotTreeDiff-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># including the size of the differences highlights tip "No0906s" a little more:</span>
 <span class='co'># (this is typically a more informative plot in cases where many tips have the </span>
 <span class='co'># same difference count, for example when a whole clade has been shifted "up" </span>
 <span class='co'># or "down" the tree but its internal topology remains the same.) </span>
-
-<span class='fu'>plotTreeDiff</span>(<span class='no'>tr1</span>,<span class='no'>tr2</span>, <span class='kw'>tipDiff</span><span class='kw'>=</span><span class='no'>wmTipDiff</span>, <span class='kw'>sizeOfDifferences</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
-   <span class='kw'>treesFacing</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>baseCol</span><span class='kw'>=</span><span class='st'>"black"</span>, <span class='kw'>colourMethod</span><span class='kw'>=</span><span class='st'>"palette"</span>,
-   <span class='kw'>edge.width</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"cladogram"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.5</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='img'><img src='plotTreeDiff-6.png' alt='' width='700' height='433' /></div><div class='input'>
+ 
+<span class='fu'>plotTreeDiff</span><span class='op'>(</span><span class='va'>tr1</span>,<span class='va'>tr2</span>, tipDiff<span class='op'>=</span><span class='va'>wmTipDiff</span>, sizeOfDifferences<span class='op'>=</span><span class='cn'>TRUE</span>,
+   treesFacing<span class='op'>=</span><span class='cn'>TRUE</span>, baseCol<span class='op'>=</span><span class='st'>"black"</span>, colourMethod<span class='op'>=</span><span class='st'>"palette"</span>, 
+   edge.width<span class='op'>=</span><span class='fl'>2</span>, type<span class='op'>=</span><span class='st'>"cladogram"</span>, cex<span class='op'>=</span><span class='fl'>0.5</span>, font<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>  
+</div><div class='img'><img src='plotTreeDiff-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Michelle Kendall <a href='mailto:michelle.louise.kendall@gmail.com'>michelle.louise.kendall@gmail.com</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -282,7 +287,7 @@ It relies on the function <code><a href='tipDiff.html'>tipDiff</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

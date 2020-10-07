@@ -8,10 +8,10 @@ function labels_create(chart) {
     var labels = chart.svg().select(".chart-body")
         .selectAll(".point-label")
         .data(chart.data(), key);
-
+    
     labels.enter()
         .append("text")
-        .call(label_init)
+	.call(label_init)
         .call(label_formatting, chart)
         .call(drag_behavior(chart));
 
@@ -38,7 +38,7 @@ function labels_update(chart) {
         .selectAll(".point-label")
         .data(chart.data(), key);
     labels.enter()
-        .append("text")    
+        .append("text")
         .call(label_init)
         .call(drag_behavior(chart))
         .merge(labels)
@@ -67,9 +67,6 @@ function labels_update(chart) {
 
 // Initial text label attributes
 function label_init(selection) {
-
-    selection.filter(function(d) { return d.lab === "" || d.lab === null; }).remove();
-    selection = selection.filter(function(d) { return d.lab !== "" && d.lab !== null; })
 
     selection
         .attr("text-anchor", "middle");
@@ -114,8 +111,9 @@ function get_label_dy(d, i, chart) {
 
 // Apply format to text label
 function label_formatting(selection, chart) {
-    
+
     selection
+	.filter(function(d) { return d.lab !== "" && d.lab !== null; })
         .text(function (d) { return (d.lab); })
         .style("font-size", chart.settings().labels_size + "px")
         .attr("class", function (d, i) {
@@ -136,6 +134,7 @@ function label_formatting(selection, chart) {
 
 // Compute end of label line coordinates and distance with point
 function label_line_coordinates(label, x_orig, y_orig, x, y) {
+    
     var label_bb = label.node().getBBox();
     var bb = {left: x - label_bb.width / 2,
               right: x + label_bb.width / 2,
@@ -159,7 +158,7 @@ function label_line_coordinates(label, x_orig, y_orig, x, y) {
         }
     }
 
-    coord.dist = Math.sqrt((coord.x - x_orig)**2 + (coord.y - y_orig)**2);
+    coord.dist = Math.sqrt(Math.pow(coord.x - x_orig, 2) + Math.pow(coord.y - y_orig, 2));
 
     // No line if label is just around point
     if (bb.bottom  >= y_orig - 10 && bb.top <= y_orig + 10 &&
