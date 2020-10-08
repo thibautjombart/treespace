@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{treespace: exploration of landscapes of phylogenetic trees}
+  %\VignetteIndexEntry{Exploration of landscapes of phylogenetic trees}
   \usepackage[utf8]{inputenc}
 ---
 
