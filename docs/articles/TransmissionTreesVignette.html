@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="TransmissionTreesVignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>treespace worked example: Transmission trees</h1>
                         <h4 class="author">Michelle Kendall</h4>
             
-            <h4 class="date">2020-10-08</h4>
+            <h4 class="date">2020-10-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/master/vignettes/TransmissionTreesVignette.Rmd"><code>vignettes/TransmissionTreesVignette.Rmd</code></a></small>
       <div class="hidden name"><code>TransmissionTreesVignette.Rmd</code></div>
@@ -100,17 +100,17 @@
 
     
     
-<p>This vignette demonstrates the use of <em>treespace</em> to compare a collection of transmission trees as proposed in <a href="http://dx.doi.org/10.1214/17-STS637">Kendall et al. 2018</a>.</p>
+<p>This vignette demonstrates the use of <em>treespace</em> to compare a collection of transmission trees as proposed in <a href="http://dx.doi.org/10.1214/17-STS637">Kendall et al. 2018</a>.</p>
 <p>First we load the package <em>treespace</em>:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=treespace">treespace</a></span><span class="op">)</span></pre></div>
 <p><em>treespace</em> contains three functions for handling and comparing transmission trees:</p>
 <ol style="list-style-type: decimal">
 <li>
-<code><a href="../reference/findMRCIs.html">findMRCIs()</a></code> which takes a "who infected whom matrix" (the information about infectors and infectees; more on this below) and outputs:</li>
+<code><a href="../reference/findMRCIs.html">findMRCIs()</a></code> which takes a “who infected whom matrix” (the information about infectors and infectees; more on this below) and outputs:</li>
 </ol>
 <ul>
-<li><p><code>sourceCase</code>: the number of the node which is the source case, i.e. the common infector of all cases (outputs a warning if there is more than one source case).</p></li>
+<li><p><code>sourceCase</code>: the number of the node which is the source case, i.e. the common infector of all cases (outputs a warning if there is more than one source case).</p></li>
 <li><p><code>mrcis</code>: a matrix where, for each pair of individuals i and j, the entry (i,j) is the node number of their MRCI. Note that if i infected j then this entry is i itself.</p></li>
 <li><p><code>mrciDepths</code>: a matrix where, for each pair of individuals i and j, the entry (i,j) is the <em>depth</em> of their MRCI, defined as the number of edges from the source case. The source case has depth zero, its direct infectees have depth 1, and so on.</p></li>
 </ul>
@@ -121,8 +121,8 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>We define a "who infected whom matrix" as a matrix of two columns, where the first represents the infectors and the second represents their infectees. For example, a simple transmission chain could be represented like this:</p>
-<div class="sourceCode"><pre class="downlit">
+<p>We define a “who infected whom matrix” as a matrix of two columns, where the first represents the infectors and the second represents their infectees. For example, a simple transmission chain could be represented like this:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="va">tree1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> 
 <span class="va">tree1</span></pre></div>
 <pre><code>##      Infector Infectee
@@ -132,8 +132,8 @@
 ## [4,]        4        5
 ## [5,]        5        6</code></pre>
 <p>This can be easily visualised as a transmission chain using graph plotting packages such as <em>igraph</em> or <em>visNetwork</em>:</p>
-<div class="sourceCode"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://igraph.org">igraph</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span>
 <span class="co"># set plotting options:</span>
 <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/igraph_options.html">igraph_options</a></span><span class="op">(</span>vertex.size<span class="op">=</span><span class="fl">15</span>,
                vertex.color<span class="op">=</span><span class="st">"cyan"</span>,
@@ -145,7 +145,7 @@
 <span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree1graph</span><span class="op">)</span></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/igraph_tree1-1.png" width="672"></p>
 <p>Applying the function <code>findMRCIs</code> gives the following:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span></pre></div>
 <pre><code>## $sourceCase
 ## [1] 1
@@ -171,7 +171,7 @@
 <h3 class="hasAnchor">
 <a href="#comparing-three-simple-trees" class="anchor"></a>Comparing three simple trees</h3>
 <p>Suppose we had other hypotheses for the transmission tree which describes who infected whom amongst these six cases:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="co"># a second scenario:</span>
 <span class="va">tree2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
 <span class="va">tree2</span></pre></div>
@@ -181,11 +181,11 @@
 ## [3,]        2        4
 ## [4,]        2        5
 ## [5,]        3        6</code></pre>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="va">tree2graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree2graph</span><span class="op">)</span></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-1.png" width="672"></p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co"># and a third scenario:</span>
 <span class="va">tree3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">6</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> 
 <span class="va">tree3</span></pre></div>
@@ -195,12 +195,12 @@
 ## [3,]        2        4
 ## [4,]        2        6
 ## [5,]        6        5</code></pre>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="va">tree3graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree3graph</span><span class="op">)</span></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-2.png" width="672"></p>
 <p>Then we can use <em>treespace</em> functions to make the following comparisons:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span> <span class="co"># find the source case, MRCIs and MRCI depths for tree 1</span>
 <span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span>
 <span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span>
@@ -233,13 +233,13 @@
 ## 4 0 0 0 1 0 0
 ## 5 0 0 0 0 2 1
 ## 6 0 0 0 0 1 1</code></pre>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="co"># find the Euclidean distances between these matrices, where all six cases are sampled</span></pre></div>
 <pre><code>##        1      2
 ## 2  5.916       
 ## 3 10.630  7.616</code></pre>
-<p>If we had only sampled cases 4, 5 and 6, so that "1", "2" and "3" could be regarded as arbitrary names of inferred, unsampled cases, we would compute:</p>
-<div class="sourceCode"><pre class="downlit">
+<p>If we had only sampled cases 4, 5 and 6, so that “1”, “2” and “3” could be regarded as arbitrary names of inferred, unsampled cases, we would compute:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></pre></div>
 <pre><code>##       1     2
 ## 2 5.477      
@@ -250,7 +250,7 @@
 <h3 class="hasAnchor">
 <a href="#comparing-many-trees-using-an-mds-plot" class="anchor"></a>Comparing many trees using an MDS plot</h3>
 <p>Finally, we demonstrate comparing a larger set of transmission trees and finding the median:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">RNGversion</a></span><span class="op">(</span><span class="st">"3.5.0"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span>
 <span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">500</span>
@@ -287,8 +287,8 @@
 
 <span class="co"># find pairwise tree distances, treating all cases as sampled:</span>
 <span class="va">WiwDists1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList1000</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></pre></div>
-<p>Now that we have a pairwise distance matrix we can use multidimensional scaling (MDS) to view the relative distances between the trees in a 2D projection. We will colour the points in the projection by the "depth" of the corresponding tree, and use symbols to indicate the source case. For "depth" here we simply use the mean of each "mrciDepths" matrix.</p>
-<div class="sourceCode"><pre class="downlit">
+<p>Now that we have a pairwise distance matrix we can use multidimensional scaling (MDS) to view the relative distances between the trees in a 2D projection. We will colour the points in the projection by the “depth” of the corresponding tree, and use symbols to indicate the source case. For “depth” here we simply use the mean of each “mrciDepths” matrix.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="va">wiwMDS</span> <span class="op">&lt;-</span> <span class="fu">dudi.pco</span><span class="op">(</span><span class="va">WiwDists1000</span>, scannf<span class="op">=</span><span class="cn">FALSE</span>, nf<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
@@ -324,10 +324,10 @@
 <h3 class="hasAnchor">
 <a href="#median-trees" class="anchor"></a>Median trees</h3>
 <p>If our transmission trees corresponded to real data it could be meaningful to find a single representative tree. To find the geometric median tree(s) from a collection, we use the function <code>wiwMedTree</code>:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="va">med</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwMedTree.html">wiwMedTree</a></span><span class="op">(</span><span class="va">matList1000</span><span class="op">)</span></pre></div>
 <p>This returns a list with components:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb22"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span></pre></div>
 <pre><code>## [1] "centre"    "distances" "mindist"   "median"</code></pre>
 <ul>
@@ -337,11 +337,11 @@
 <li><p><code>median</code> gives the number(s) of the median tree(s)</p></li>
 </ul>
 <p>Here the median trees are:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="va">med</span><span class="op">$</span><span class="va">median</span></pre></div>
 <pre><code>## [1] 817</code></pre>
 <p>The first one looks like this:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb26"><pre class="downlit">
 <span class="va">medgraph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">combinedLists</span><span class="op">[[</span><span class="va">med</span><span class="op">$</span><span class="va">median</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">medgraph</span><span class="op">)</span></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/wiwMedTreePlot-1.png" width="672"></p>

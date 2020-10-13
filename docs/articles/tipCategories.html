@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="tipCategories_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Comparing trees by tip label categories</h1>
                         <h4 class="author">Michelle Kendall</h4>
             
-            <h4 class="date">2020-10-08</h4>
+            <h4 class="date">2020-10-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/master/vignettes/tipCategories.Rmd"><code>vignettes/tipCategories.Rmd</code></a></small>
       <div class="hidden name"><code>tipCategories.Rmd</code></div>
@@ -100,8 +100,8 @@
 
     
     
-<p>We introduce distance measures between trees with 'related' tip labels in a recent bioRxiv preprint, <a href="https://doi.org/10.1101/251710"><em>Comparing phylogenetic trees according to tip label categories</em></a>. Here we provide an overview of the measures and present some simple examples.</p>
-<div class="sourceCode"><pre class="downlit">
+<p>We introduce distance measures between trees with ‘related’ tip labels in a recent bioRxiv preprint, <a href="https://doi.org/10.1101/251710"><em>Comparing phylogenetic trees according to tip label categories</em></a>. Here we provide an overview of the measures and present some simple examples.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># load treespace and packages for plotting:</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=treespace">treespace</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span> 
@@ -109,7 +109,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape">reshape2</a></span><span class="op">)</span>
 <span class="co"># set colour scheme</span>
 <span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">3</span>,<span class="st">"Dark2"</span><span class="op">)</span></pre></div>
-<p>Suppose you have a tree with taxa labels which correspond to some broad "categories" and you want to compare it to other tree(s) whose taxa also correspond to those categories. If the tip labels of the trees do not match exactly then the other metrics supplied in <code>treespace</code> cannot be applied. The function <code>relatedTreeDist</code> is a version of <code>treeDist</code> (the Kendall Colijn metric) which compares tip labels at their category levels, and <code>treeConcordance</code> is a measure of how "concordant" a tree is to a reference tree linking the categories, as we shall explain below.</p>
+<p>Suppose you have a tree with taxa labels which correspond to some broad “categories” and you want to compare it to other tree(s) whose taxa also correspond to those categories. If the tip labels of the trees do not match exactly then the other metrics supplied in <code>treespace</code> cannot be applied. The function <code>relatedTreeDist</code> is a version of <code>treeDist</code> (the Kendall Colijn metric) which compares tip labels at their category levels, and <code>treeConcordance</code> is a measure of how “concordant” a tree is to a reference tree linking the categories, as we shall explain below.</p>
 <p>Some examples of instances where we may wish to compare trees with such labels:</p>
 <table class="table">
 <thead><tr class="header">
@@ -118,7 +118,7 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">Bacterial sub-types e.g. serogroups</td>
+<td align="center">Bacterial sub-types e.g. serogroups</td>
 <td align="center">Bacterial isolates</td>
 </tr>
 <tr class="even">
@@ -152,10 +152,10 @@
 <a href="#related-tree-distance" class="anchor"></a>Related tree distance</h2>
 <p>We begin by demonstrating the measure between trees with related tip sets, <code>relatedTreeDist</code>. As an example, suppose we have trees created from deep-sequencing reads from patients A, B and C as follows:</p>
 <p><img src="tipCategories_files/figure-html/plot_patient_trees-1.png" width="672"></p>
-<p>We can think of "collapsing" these trees down to one tip per monophyletic clade of tips from the same category, and renaming the new tips with just the category labels. For example, the trees above would collapse into these, respectively:</p>
+<p>We can think of “collapsing” these trees down to one tip per monophyletic clade of tips from the same category, and renaming the new tips with just the category labels. For example, the trees above would collapse into these, respectively:</p>
 <p><img src="tipCategories_files/figure-html/plot_collapsed_trees-1.png" width="672"></p>
 <p>We calculate the distance between the original trees using <code>relatedTreeDist</code> as follows. The function requires a data frame telling it which individuals belong to which categories:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Patient A"</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Patient B"</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Patient C"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
             <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">tr1</span><span class="op">$</span><span class="va">tip.label</span><span class="op">)</span><span class="op">)</span>
 <span class="va">df</span></pre></div>
@@ -170,18 +170,18 @@
 ##  [8,] "Patient C" "Patient C read 2"
 ##  [9,] "Patient C" "Patient C read 3"
 ## [10,] "Patient C" "Patient C read 4"</code></pre>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/relatedTreeDist.html">relatedTreeDist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">tr1</span>,<span class="va">tr2</span><span class="op">)</span>,<span class="va">df</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></pre></div>
 <pre><code>## [1] 0.7071</code></pre>
 <p>The function <code>relatedTreeDist</code> can take a list of many trees as input, and it produces a distance matrix giving the distances between each pair of trees. Since we only supplied two trees, we just returned the first (only) element of this matrix.</p>
 <p>We now explain how this value is calculated. We find the <em>mean</em> height of the most recent common ancestor (MRCA) of each pair of categories in the <strong>collapsed</strong> trees. That is, we effectively find all the pairwise depths of MRCAs:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="../reference/tipsMRCAdepths.html">tipsMRCAdepths</a></span><span class="op">(</span><span class="va">tr1Collapsed</span><span class="op">)</span></pre></div>
 <pre><code>##      tip1        tip2        rootdist
 ## [1,] "Patient A" "Patient B" "1"     
 ## [2,] "Patient A" "Patient C" "0"     
 ## [3,] "Patient B" "Patient C" "0"</code></pre>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="../reference/tipsMRCAdepths.html">tipsMRCAdepths</a></span><span class="op">(</span><span class="va">tr2Collapsed</span><span class="op">)</span></pre></div>
 <pre><code>##      tip1        tip2        rootdist
 ## [1,] "Patient A" "Patient B" "0"     
@@ -199,8 +199,8 @@
 <p><span class="math display">\[
 d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 \]</span></p>
-<p>We now give a larger example with more trees. Along the way we use the function <code>simulateIndTree</code> which takes a "category-level" tree and randomly adds individuals to make an example individuals tree.</p>
-<div class="sourceCode"><pre class="downlit">
+<p>We now give a larger example with more trees. Along the way we use the function <code>simulateIndTree</code> which takes a “category-level” tree and randomly adds individuals to make an example individuals tree.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">RNGversion</a></span><span class="op">(</span><span class="st">"3.5.0"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">948</span><span class="op">)</span>
 <span class="co"># set colour scheme</span>
@@ -256,9 +256,9 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
      edge.width <span class="op">=</span> <span class="fl">4</span>, use.edge.length <span class="op">=</span> <span class="cn">FALSE</span>,
      label.offset<span class="op">=</span> <span class="fl">0.5</span>, font<span class="op">=</span><span class="fl">4</span>, cex<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span></pre></div>
 <p><img src="tipCategories_files/figure-html/six_comparable_trees-1.png" width="672"></p>
-<p>We have created a variety of trees. Trees 1 and 2 have differing numbers of tips, and differing tip labels, but their collapsed forms would be identical. Tree 3 is similar to Trees 1 and 2 but with a few tips permuted, so that the categories are no longer monophyletic. Tree 4 is similar but with more tips permuted. Trees 5 and 6 were created from a different "base" tree so the relationships between the categories are quite different when we compare, for example, Tree 1 and Tree 5.</p>
+<p>We have created a variety of trees. Trees 1 and 2 have differing numbers of tips, and differing tip labels, but their collapsed forms would be identical. Tree 3 is similar to Trees 1 and 2 but with a few tips permuted, so that the categories are no longer monophyletic. Tree 4 is similar but with more tips permuted. Trees 5 and 6 were created from a different “base” tree so the relationships between the categories are quite different when we compare, for example, Tree 1 and Tree 5.</p>
 <p>The function <code>relatedTreeDist</code> gives a quantitative description of these similarities and differences. First we just put the trees into a list and create a data frame linking individuals to categories:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="va">trees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">tree1</span>,<span class="va">tree2</span>,<span class="va">tree3</span>,<span class="va">tree4</span>,<span class="va">tree5</span>,<span class="va">tree6</span><span class="op">)</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span>,<span class="st">"_"</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
@@ -271,7 +271,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 ## 5 7.141 7.141 6.886 6.615      
 ## 6 6.195 6.195 5.939 4.700 2.437</code></pre>
 <p>We can visualise these distances with a heatmap:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">dists</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dists</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">dists</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tree 1"</span>, <span class="st">"Tree 2"</span>, <span class="st">"Tree 3"</span>, <span class="st">"Tree 4"</span>,
                                         <span class="st">"Tree 5"</span>, <span class="st">"Tree 6"</span><span class="op">)</span>
@@ -302,7 +302,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
 <a href="#concordance" class="anchor"></a>Concordance</h2>
 <p>The concordance measure takes a reference tree R whose tips are a set of categories (with no repeats), and a comparable tree T whose tips are individuals from those categories. The measure counts the proportion of tip pairs whose MRCA in T appears at the same place as the MRCA of their categories in R. It takes a value in (0,1]. Full concordance, where the collapsed version of T is identical to R, gives a value of 1.</p>
 <p>For example,</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="va">catTree</span> <span class="op">&lt;-</span> <span class="fu">read.tree</span><span class="op">(</span>text<span class="op">=</span><span class="st">"(C,(B,A));"</span><span class="op">)</span>
 <span class="va">indTree1</span> <span class="op">&lt;-</span> <span class="fu">read.tree</span><span class="op">(</span>text<span class="op">=</span><span class="st">"(((c4,c3),(c2,c1)),((b1,b2),((a3,a2),a1)));"</span><span class="op">)</span>
 <span class="va">indTree2</span> <span class="op">&lt;-</span> <span class="fu">read.tree</span><span class="op">(</span>text<span class="op">=</span><span class="st">"(((c4,c3),(c2,c1)),((b1,a2),((a3,b2),a1)));"</span><span class="op">)</span>
@@ -313,7 +313,7 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
      label.offset<span class="op">=</span> <span class="fl">0.5</span>, font<span class="op">=</span><span class="fl">4</span>,
      edge.color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="st">"black"</span>,<span class="va">pal</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>,<span class="va">pal</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="tipCategories_files/figure-html/concordance_basic-1.png" width="672"></p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/layout_.html">layout</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">indTree1</span>, tip.color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="fl">4</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>,
      edge.width <span class="op">=</span> <span class="fl">4</span>, type<span class="op">=</span><span class="st">"cladogram"</span>, no.margin<span class="op">=</span><span class="cn">TRUE</span>,
@@ -331,20 +331,20 @@ d(T_1,T_2) = \sqrt{ (1-0.5)^2 + (0-0)^2 + (0-0.5)^2 } = 0.7071068
                   <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"black"</span>,<span class="fl">2</span><span class="op">)</span>,<span class="va">pal</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="va">pal</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">pal</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="tipCategories_files/figure-html/concordance_basic-2.png" width="672"></p>
 <p>The first tree has monophyly per category, and the relative positions of those categories are identical to the reference tree. Correspondingly, the concordance is 1:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"B"</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"C"</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">indTree1</span><span class="op">$</span><span class="va">tip.label</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/treeConcordance.html">treeConcordance</a></span><span class="op">(</span><span class="va">catTree</span>,<span class="va">indTree1</span>,<span class="va">df</span><span class="op">)</span></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>The second tree is fairly similar to the reference, with category C monophyletic and basal to the rest. However, the paraphyly of categories A and B gives a concordance less than 1:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="fu"><a href="../reference/treeConcordance.html">treeConcordance</a></span><span class="op">(</span><span class="va">catTree</span>,<span class="va">indTree2</span>,<span class="va">df</span><span class="op">)</span></pre></div>
 <pre><code>## [1] 0.8846</code></pre>
 <p>Finally, the third tree has much less in common with the reference and accordingly has lower concordance:</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="fu"><a href="../reference/treeConcordance.html">treeConcordance</a></span><span class="op">(</span><span class="va">catTree</span>,<span class="va">indTree3</span>,<span class="va">df</span><span class="op">)</span></pre></div>
 <pre><code>## [1] 0.4615</code></pre>
 <p>To give a broader feel for how the concordance measure behaves, we now perform an experiment where we create random trees and compare them to a reference. We permute the tips in the individuals trees by a given percent, and watch the concordance decrease as the permutations increase and the category-level relationships weaken. In the paper we report our findings for <code>n=10</code> and <code>reps=100</code>, that is, the reference tree has 10 tips, individuals trees have <code>n*n=100</code> tips, and we performed 100 repetitions for each level of permutation. To keep the calculations quick we only use <code>n=5</code> and <code>reps=10</code> here.</p>
-<div class="sourceCode"><pre class="downlit">
+<div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 <span class="va">reps</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 <span class="va">reftree</span> <span class="op">&lt;-</span> <span class="fu">rtree</span><span class="op">(</span><span class="va">n</span>, tip.label<span class="op">=</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">]</span><span class="op">)</span>

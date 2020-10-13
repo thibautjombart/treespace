@@ -137,8 +137,9 @@ treeVec <- function(tree, lambda=0, return.lambda.function=FALSE, emphasise.tips
     # make a vector to multiply positions concerning important tips by chosen weighting
     tip.weighting <- c(sapply(1:length(pairs[,1]), function(x) if(x%in%emphasise.vector.elements){emphasise.weight} else{1}),
                        sapply(1:num_leaves, function(y) if(y%in%emphasise.tips.order){emphasise.weight} else{1}))
+  } else{
+    tip.weighting <- rep(1,0.5*num_leaves*(num_leaves+1))
   }
-  else{tip.weighting <- rep(1,0.5*num_leaves*(num_leaves+1))}
   
   
   # We annotated the nodes of the tree in this list. In two passes we are going to
