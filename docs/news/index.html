@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BEAST analysis of Dengue fever — DengueTrees • treespace</title>
+<title>Changelog • treespace</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,7 @@
 
 
 
-<meta property="og:title" content="BEAST analysis of Dengue fever — DengueTrees" />
-<meta property="og:description" content="These trees were created using one of the xml files provided with the original BEAST paper by Drummond and Rambaut (2007).
-They provide an example of 17 dengue virus serotype 4 sequences from Lanciotti et al. (1997) (available as DengueSeqs) and xml files with varying priors for model and clock rate.
-Here we include a random sample of 500 of the trees (from the second half of the posterior) produced using BEAST v1.8 with the standard GTR + Gamma + I substitution model with uncorrelated lognormal-distributed relaxed molecular clock (file 4)." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -61,7 +58,7 @@ Here we include a random sample of 500 of the trees (from the second half of the
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -134,43 +131,72 @@ Here we include a random sample of 500 of the trees (from the second half of the
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>BEAST analysis of Dengue fever</h1>
-    <small class="dont-index">Source: <a href='https://github.com/thibautjombart/treespace/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>DengueTrees.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/thibautjombart/treespace/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>These trees were created using one of the <code>xml</code> files provided with the original BEAST paper by Drummond and Rambaut (2007).
-They provide an example of 17 dengue virus serotype 4 sequences from Lanciotti et al. (1997) (available as <code><a href='DengueSeqs.html'>DengueSeqs</a></code>) and <code>xml</code> files with varying priors for model and clock rate.
-Here we include a random sample of 500 of the trees (from the second half of the posterior) produced using BEAST v1.8 with the standard GTR + Gamma + I substitution model with uncorrelated lognormal-distributed relaxed molecular clock (file 4).</p>
-    </div>
-
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A multiPhylo object containing 500 trees, each with 17 tips</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>http://bmcevolbiol.biomedcentral.com/articles/10.1186/1471-2148-7-214</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Drummond, A. J., and Rambaut, A. (2007) 
-BEAST: Bayesian evolutionary analysis by sampling trees.
-<em>BMC Evolutionary Biology</em>, 7(1), 214.</p>
-<p>Lanciotti, R. S., Gubler, D. J., and Trent, D. W. (1997)
-Molecular evolution and phylogeny of dengue-4 viruses.
-<em>Journal of General Virology</em>, 78(9), 2279-2286.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Michelle Kendall <a href='mailto:michelle.louise.kendall@gmail.com'>michelle.louise.kendall@gmail.com</a></p>
-
+    <div id="treespace-v1140" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.4.0">
+<a href="#treespace-v1140" class="anchor"></a>treespace v1.1.4.0<small> Unreleased </small>
+</h1>
+<p>We are very grateful to Joseph Tsui and Alexis Robert from the London School of Hygiene and Tropical Medicine for spotting an error in the way tip labels were handled in calculating transmission tree distances - this has now been fixed and a test added.</p>
+</div>
+    <div id="treespace-v1132" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.3.2">
+<a href="#treespace-v1132" class="anchor"></a>treespace v1.1.3.2<small> 2019-12-08 </small>
+</h1>
+<p>This patch corrects the bad usage of “class” which was causing errors in some r-devel-linux versions, and now has a fully specified URL linking from the readme to the code of conduct.</p>
+</div>
+    <div id="treespace-v1131" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.3.1">
+<a href="#treespace-v1131" class="anchor"></a>treespace v1.1.3.1<small> 2019-04-07 </small>
+</h1>
+<p>We are very grateful to Kurt Hornik for supplying this fix while Michelle was on maternity leave; the fix handles the update to the R base function <code>sample</code>.</p>
+</div>
+    <div id="treespace-v113" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.3">
+<a href="#treespace-v113" class="anchor"></a>treespace v1.1.3<small> 2018-05-14 </small>
+</h1>
+<p>We have updated the dependency details for the package <code>rgl</code> to ensure that the treespace Shiny app works on all operating systems: removed a few lines from a vignette which caused warnings on some operating systems; added a reference to the DESCRIPTION file as requested by Uwe, plus and URL and BugReports fields.</p>
+</div>
+    <div id="treespace-v112" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.2">
+<a href="#treespace-v112" class="anchor"></a>treespace v1.1.2<small> 2018-02-22 </small>
+</h1>
+<p>We have updated the maintainer email address and fixed the issue of stating a dependency on an R version with patchlevel non-zero.</p>
+</div>
+    <div id="treespace-v111" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.1">
+<a href="#treespace-v111" class="anchor"></a>treespace v1.1.1<small> 2018-01-23 </small>
+</h1>
+<p>We made minor changes to package dependencies and removed support for parallel computation to satisfy CRAN policies.</p>
+</div>
+    <div id="treespace-v110" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.0">
+<a href="#treespace-v110" class="anchor"></a>treespace v1.1.0<small> 2018-01-22 </small>
+</h1>
+<p>We have added functions for comparing trees with “related” tip sets.</p>
+</div>
+    <div id="treespace-v101" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.1">
+<a href="#treespace-v101" class="anchor"></a>treespace v1.0.1<small> 2017-12-14 </small>
+</h1>
+<p>We made minor improvements to functions and updated some package dependencies. Michelle Kendall became the maintainer of the package again, with thanks to Thibaut Jombart for maintaining it during her leave.</p>
+</div>
+    <div id="treespace-v100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#treespace-v100" class="anchor"></a>treespace v1.0.0<small> 2017-03-17 </small>
+</h1>
+<p>New package, replacing the previous <code>treescape</code>.</p>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
