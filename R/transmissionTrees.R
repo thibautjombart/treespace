@@ -126,7 +126,9 @@ findMRCIs <- compiler::cmpfun(function(wiw) {
   D <- matrix(ncol=l, nrow=l, depths[M]) # create matrix D of depths
   M <- matrix(ncol=l, nrow=l, wiwNames[M]) # convert M into the node names
 
-  # re-associate the node names with the columns and rows of the matrices
+  # re-associate the node names with the columns and rows of the matrices.
+  # This step had been lost in a previous iteration and we are very grateful to
+  # Joseph Tsui and Alexis Robert for spotting the error and bringing it to our attention
   colnames(M) <- rownames(M) <- colnames(D) <- rownames(D) <- wiwNames
   D <- D[order(wiwNames),order(wiwNames)]
   M <- M[order(wiwNames),order(wiwNames)]
