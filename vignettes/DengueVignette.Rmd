@@ -138,7 +138,7 @@ Dscape <- treespace(DengueTrees, nf=5)
 plotGrovesD3(Dscape$pco, groups=Dtype)
 ```
 
-The function `plotGrovesD3` produces interactive d3 plots which enable zooming, moving, tooltip text and legend hovering. We now refine the plot with colour-blind friendly colours (selected using [ColorBrewer2](http://colorbrewer2.org/)), bigger points, varying symbols and point opacity to demonstrate the NJ and ML trees, informative legend title and smaller legend width:
+The function `plotGrovesD3` produces interactive d3 plots which enable zooming, moving, tooltip text and legend hovering. We now refine the plot with colour-blind friendly colours (selected using [ColorBrewer2](https://colorbrewer2.org/)), bigger points, varying symbols and point opacity to demonstrate the NJ and ML trees, informative legend title and smaller legend width:
 
 ```{r make_better_plot}
 Dcols <- c("#1b9e77","#d95f02","#7570b3")

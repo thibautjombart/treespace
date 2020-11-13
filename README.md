@@ -166,7 +166,7 @@ Authors
 
 Authors:
 
--   [Thibaut Jombart](https://thibautjombart.netlify.com/)
+-   [Thibaut Jombart](https://thibautjombart.netlify.app/)
 
 -   [Michelle Kendall](https://michellekendall.github.io/)
 
