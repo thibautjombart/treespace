@@ -6,7 +6,6 @@ Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com",
  	     MK = person("Michelle", "Kendall", email="michelle.kendall@warwick.ac.uk", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7344-7071")),
 	     JAG = person("Jacob", "Almagro-Garcia", role = "aut", comment = c(ORCID = "0000-0002-0595-7333")),
 	     CC = person("Caroline", "Colijn", role = "aut", comment = c(ORCID = "0000-0001-6097-6708")))
-Maintainer: Michelle Kendall <michelle.kendall@bdi.ox.ac.uk>
 Description: Tools for the exploration of distributions of phylogenetic trees.
     This package includes a 'shiny' interface which can be started from R using
     treespaceServer(). 
@@ -31,9 +30,5 @@ URL: https://cran.r-project.org/package=treespace,
 BugReports: https://github.com/thibautjombart/treespace/issues
 NeedsCompilation: yes
 Packaged: 2019-12-05
-Author: Thibaut Jombart [aut],
-  Michelle Kendall [aut, cre],
-  Jacob Almagro-Garcia [aut],
-  Caroline Colijn [aut]
 Repository: CRAN
 Date/Publication: 2019-04-07 11:21:55 UTC
