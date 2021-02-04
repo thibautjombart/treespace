@@ -13,3 +13,6 @@ vignettes/*cache*
 docs/articles/*cache*
 treespace.Rcheck/
 *.tar.gz
+images/svg/.DS_Store
+tests/testthat/.DS_Store
+vignettes/.DS_Store
