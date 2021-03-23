@@ -1,3 +1,8 @@
+treespace v1.1.4.1
+==================
+
+Fixing a bug which was tripping up our automatic tests: if d is a distance matrix obtained from stats::as.dist() then its i'th element can no longer be accessed with d[[i]] and instead d[i] should be used.
+
 treespace v1.1.4.0
 ==================
 

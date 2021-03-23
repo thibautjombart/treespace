@@ -1,4 +1,4 @@
-pandoc: 2.7.3
+pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -6,5 +6,5 @@ articles:
   TransmissionTreesVignette: TransmissionTreesVignette.html
   introduction: introduction.html
   tipCategories: tipCategories.html
-last_built: 2020-11-17T10:41Z
+last_built: 2021-03-23T15:41Z
 

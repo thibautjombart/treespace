@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">treespace</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4.1</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/thibautjombart/treespace/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -215,7 +215,7 @@ Choose from:</p><ul>
 <span class='va'>woodmiceDists</span> <span class='op'>&lt;-</span> <span class='fu'>treespace</span><span class='op'>(</span><span class='va'>woodmiceTrees</span>,nf<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/pkg/adegraphics/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>woodmiceDists</span><span class='op'>$</span><span class='va'>pco</span><span class='op'>$</span><span class='va'>li</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span>,<span class='va'>woodmiceDists</span><span class='op'>$</span><span class='va'>pco</span><span class='op'>$</span><span class='va'>li</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='img'><img src='treespace-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>woodmicedf</span> <span class='op'>&lt;-</span> <span class='va'>woodmiceDists</span><span class='op'>$</span><span class='va'>pco</span><span class='op'>$</span><span class='va'>li</span>
-<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='va'>woodmiceplot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>woodmicedf</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>A1</span>, y<span class='op'>=</span><span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># create plot</span>
 <span class='va'>woodmiceplot</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_density_2d.html'>geom_density2d</a></span><span class='op'>(</span>colour<span class='op'>=</span><span class='st'>"gray80"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># contour lines</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>6</span>, shape<span class='op'>=</span><span class='fl'>1</span>, colour<span class='op'>=</span><span class='st'>"gray50"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># grey edges</span>
@@ -224,7 +224,7 @@ Choose from:</p><ul>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='img'><img src='treespace-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://r-forge.r-project.org/projects/rgl/'>rgl</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dmurdoch/rgl'>rgl</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/pkg/rgl/man/plot3d.html'>plot3d</a></span><span class='op'>(</span><span class='va'>woodmicedf</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span>, <span class='va'>woodmicedf</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span>, <span class='va'>woodmicedf</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, type<span class='op'>=</span><span class='st'>"s"</span>, size<span class='op'>=</span><span class='fl'>1.5</span>,
 col<span class='op'>=</span><span class='st'>"navy"</span>, alpha<span class='op'>=</span><span class='fl'>0.5</span>, xlab<span class='op'>=</span><span class='st'>""</span>, ylab<span class='op'>=</span><span class='st'>""</span>, zlab<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
 <span class='op'>}</span>
