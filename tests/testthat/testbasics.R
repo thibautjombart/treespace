@@ -38,8 +38,8 @@ test_that("treeDist equals Euclidean distance between corresponding vectors", {
   })
 
 test_that("treeDist equals corresponding entry of multiDist", {
-  expect_equal(treeDist(trees[[1]],trees[[2]]), multiDist(trees)[[1]])
-  expect_equal(treeDist(trees[[1]],trees[[2]],emphasise.tips = c("t1","t2")), multiDist(trees,emphasise.tips = c("t1","t2"))[[1]])
+  expect_equal(treeDist(trees[[1]],trees[[2]]), multiDist(trees)[1])
+  expect_equal(treeDist(trees[[1]],trees[[2]],emphasise.tips = c("t1","t2")), multiDist(trees,emphasise.tips = c("t1","t2"))[1])
   })
 
 test_that("treeDist equals corresponding entry of refTreeDist", {
@@ -51,9 +51,9 @@ test_that("multiDist equals the distance matrix from treespace", {
   treedistMatrix <- treespace(trees,nf=2)$D
   treedistMatrix0.5 <- treespace(trees,nf=2,lambda=l)$D 
   multidistMatrixFunction <- multiDist(trees,return.lambda.function=TRUE)
-  expect_equal(multidistMatrixFunction(0)[[n]],treedistMatrix[[n]])
-  expect_equal(multidistMatrixFunction(l)[[n]],treedistMatrix0.5[[n]])
-  expect_equal(treespace(trees,nf=2,emphasise.tips=c("t1","t2"))$D[[n]],multiDist(trees,emphasise.tips=c("t1","t2"))[[n]])
+  expect_equal(multidistMatrixFunction(0)[n],treedistMatrix[n])
+  expect_equal(multidistMatrixFunction(l)[n],treedistMatrix0.5[n])
+  expect_equal(treespace(trees,nf=2,emphasise.tips=c("t1","t2"))$D[n],multiDist(trees,emphasise.tips=c("t1","t2"))[n])
   })
 
 test_that("medTree results are consistent with treeVec", {
@@ -83,7 +83,7 @@ test_that("indTrees are fully concordant with catTree", {
 })
 
 test_that("indTree and catTree should be identical by relatedTreeDist measure", {
-  expect_equal(relatedTreeDist(list(indTree1,indTree2),df)[[1]],0)
+  expect_equal(relatedTreeDist(list(indTree1,indTree2),df)[1],0)
 })
 
 test_that("collapsing indTrees gets catTree back", {
@@ -173,5 +173,6 @@ matList <- list(findMRCIs(tree1)$mrciDepths, findMRCIs(tree2)$mrciDepths)
 ##########################################################
 
 test_that("transmission tree distances are independent of the node naming order", {
-  expect_equal(0, wiwTreeDist(matList, sampled=1:7)[[1]])
+  expect_equal(0, wiwTreeDist(matList, sampled=1:7)[1])
 })
+

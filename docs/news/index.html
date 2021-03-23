@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">treespace</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4.1</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/thibautjombart/treespace/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,9 +135,15 @@
       <small>Source: <a href='https://github.com/thibautjombart/treespace/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="treespace-v1141" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.4.1">
+<a href="#treespace-v1141" class="anchor"></a>treespace v1.1.4.1<small> Unreleased </small>
+</h1>
+<p>Fixing a bug which was tripping up our automatic tests: if d is a distance matrix obtained from stats::as.dist() then its i’th element can no longer be accessed with d[[i]] and instead d[i] should be used.</p>
+</div>
     <div id="treespace-v1140" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.4.0">
-<a href="#treespace-v1140" class="anchor"></a>treespace v1.1.4.0<small> Unreleased </small>
+<a href="#treespace-v1140" class="anchor"></a>treespace v1.1.4.0<small> 2020-11-17 </small>
 </h1>
 <p>We are very grateful to Joseph Tsui and Alexis Robert from the London School of Hygiene and Tropical Medicine for spotting an error in the way tip labels were handled in calculating transmission tree distances - this has now been fixed and a test added.</p>
 </div>
