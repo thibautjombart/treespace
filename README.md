@@ -5,14 +5,12 @@ Badge](http://www.r-pkg.org/badges/version/treespace)](https://cran.r-project.or
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/treespace)](https://cran.r-project.org/package=treespace)
 
-*treespace*: exploration of landscapes of phylogenetic trees
-============================================================
+# *treespace*: exploration of landscapes of phylogenetic trees
 
 *treespace* implements new methods for the exploration and analysis of
 distributions of phylogenetic trees for a given set of taxa.
 
-Installing *treespace*
-----------------------
+## Installing *treespace*
 
 To install the development version from github:
 
@@ -30,12 +28,6 @@ Then, to load the package, use:
     ## Loading required package: ape
 
     ## Loading required package: ade4
-
-    ## Creating a generic function for 'toJSON' from package 'jsonlite' in package 'googleVis'
-
-    ## Registered S3 method overwritten by 'spdep':
-    ##   method   from
-    ##   plot.mst ape
 
     ## Registered S3 methods overwritten by 'adegraphics':
     ##   method         from
@@ -55,8 +47,7 @@ Then, to load the package, use:
     ##   score.pca      ade4
     ##   screeplot.dudi ade4
 
-Content overview
-----------------
+## Content overview
 
 The main functions implemented in *treespace* are:
 
@@ -127,8 +118,7 @@ Distributed datasets include:
 -   **`DengueBEASTMCC`**: the maximum clade credibility (MCC) tree from
     the `DengueTrees`.
 
-Documentation
--------------
+## Documentation
 
 *treespace* comes with the following vignettes:
 
@@ -149,8 +139,7 @@ Documentation
     introduction to the measures for comparing trees with shared tip
     label “categories”
 
-Contributing / asking a question
---------------------------------
+## Contributing / asking a question
 
 Contributions are welcome via **pull requests**.
 
@@ -161,8 +150,7 @@ participating in this project you agree to abide by its terms.
 Questions, feature requests and bugs can be reported using the package’s
 [issue system](https://github.com/thibautjombart/treespace/issues).
 
-Authors
--------
+## Authors
 
 Authors:
 
@@ -172,14 +160,13 @@ Authors:
 
 Contributors:
 
--   [Jacob
-    Almagro-Garcia](http://www.well.ox.ac.uk/jacob-almagro-garcia)
+-   [Jacob Almagro-Garcia](http://biotop.co/people/jacob-almagro/)
 
--   [Caroline Colijn](http://www.imperial.ac.uk/people/c.colijn)
+-   [Caroline Colijn](https://www.sfu.ca/math/people/faculty/ccolijn/)
 
 Maintainer of the CRAN version:
 
 -   [Michelle Kendall](https://michellekendall.github.io/)
 
 See details of contributions on: <br>
-<a href="https://github.com/thibautjombart/treespace/graphs/contributors" class="uri">https://github.com/thibautjombart/treespace/graphs/contributors</a>
+<https://github.com/thibautjombart/treespace/graphs/contributors>

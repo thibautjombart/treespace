@@ -1,6 +1,6 @@
 citHeader("To cite treespace in publications, please use:")
 
-citEntry(entry = "article",
+bibentry(bibtype = "article",
          author = "Thibaut Jombart, Michelle Kendall, Jacob Almagro-Garcia and Caroline Colijn",
          title = "treespace: Statistical Exploration of Landscapes of Phylogenetic Trees",
          journal = "Molecular Ecology Resources",

@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // updateDistancesWithCombinations
 void updateDistancesWithCombinations(NumericVector& length_root_distances, NumericVector& topological_root_distances, IntegerVector& left_partition, IntegerVector& right_partition, IntegerVector& index_offsets, double distance_to_root, int edges_to_root);
 RcppExport SEXP _treespace_updateDistancesWithCombinations(SEXP length_root_distancesSEXP, SEXP topological_root_distancesSEXP, SEXP left_partitionSEXP, SEXP right_partitionSEXP, SEXP index_offsetsSEXP, SEXP distance_to_rootSEXP, SEXP edges_to_rootSEXP) {

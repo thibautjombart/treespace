@@ -148,15 +148,15 @@ Authors
 -------
 Authors:
 
-* [Thibaut Jombart](https://thibautjombart.netlify.com/)
+* [Thibaut Jombart](https://thibautjombart.netlify.app/)
 
 * [Michelle Kendall](https://michellekendall.github.io/)
 
 Contributors:
 
-* [Jacob Almagro-Garcia](http://www.well.ox.ac.uk/jacob-almagro-garcia)
+* [Jacob Almagro-Garcia](http://biotop.co/people/jacob-almagro/)
 
-* [Caroline Colijn](http://www.imperial.ac.uk/people/c.colijn)
+* [Caroline Colijn](https://www.sfu.ca/math/people/faculty/ccolijn/)
 
 Maintainer of the CRAN version:
 

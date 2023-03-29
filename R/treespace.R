@@ -86,6 +86,7 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
 
     # make name labels well defined
     if(is.null(names(x))) names(x) <- 1:num_trees
+    else if(any(is.na(names(x)))) names(x) <- 1:num_trees
     else if(length(unique(names(x)))!=num_trees){
       warning("duplicates detected in tree labels - using generic names")
       names(x) <- 1:num_trees
