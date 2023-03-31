@@ -70,7 +70,9 @@
 medTree <- function(x, groups=NULL, lambda=0, weights=NULL, emphasise.tips=NULL, emphasise.weight=2,
                     return.lambda.function=FALSE, save.memory=FALSE) {
 
-  ## CHECK input type ##
+  ## CHECK inputs and input types ##
+  if(lambda<0 || lambda>1) stop("Pick lambda in [0,1]")
+  
   if (inherits(x, "multiPhylo")) {
     type <- "multiPhylo_object"
     }

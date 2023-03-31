@@ -111,14 +111,14 @@ test_that("save_memory version of medTree equals normal medTree", {
 ############################
 
 test_that("error is given if lambda is outside of [0,1]", {
-  expect_error(treeVec(tree_a,-1))
-  expect_error(treeVec(tree_a,2))
-  expect_error(treeDist(tree_a,tree_b,-1))
-  expect_error(treeDist(tree_a,tree_b,2))
-  expect_error(multiDist(trees,-1))
-  expect_error(multiDist(trees,2))
-  expect_error(medTree(trees,-1))
-  expect_error(medTree(trees,2))
+  expect_error(treeVec(tree_a,lambda=-1))
+  expect_error(treeVec(tree_a,lambda=2))
+  expect_error(treeDist(tree_a,tree_b,lambda=-1))
+  expect_error(treeDist(tree_a,tree_b,lambda=2))
+  expect_error(multiDist(trees,lambda=-1))
+  expect_error(multiDist(trees,lambda=2))
+  expect_error(medTree(trees,lambda=-1))
+  expect_error(medTree(trees,lambda=2))
   })
 
 test_that("error is given if input is not of class phylo / multiphylo", {
