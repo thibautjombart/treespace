@@ -1,7 +1,7 @@
 treespace v1.1.4.2
 ==================
 
-Fixing a bug which was affecting the compilation of vignettes: the `treespace` function can now handle NA row (tree) names. Also updated the citation file to use `bibentry` rather than the old-style `citEntry` as suggested by CRAN, and updated links to authors' websites.
+Fixing a bug which was affecting the compilation of vignettes: the `treespace` function can now handle NA row (tree) names. Also added explicit argument calls in unit test functions, updated the citation file to use `bibentry` rather than the old-style `citEntry` as suggested by CRAN, and updated links to authors' websites.
 
 treespace v1.1.4.1
 ==================
