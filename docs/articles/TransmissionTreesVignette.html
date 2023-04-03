@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">treespace</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/thibautjombart/treespace/">
+  <a href="https://github.com/thibautjombart/treespace/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,265 +84,311 @@
 
       
 
-      </header><script src="TransmissionTreesVignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>treespace worked example: Transmission trees</h1>
-                        <h4 class="author">Michelle Kendall</h4>
+      <h1 data-toc-skip>treespace worked example: Transmission
+trees</h1>
+                        <h4 data-toc-skip class="author">Michelle
+Kendall</h4>
             
-            <h4 class="date">2021-03-23</h4>
+            <h4 data-toc-skip class="date">2023-04-03</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/master/vignettes/TransmissionTreesVignette.Rmd"><code>vignettes/TransmissionTreesVignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/thibautjombart/treespace/blob/HEAD/vignettes/TransmissionTreesVignette.Rmd" class="external-link"><code>vignettes/TransmissionTreesVignette.Rmd</code></a></small>
       <div class="hidden name"><code>TransmissionTreesVignette.Rmd</code></div>
 
     </div>
 
     
     
-<p>This vignette demonstrates the use of <em>treespace</em> to compare a collection of transmission trees as proposed in <a href="https://projecteuclid.org/journals/statistical-science/volume-33/issue-1/Estimating-Transmission-from-Genetic-and-Epidemiological-Data--A-Metric/10.1214/17-STS637.full">Kendall et al. 2018</a>.</p>
+<p>This vignette demonstrates the use of <em>treespace</em> to compare a
+collection of transmission trees as proposed in <a href="https://projecteuclid.org/journals/statistical-science/volume-33/issue-1/Estimating-Transmission-from-Genetic-and-Epidemiological-Data--A-Metric/10.1214/17-STS637.full" class="external-link">Kendall
+et al. 2018</a>.</p>
 <p>First we load the package <em>treespace</em>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=treespace">treespace</a></span><span class="op">)</span></code></pre></div>
-<p><em>treespace</em> contains three functions for handling and comparing transmission trees:</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cran.r-project.org/package=treespace" class="external-link">treespace</a></span><span class="op">)</span></span></code></pre></div>
+<p><em>treespace</em> contains three functions for handling and
+comparing transmission trees:</p>
 <ol style="list-style-type: decimal">
 <li>
-<code><a href="../reference/findMRCIs.html">findMRCIs()</a></code> which takes a “who infected whom matrix” (the information about infectors and infectees; more on this below) and outputs:</li>
+<code><a href="../reference/findMRCIs.html">findMRCIs()</a></code> which takes a “who infected whom matrix”
+(the information about infectors and infectees; more on this below) and
+outputs:</li>
 </ol>
 <ul>
-<li><p><code>sourceCase</code>: the number of the node which is the source case, i.e. the common infector of all cases (outputs a warning if there is more than one source case).</p></li>
-<li><p><code>mrcis</code>: a matrix where, for each pair of individuals i and j, the entry (i,j) is the node number of their MRCI. Note that if i infected j then this entry is i itself.</p></li>
-<li><p><code>mrciDepths</code>: a matrix where, for each pair of individuals i and j, the entry (i,j) is the <em>depth</em> of their MRCI, defined as the number of edges from the source case. The source case has depth zero, its direct infectees have depth 1, and so on.</p></li>
+<li><p><code>sourceCase</code>: the number of the node which is the
+source case, i.e. the common infector of all cases (outputs a warning if
+there is more than one source case).</p></li>
+<li><p><code>mrcis</code>: a matrix where, for each pair of individuals
+i and j, the entry (i,j) is the node number of their MRCI. Note that if
+i infected j then this entry is i itself.</p></li>
+<li><p><code>mrciDepths</code>: a matrix where, for each pair of
+individuals i and j, the entry (i,j) is the <em>depth</em> of their
+MRCI, defined as the number of edges from the source case. The source
+case has depth zero, its direct infectees have depth 1, and so
+on.</p></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
-<li><p><code><a href="../reference/wiwTreeDist.html">wiwTreeDist()</a></code> which takes a list of <code>mrciDepths</code> matrices and computes the distances between them. You have to supply the list of sampled cases in which you are interested, and then it takes the Euclidean distance between each pair of matrices restricted to the sampled cases (and written long-hand, as a vector)</p></li>
-<li><p><code><a href="../reference/wiwMedTree.html">wiwMedTree()</a></code> which takes a list of <code>mrciDepths</code> matrices, the list of sampled cases, an optional list of weights, and outputs the median transmission tree</p></li>
+<li><p><code><a href="../reference/wiwTreeDist.html">wiwTreeDist()</a></code> which takes a list of
+<code>mrciDepths</code> matrices and computes the distances between
+them. You have to supply the list of sampled cases in which you are
+interested, and then it takes the Euclidean distance between each pair
+of matrices restricted to the sampled cases (and written long-hand, as a
+vector)</p></li>
+<li><p><code><a href="../reference/wiwMedTree.html">wiwMedTree()</a></code> which takes a list of
+<code>mrciDepths</code> matrices, the list of sampled cases, an optional
+list of weights, and outputs the median transmission tree</p></li>
 </ol>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
-<p>We define a “who infected whom matrix” as a matrix of two columns, where the first represents the infectors and the second represents their infectees. For example, a simple transmission chain could be represented like this:</p>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
+<p>We define a “who infected whom matrix” as a matrix of two columns,
+where the first represents the infectors and the second represents their
+infectees. For example, a simple transmission chain could be represented
+like this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> 
-<span class="va">tree1</span></code></pre></div>
-<pre><code>##      Infector Infectee
-## [1,]        1        2
-## [2,]        2        3
-## [3,]        3        4
-## [4,]        4        5
-## [5,]        5        6</code></pre>
-<p>This can be easily visualised as a transmission chain using graph plotting packages such as <em>igraph</em> or <em>visNetwork</em>:</p>
+<code class="sourceCode R"><span><span class="va">tree1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> </span>
+<span><span class="va">tree1</span></span></code></pre></div>
+<pre><code><span><span class="co">##      Infector Infectee</span></span>
+<span><span class="co">## [1,]        1        2</span></span>
+<span><span class="co">## [2,]        2        3</span></span>
+<span><span class="co">## [3,]        3        4</span></span>
+<span><span class="co">## [4,]        4        5</span></span>
+<span><span class="co">## [5,]        5        6</span></span></code></pre>
+<p>This can be easily visualised as a transmission chain using graph
+plotting packages such as <em>igraph</em> or <em>visNetwork</em>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span>
-<span class="co"># set plotting options:</span>
-<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/igraph_options.html">igraph_options</a></span><span class="op">(</span>vertex.size<span class="op">=</span><span class="fl">15</span>,
-               vertex.color<span class="op">=</span><span class="st">"cyan"</span>,
-               vertex.label.cex<span class="op">=</span><span class="fl">2</span>,
-               edge.color<span class="op">=</span><span class="st">"lightgrey"</span>,
-               edge.arrow.size<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-
-<span class="va">tree1graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree1graph</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span></span>
+<span><span class="co"># set plotting options:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/igraph_options.html" class="external-link">igraph_options</a></span><span class="op">(</span>vertex.size<span class="op">=</span><span class="fl">15</span>,</span>
+<span>               vertex.color<span class="op">=</span><span class="st">"cyan"</span>,</span>
+<span>               vertex.label.cex<span class="op">=</span><span class="fl">2</span>,</span>
+<span>               edge.color<span class="op">=</span><span class="st">"lightgrey"</span>,</span>
+<span>               edge.arrow.size<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tree1graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html" class="external-link">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tree1graph</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/igraph_tree1-1.png" width="672"></p>
 <p>Applying the function <code>findMRCIs</code> gives the following:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span></code></pre></div>
-<pre><code>## $sourceCase
-## [1] 1
-## 
-## $mrcis
-##   1 2 3 4 5 6
-## 1 1 1 1 1 1 1
-## 2 1 2 2 2 2 2
-## 3 1 2 3 3 3 3
-## 4 1 2 3 4 4 4
-## 5 1 2 3 4 5 5
-## 6 1 2 3 4 5 6
-## 
-## $mrciDepths
-##   1 2 3 4 5 6
-## 1 0 0 0 0 0 0
-## 2 0 1 1 1 1 1
-## 3 0 1 2 2 2 2
-## 4 0 1 2 3 3 3
-## 5 0 1 2 3 4 4
-## 6 0 1 2 3 4 5</code></pre>
-<div id="comparing-three-simple-trees" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-three-simple-trees" class="anchor"></a>Comparing three simple trees</h3>
-<p>Suppose we had other hypotheses for the transmission tree which describes who infected whom amongst these six cases:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## $sourceCase</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $mrcis</span></span>
+<span><span class="co">##   1 2 3 4 5 6</span></span>
+<span><span class="co">## 1 1 1 1 1 1 1</span></span>
+<span><span class="co">## 2 1 2 2 2 2 2</span></span>
+<span><span class="co">## 3 1 2 3 3 3 3</span></span>
+<span><span class="co">## 4 1 2 3 4 4 4</span></span>
+<span><span class="co">## 5 1 2 3 4 5 5</span></span>
+<span><span class="co">## 6 1 2 3 4 5 6</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $mrciDepths</span></span>
+<span><span class="co">##   1 2 3 4 5 6</span></span>
+<span><span class="co">## 1 0 0 0 0 0 0</span></span>
+<span><span class="co">## 2 0 1 1 1 1 1</span></span>
+<span><span class="co">## 3 0 1 2 2 2 2</span></span>
+<span><span class="co">## 4 0 1 2 3 3 3</span></span>
+<span><span class="co">## 5 0 1 2 3 4 4</span></span>
+<span><span class="co">## 6 0 1 2 3 4 5</span></span></code></pre>
+<div class="section level3">
+<h3 id="comparing-three-simple-trees">Comparing three simple trees<a class="anchor" aria-label="anchor" href="#comparing-three-simple-trees"></a>
+</h3>
+<p>Suppose we had other hypotheses for the transmission tree which
+describes who infected whom amongst these six cases:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a second scenario:</span>
-<span class="va">tree2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
-<span class="va">tree2</span></code></pre></div>
-<pre><code>##      Infector Infectee
-## [1,]        1        2
-## [2,]        5        3
-## [3,]        2        4
-## [4,]        2        5
-## [5,]        3        6</code></pre>
+<code class="sourceCode R"><span><span class="co"># a second scenario:</span></span>
+<span><span class="va">tree2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">tree2</span></span></code></pre></div>
+<pre><code><span><span class="co">##      Infector Infectee</span></span>
+<span><span class="co">## [1,]        1        2</span></span>
+<span><span class="co">## [2,]        5        3</span></span>
+<span><span class="co">## [3,]        2        4</span></span>
+<span><span class="co">## [4,]        2        5</span></span>
+<span><span class="co">## [5,]        3        6</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree2graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree2graph</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tree2graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html" class="external-link">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tree2graph</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-1.png" width="672"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># and a third scenario:</span>
-<span class="va">tree3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">6</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">tree3</span></code></pre></div>
-<pre><code>##      Infector Infectee
-## [1,]        2        1
-## [2,]        2        3
-## [3,]        2        4
-## [4,]        2        6
-## [5,]        6        5</code></pre>
+<code class="sourceCode R"><span><span class="co"># and a third scenario:</span></span>
+<span><span class="va">tree3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>Infector<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">6</span><span class="op">)</span>,Infectee<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">tree3</span></span></code></pre></div>
+<pre><code><span><span class="co">##      Infector Infectee</span></span>
+<span><span class="co">## [1,]        2        1</span></span>
+<span><span class="co">## [2,]        2        3</span></span>
+<span><span class="co">## [3,]        2        4</span></span>
+<span><span class="co">## [4,]        2        6</span></span>
+<span><span class="co">## [5,]        6        5</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree3graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">tree3graph</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tree3graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html" class="external-link">graph_from_edgelist</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tree3graph</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/trees2_and_3-2.png" width="672"></p>
-<p>Then we can use <em>treespace</em> functions to make the following comparisons:</p>
+<p>Then we can use <em>treespace</em> functions to make the following
+comparisons:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span> <span class="co"># find the source case, MRCIs and MRCI depths for tree 1</span>
-<span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span>
-<span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span>
-
-<span class="va">matList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">m1</span><span class="op">$</span><span class="va">mrciDepths</span>,<span class="va">m2</span><span class="op">$</span><span class="va">mrciDepths</span>,<span class="va">m3</span><span class="op">$</span><span class="va">mrciDepths</span><span class="op">)</span> <span class="co"># create a list of the mrciDepths matrices</span>
-<span class="va">matList</span></code></pre></div>
-<pre><code>## [[1]]
-##   1 2 3 4 5 6
-## 1 0 0 0 0 0 0
-## 2 0 1 1 1 1 1
-## 3 0 1 2 2 2 2
-## 4 0 1 2 3 3 3
-## 5 0 1 2 3 4 4
-## 6 0 1 2 3 4 5
-## 
-## [[2]]
-##   1 2 3 4 5 6
-## 1 0 0 0 0 0 0
-## 2 0 1 1 1 1 1
-## 3 0 1 3 1 2 3
-## 4 0 1 1 2 1 1
-## 5 0 1 2 1 2 2
-## 6 0 1 3 1 2 4
-## 
-## [[3]]
-##   1 2 3 4 5 6
-## 1 1 0 0 0 0 0
-## 2 0 0 0 0 0 0
-## 3 0 0 1 0 0 0
-## 4 0 0 0 1 0 0
-## 5 0 0 0 0 2 1
-## 6 0 0 0 0 1 1</code></pre>
+<code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree1</span><span class="op">)</span> <span class="co"># find the source case, MRCIs and MRCI depths for tree 1</span></span>
+<span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree2</span><span class="op">)</span></span>
+<span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">tree3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">matList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">m1</span><span class="op">$</span><span class="va">mrciDepths</span>,<span class="va">m2</span><span class="op">$</span><span class="va">mrciDepths</span>,<span class="va">m3</span><span class="op">$</span><span class="va">mrciDepths</span><span class="op">)</span> <span class="co"># create a list of the mrciDepths matrices</span></span>
+<span><span class="va">matList</span></span></code></pre></div>
+<pre><code><span><span class="co">## [[1]]</span></span>
+<span><span class="co">##   1 2 3 4 5 6</span></span>
+<span><span class="co">## 1 0 0 0 0 0 0</span></span>
+<span><span class="co">## 2 0 1 1 1 1 1</span></span>
+<span><span class="co">## 3 0 1 2 2 2 2</span></span>
+<span><span class="co">## 4 0 1 2 3 3 3</span></span>
+<span><span class="co">## 5 0 1 2 3 4 4</span></span>
+<span><span class="co">## 6 0 1 2 3 4 5</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## [[2]]</span></span>
+<span><span class="co">##   1 2 3 4 5 6</span></span>
+<span><span class="co">## 1 0 0 0 0 0 0</span></span>
+<span><span class="co">## 2 0 1 1 1 1 1</span></span>
+<span><span class="co">## 3 0 1 3 1 2 3</span></span>
+<span><span class="co">## 4 0 1 1 2 1 1</span></span>
+<span><span class="co">## 5 0 1 2 1 2 2</span></span>
+<span><span class="co">## 6 0 1 3 1 2 4</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## [[3]]</span></span>
+<span><span class="co">##   1 2 3 4 5 6</span></span>
+<span><span class="co">## 1 1 0 0 0 0 0</span></span>
+<span><span class="co">## 2 0 0 0 0 0 0</span></span>
+<span><span class="co">## 3 0 0 1 0 0 0</span></span>
+<span><span class="co">## 4 0 0 0 1 0 0</span></span>
+<span><span class="co">## 5 0 0 0 0 2 1</span></span>
+<span><span class="co">## 6 0 0 0 0 1 1</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="co"># find the Euclidean distances between these matrices, where all six cases are sampled</span></code></pre></div>
-<pre><code>##        1      2
-## 2  5.916       
-## 3 10.630  7.616</code></pre>
-<p>If we had only sampled cases 4, 5 and 6, so that “1”, “2” and “3” could be regarded as arbitrary names of inferred, unsampled cases, we would compute:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="co"># find the Euclidean distances between these matrices, where all six cases are sampled</span></span></code></pre></div>
+<pre><code><span><span class="co">##        1      2</span></span>
+<span><span class="co">## 2  5.916       </span></span>
+<span><span class="co">## 3 10.630  7.616</span></span></code></pre>
+<p>If we had only sampled cases 4, 5 and 6, so that “1”, “2” and “3”
+could be regarded as arbitrary names of inferred, unsampled cases, we
+would compute:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></code></pre></div>
-<pre><code>##       1     2
-## 2 5.477      
-## 3 8.832 4.000</code></pre>
-<p>which substantially changes the measures of similarities and differences between the trees.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList</span>, sampled<span class="op">=</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##       1     2</span></span>
+<span><span class="co">## 2 5.477      </span></span>
+<span><span class="co">## 3 8.832 4.000</span></span></code></pre>
+<p>which substantially changes the measures of similarities and
+differences between the trees.</p>
 </div>
-<div id="comparing-many-trees-using-an-mds-plot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-many-trees-using-an-mds-plot" class="anchor"></a>Comparing many trees using an MDS plot</h3>
-<p>Finally, we demonstrate comparing a larger set of transmission trees and finding the median:</p>
+<div class="section level3">
+<h3 id="comparing-many-trees-using-an-mds-plot">Comparing many trees using an MDS plot<a class="anchor" aria-label="anchor" href="#comparing-many-trees-using-an-mds-plot"></a>
+</h3>
+<p>Finally, we demonstrate comparing a larger set of transmission trees
+and finding the median:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">RNGversion</a></span><span class="op">(</span><span class="st">"3.5.0"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span>
-<span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">500</span>
-
-<span class="co"># create a list of 500 random transmission trees with 11 cases, where the source case is fixed as case 1:</span>
-<span class="va">treelistSC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">num</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu">rtree</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">$</span><span class="va">edge</span> <span class="co"># effectively creating a random transmission scenario</span>
-  <span class="va">relabel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span> <span class="co"># create a relabelling so that infections don't all happen in numerical order, but we force the source case to be 1:</span>
-  <span class="va">relabel</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">relabel</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>
-  <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-  <span class="va">relabelledEdges1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-  <span class="va">relabelledEdges2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">relabelledEdges1</span>,<span class="va">relabelledEdges2</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-
-<span class="co"># create 500 more random transmission trees, but where the source case is fixed as case 2:</span>
-<span class="va">treelistSC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">num</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu">rtree</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">$</span><span class="va">edge</span> 
-  <span class="va">relabel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span> 
-  <span class="va">relabel</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">relabel</span><span class="op">==</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>
-  <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-  <span class="va">relabelledEdges1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-  <span class="va">relabelledEdges2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">relabelledEdges1</span>,<span class="va">relabelledEdges2</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-
-<span class="co"># combine:</span>
-<span class="va">combinedLists</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">treelistSC1</span>,<span class="va">treelistSC2</span><span class="op">)</span>
-
-<span class="co"># get mrciDepths matrices:</span>
-<span class="va">matList1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">combinedLists</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">mrciDepths</span>
-<span class="op">)</span>
-
-<span class="co"># find pairwise tree distances, treating all cases as sampled:</span>
-<span class="va">WiwDists1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList1000</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></code></pre></div>
-<p>Now that we have a pairwise distance matrix we can use multidimensional scaling (MDS) to view the relative distances between the trees in a 2D projection. We will colour the points in the projection by the “depth” of the corresponding tree, and use symbols to indicate the source case. For “depth” here we simply use the mean of each “mrciDepths” matrix.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGversion</a></span><span class="op">(</span><span class="st">"3.5.0"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span></span>
+<span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
+<span></span>
+<span><span class="co"># create a list of 500 random transmission trees with 11 cases, where the source case is fixed as case 1:</span></span>
+<span><span class="va">treelistSC1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">num</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/rtree.html" class="external-link">rtree</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">$</span><span class="va">edge</span> <span class="co"># effectively creating a random transmission scenario</span></span>
+<span>  <span class="va">relabel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span> <span class="co"># create a relabelling so that infections don't all happen in numerical order, but we force the source case to be 1:</span></span>
+<span>  <span class="va">relabel</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">relabel</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>  <span class="va">relabelledEdges1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">relabelledEdges2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">relabelledEdges1</span>,<span class="va">relabelledEdges2</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create 500 more random transmission trees, but where the source case is fixed as case 2:</span></span>
+<span><span class="va">treelistSC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">num</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ape/man/rtree.html" class="external-link">rtree</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">$</span><span class="va">edge</span> </span>
+<span>  <span class="va">relabel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span> </span>
+<span>  <span class="va">relabel</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">relabel</span><span class="op">==</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="va">relabel</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span>  <span class="va">relabelledEdges1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">relabelledEdges2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">edges</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">relabel</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">relabelledEdges1</span>,<span class="va">relabelledEdges2</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># combine:</span></span>
+<span><span class="va">combinedLists</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">treelistSC1</span>,<span class="va">treelistSC2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get mrciDepths matrices:</span></span>
+<span><span class="va">matList1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">combinedLists</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/findMRCIs.html">findMRCIs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">$</span><span class="va">mrciDepths</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># find pairwise tree distances, treating all cases as sampled:</span></span>
+<span><span class="va">WiwDists1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwTreeDist.html">wiwTreeDist</a></span><span class="op">(</span><span class="va">matList1000</span>, sampled<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></span></code></pre></div>
+<p>Now that we have a pairwise distance matrix we can use
+multidimensional scaling (MDS) to view the relative distances between
+the trees in a 2D projection. We will colour the points in the
+projection by the “depth” of the corresponding tree, and use symbols to
+indicate the source case. For “depth” here we simply use the mean of
+each “mrciDepths” matrix.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wiwMDS</span> <span class="op">&lt;-</span> <span class="fu">dudi.pco</span><span class="op">(</span><span class="va">WiwDists1000</span>, scannf<span class="op">=</span><span class="cn">FALSE</span>, nf<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
-
-<span class="va">wiwPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,y<span class="op">=</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># prepare aesthetics</span>
-<span class="va">depths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">matList1000</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="va">sourcecase</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="va">num</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"2"</span>,<span class="va">num</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># prepare colours:</span>
-<span class="va">colfunc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">10</span>,<span class="st">"Spectral"</span><span class="op">)</span>, space<span class="op">=</span><span class="st">"Lab"</span><span class="op">)</span>
-
-<span class="va">wiwPlot</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">4</span>, colour<span class="op">=</span><span class="st">"gray60"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape<span class="op">=</span><span class="va">sourcecase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="va">depths</span>, shape<span class="op">=</span><span class="va">sourcecase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_colour_gradientn</a></span><span class="op">(</span><span class="st">"Mean of v\n"</span>, 
-                         colours<span class="op">=</span><span class="fu">colfunc</span><span class="op">(</span><span class="fl">7</span><span class="op">)</span>,
-                         guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span><span class="op">(</span>barheight<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_shape.html">scale_shape_discrete</a></span><span class="op">(</span><span class="st">"Source case\n"</span>, solid<span class="op">=</span><span class="cn">T</span>, guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>keyheight <span class="op">=</span> <span class="fl">3</span>, keywidth<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span>, base_family <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span>, base_family <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>,
-    legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>,
-    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>, axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wiwMDS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ade4/man/dudi.pco.html" class="external-link">dudi.pco</a></span><span class="op">(</span><span class="va">WiwDists1000</span>, scannf<span class="op">=</span><span class="cn">FALSE</span>, nf<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wiwPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,y<span class="op">=</span><span class="va">wiwMDS</span><span class="op">$</span><span class="va">li</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># prepare aesthetics</span></span>
+<span><span class="va">depths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">matList1000</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sourcecase</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="va">num</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"2"</span>,<span class="va">num</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># prepare colours:</span></span>
+<span><span class="va">colfunc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">10</span>,<span class="st">"Spectral"</span><span class="op">)</span>, space<span class="op">=</span><span class="st">"Lab"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wiwPlot</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">4</span>, colour<span class="op">=</span><span class="st">"gray60"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>shape<span class="op">=</span><span class="va">sourcecase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="va">depths</span>, shape<span class="op">=</span><span class="va">sourcecase</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_colour_gradientn</a></span><span class="op">(</span><span class="st">"Mean of v\n"</span>, </span>
+<span>                         colours<span class="op">=</span><span class="fu">colfunc</span><span class="op">(</span><span class="fl">7</span><span class="op">)</span>,</span>
+<span>                         guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>barheight<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_shape.html" class="external-link">scale_shape_discrete</a></span><span class="op">(</span><span class="st">"Source case\n"</span>, solid<span class="op">=</span><span class="cn">T</span>, guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span>keyheight <span class="op">=</span> <span class="fl">3</span>, keywidth<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span>, base_family <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span>, base_family <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>,</span>
+<span>    legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>,</span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span>, axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/wiw_MDS1000-1.png" width="672"></p>
-<p>The symmetry in the plot corresponds to the different source cases, and the trees are also clearly separated by depth.</p>
+<p>The symmetry in the plot corresponds to the different source cases,
+and the trees are also clearly separated by depth.</p>
 </div>
-<div id="median-trees" class="section level3">
-<h3 class="hasAnchor">
-<a href="#median-trees" class="anchor"></a>Median trees</h3>
-<p>If our transmission trees corresponded to real data it could be meaningful to find a single representative tree. To find the geometric median tree(s) from a collection, we use the function <code>wiwMedTree</code>:</p>
+<div class="section level3">
+<h3 id="median-trees">Median trees<a class="anchor" aria-label="anchor" href="#median-trees"></a>
+</h3>
+<p>If our transmission trees corresponded to real data it could be
+meaningful to find a single representative tree. To find the geometric
+median tree(s) from a collection, we use the function
+<code>wiwMedTree</code>:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">med</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwMedTree.html">wiwMedTree</a></span><span class="op">(</span><span class="va">matList1000</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">med</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wiwMedTree.html">wiwMedTree</a></span><span class="op">(</span><span class="va">matList1000</span><span class="op">)</span></span></code></pre></div>
 <p>This returns a list with components:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "centre"    "distances" "mindist"   "median"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">med</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "centre"    "distances" "mindist"   "median"</span></span></code></pre>
 <ul>
-<li><p><code>centre</code> is the mean vector (which may not necessarily correspond to a valid transmission tree with a single source case)</p></li>
-<li><p><code>distances</code> gives the distance of each tree from the centre, as a vector</p></li>
-<li><p><code>mindist</code> gives the minimum of these distances</p></li>
-<li><p><code>median</code> gives the number(s) of the median tree(s)</p></li>
+<li><p><code>centre</code> is the mean vector (which may not necessarily
+correspond to a valid transmission tree with a single source
+case)</p></li>
+<li><p><code>distances</code> gives the distance of each tree from the
+centre, as a vector</p></li>
+<li><p><code>mindist</code> gives the minimum of these
+distances</p></li>
+<li><p><code>median</code> gives the number(s) of the median
+tree(s)</p></li>
 </ul>
 <p>Here the median trees are:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">med</span><span class="op">$</span><span class="va">median</span></code></pre></div>
-<pre><code>## [1] 817</code></pre>
+<code class="sourceCode R"><span><span class="va">med</span><span class="op">$</span><span class="va">median</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 817</span></span></code></pre>
 <p>The first one looks like this:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">medgraph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="va">combinedLists</span><span class="op">[[</span><span class="va">med</span><span class="op">$</span><span class="va">median</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/adegraphics/man/plot.html">plot</a></span><span class="op">(</span><span class="va">medgraph</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">medgraph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html" class="external-link">graph_from_edgelist</a></span><span class="op">(</span><span class="va">combinedLists</span><span class="op">[[</span><span class="va">med</span><span class="op">$</span><span class="va">median</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">medgraph</span><span class="op">)</span></span></code></pre></div>
 <p><img src="TransmissionTreesVignette_files/figure-html/wiwMedTreePlot-1.png" width="672"></p>
 </div>
 </div>
@@ -363,11 +405,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Thibaut Jombart, Michelle Kendall, Jacob Almagro-Garcia, Caroline Colijn.</p>
+  <p></p>
+<p>Developed by Thibaut Jombart, Michelle Kendall, Jacob Almagro-Garcia, Caroline Colijn.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -375,6 +419,8 @@
 
   
 
+
+  
 
   </body>
 </html>
