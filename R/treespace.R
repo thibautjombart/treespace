@@ -28,7 +28,7 @@
 #'
 #' @import ape
 #' @importFrom ade4 dudi.pco cailliez is.euclid
-#' @importFrom adephylo distTips
+#@importFrom adephylo distTips
 #' @importFrom distory dist.multiPhylo
 #' @importFrom fields rdist
 #' @importFrom phangorn KF.dist
@@ -108,9 +108,10 @@ treespace <- function(x, method="treeVec", nf=NULL, lambda=0, return.tree.vector
       D <- as.dist(rdist(df))
     }
     else if(method %in% c("Abouheif","sumDD")){
-      df <- t(mcmapply(adephylo::distTips, x, method=method, MoreArgs=dots, mc.cores=processors))
+      stop("Unfortunately, the methods of Abouheif and sumDD for summarising the tree as a vector are currently unavailable because of an issue with the package adephylo, on which they depend. Please select another method.")
+      #df <- t(mcmapply(adephylo::distTips, x, method=method, MoreArgs=dots, mc.cores=processors))
       ## get pairwise Euclidean distances ##
-      D <- as.dist(rdist(df))
+      #D <- as.dist(rdist(df))
     }
     else if(method=="patristic"){
       D <- path.dist(x, use.weight=TRUE)

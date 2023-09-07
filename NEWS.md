@@ -1,3 +1,8 @@
+treespace v1.1.4.3
+==================
+
+Patch to remove dependency on the `adephylo` package as required by CRAN - hopefully only temporarily.
+
 treespace v1.1.4.2
 ==================
 

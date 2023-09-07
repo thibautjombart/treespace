@@ -1,7 +1,7 @@
 Package: treespace
 Title: Statistical Exploration of Landscapes of Phylogenetic Trees
-Date: 2023-04-03
-Version: 1.1.4.2
+Date: 2023-09-07
+Version: 1.1.4.3
 Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-2226-8692")),
  	     MK = person("Michelle", "Kendall", email="michelle.kendall@warwick.ac.uk", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7344-7071")),
 	     JAG = person("Jacob", "Almagro-Garcia", role = "aut", comment = c(ORCID = "0000-0002-0595-7333")),
@@ -11,12 +11,12 @@ Description: Tools for the exploration of distributions of phylogenetic trees.
     treespaceServer(). 
     For further details see Jombart et al. (2017) <DOI:10.1111/1755-0998.12676>.
 Depends: R (>= 3.4.0), ape, ade4
-Imports: adegenet, adegraphics, adephylo, combinat, compiler, distory,
+Imports: adegenet, adegraphics, combinat, compiler, distory,
         fields, htmlwidgets, MASS, methods, parallel, phangorn, phytools, Rcpp,
         rgl, RLumShiny, scatterD3, shiny, shinyBS, utils
 LinkingTo: Rcpp
 Suggests: ggplot2, igraph, knitr, pander, RColorBrewer, reshape2,
-        rmarkdown, testthat
+        rmarkdown, sf, testthat
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

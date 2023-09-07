@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">treespace</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4.3</span>
       </span>
     </div>
 
@@ -130,15 +130,15 @@ This function returns the matrix of metric values for the given lambda.</p></dd>
 <span class="r-in"><span><span class="co">## pairwise distance matrix when lambda=0</span></span></span>
 <span class="r-in"><span><span class="fu">multiDist</span><span class="op">(</span><span class="va">trees</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           1        2        3        4        5        6        7        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  4.000000                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  4.242641 4.000000                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  4.472136 4.690416 5.656854                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  4.582576 3.605551 5.000000 5.000000                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  3.872983 5.385165 5.196152 6.557439 5.656854                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  4.358899 4.358899 5.000000 4.358899 4.242641 5.830952                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  4.690416 4.898979 5.291503 5.656854 4.358899 6.244998 5.000000         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  4.472136 4.000000 4.898979 4.690416 4.358899 6.082763 3.605551 4.690416</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 5.916080 5.916080 7.000000 6.244998 6.782330 5.477226 5.830952 7.141428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  5.567764                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  3.605551 4.242641                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  6.557439 5.099020 5.477226                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  5.916080 4.690416 5.477226 5.477226                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  6.082763 4.898979 5.477226 3.162278 5.477226                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  6.708204 4.690416 5.477226 4.690416 5.656854 4.898979                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  6.928203 5.567764 6.244998 7.141428 6.244998 7.000000 4.582576         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  5.000000 5.291503 4.898979 5.656854 4.472136 5.656854 5.656854 7.141428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2.645751 5.099020 4.242641 5.830952 5.099020 5.291503 5.830952 6.403124</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3          </span>
@@ -148,7 +148,7 @@ This function returns the matrix of metric values for the given lambda.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 5.916080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 5.291503</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## pairwise distance matrix as a function of lambda:</span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">multiDist</span><span class="op">(</span><span class="va">trees</span>, return.lambda.function<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>

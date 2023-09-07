@@ -18,7 +18,7 @@
 #' @importFrom adegraphics s1d.barchart 
 #' @importFrom adegraphics s.class 
 #' @importFrom adegraphics s.label
-#' @importFrom adephylo distTips
+#@importFrom adephylo distTips
 #' @importFrom distory dist.multiPhylo
 #' @importFrom fields rdist
 #' @importFrom htmlwidgets saveWidget
