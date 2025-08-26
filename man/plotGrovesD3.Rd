@@ -33,7 +33,7 @@ plotGrovesD3(
 
 \item{ylab}{the label for the 'y' axis. Defaults to use the value of 'yax'}
 
-\item{...}{further arguments passed to \code{\link{scatterD3}}}
+\item{...}{further arguments passed to \code{\link[scatterD3]{scatterD3}}}
 }
 \value{
 A \code{scatterD3} plot

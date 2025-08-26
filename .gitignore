@@ -14,3 +14,4 @@ docs/articles/*cache*
 treespace.Rcheck/
 *.tar.gz
 *.DS_Store*
+.DS_Store

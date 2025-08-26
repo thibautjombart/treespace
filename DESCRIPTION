@@ -1,9 +1,9 @@
 Package: treespace
 Title: Statistical Exploration of Landscapes of Phylogenetic Trees
-Date: 2023-09-07
-Version: 1.1.4.3
+Date: 2025-08-26
+Version: 1.1.4.4
 Authors@R: c(TJ = person("Thibaut", "Jombart", email="thibautjombart@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-2226-8692")),
- 	     MK = person("Michelle", "Kendall", email="michelle.kendall@warwick.ac.uk", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7344-7071")),
+ 	     MK = person("Michelle", "Kendall", email="michelle.kendall@ndm.ox.ac.uk", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7344-7071")),
 	     JAG = person("Jacob", "Almagro-Garcia", role = "aut", comment = c(ORCID = "0000-0002-0595-7333")),
 	     CC = person("Caroline", "Colijn", role = "aut", comment = c(ORCID = "0000-0001-6097-6708")))
 Description: Tools for the exploration of distributions of phylogenetic trees.
@@ -24,7 +24,7 @@ Collate: RcppExports.R metrics.R medTree.R treespace.R findGroves.R
         plotGroves.R plotTreeDiff.R servers.R transmissionTrees.R
         data.R makeCollapsedTree.R relatedTreeDist.R simulateIndTree.R
         tipsMRCAdepths.R treeConcordance.R
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 URL: https://cran.r-project.org/package=treespace,
         https://github.com/thibautjombart/treespace

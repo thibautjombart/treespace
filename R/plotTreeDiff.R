@@ -126,7 +126,7 @@ tipDiff <- function(tr1,tr2,vec1=NULL,vec2=NULL,sizeOfDifferences=FALSE) {
 #' @param col1 the first colour used to define the colour spectrum for tips with differences. This colour will be used for tips with minor differences. Defaults to "peachpuff". Ignored if \code{colourMethod="palette"}.
 #' @param col2 the second colour used to define the colour spectrum for tips with differences. This colour will be used for tips with major differences. Defaults to "red2". Ignored if \code{colourMethod="palette"}.
 #' @param palette the colour palette to be used if \code{colourMethod="palette"}. For a list of available palettes see \code{?num2col}.
-#' @param ... further arguments passed to \code{\link{plot.phylo}}
+#' @param ... further arguments passed to \code{\link[ape]{plot.phylo}}
 #'
 #' @return
 #' A plot of the two trees side by side. Tips are coloured in the following way:

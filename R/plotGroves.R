@@ -33,7 +33,7 @@
 #' @param scree.pal a color palette for the screeplot
 #' @param scree.size a size factor for the screeplot, between 0 and 1
 #' @param scree.posi either a character string or xy coordinates indicating the position of the screeplot.
-#' @param ... further arguments passed to \code{\link{s.class}}
+#' @param ... further arguments passed to \code{\link[adegraphics]{s.class}}
 #'
 #' @return
 #' An \code{adegraphics} object (class: \code{ADEgS})
@@ -193,7 +193,7 @@ plotGroves <- function(x, groups=NULL, xax=1, yax=2,
 #' @param xlab the label for the 'x' axis. Defaults to use the value of 'xax'
 #' @param ylab the label for the 'y' axis. Defaults to use the value of 'yax'
 #' @param symbol_var a factor by which to vary the symbols in the plot
-#' @param ... further arguments passed to \code{\link{scatterD3}}
+#' @param ... further arguments passed to \code{\link[scatterD3]{scatterD3}}
 #'
 #' @return
 #' A \code{scatterD3} plot

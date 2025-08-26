@@ -54,7 +54,7 @@ plotGroves(
 
 \item{scree.posi}{either a character string or xy coordinates indicating the position of the screeplot.}
 
-\item{...}{further arguments passed to \code{\link{s.class}}}
+\item{...}{further arguments passed to \code{\link[adegraphics]{s.class}}}
 }
 \value{
 An \code{adegraphics} object (class: \code{ADEgS})

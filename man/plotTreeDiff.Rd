@@ -48,7 +48,7 @@ plotTreeDiff(
 
 \item{palette}{the colour palette to be used if \code{colourMethod="palette"}. For a list of available palettes see \code{?num2col}.}
 
-\item{...}{further arguments passed to \code{\link{plot.phylo}}}
+\item{...}{further arguments passed to \code{\link[ape]{plot.phylo}}}
 }
 \value{
 A plot of the two trees side by side. Tips are coloured in the following way:

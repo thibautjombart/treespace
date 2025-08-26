@@ -1,3 +1,8 @@
+treespace v1.1.4.4
+==================
+
+Patch to update the format of cross-references to other packages in Rd files as required by new CRAN standards. Change of maintainer's email address.
+
 treespace v1.1.4.3
 ==================
 
