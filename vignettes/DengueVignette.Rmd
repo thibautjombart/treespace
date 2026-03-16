@@ -221,7 +221,7 @@ which(as.matrix(Dscape$D)["NJ",]==0)
 which(as.matrix(Dscape$D)["ML",]==0)
 ```
 
-This shows that the NJ tree has the same topology as one NJ bootstrap tree and one ML bootstrap tree. The ML tree has the same topology as 15 ML bootstrap trees, but no NJ bootstrap trees.
+This shows that the NJ tree has the same topology as one NJ bootstrap tree. The ML tree has a topology that is not repeated in any of ML or NJ bootstrap trees.
 
 We can compare pairs of trees using the `plotTreeDiff` function to see exactly where their differences arise. 
 Tips with identical ancestry in the two trees are coloured grey, whereas tips with differing ancestry are coloured peach-red, with the colour darkening according to the number of ancestral differences found at each tip. 
